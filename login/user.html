@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户信息</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/css/list.css">
+
+<script src="../static/js/common/jquery.js"></script>
+<script src="../static/js/common/common.js"></script>
+<script src="../static/js/common/bootstrap.min.js"></script>
+<script src="../static/js/common/reData.js"></script>
+<script src="../static/js/common/geo.js"></script>
+<script src="../static/js/login/user.js"></script>
+<script src="../static/js/enclosure/header.js"></script>
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid" style="margin-bottom:50px;">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      	
+      </ul>
+      <div class="tab-content span8">
+      
+        <div class="tab-pane active">
+          <h4 class="panel-title">用户信息</h4>
+          <form class="form-horizontal" id="form1">
+             
+                  <div class="control-group">
+                  <div class="span6 pull-left">
+                    <label class="control-label">*姓名：</label>
+                    <div class="controls">
+                      <input type="text" class=" disabled edit-box" requir="true" readonly value="" check="U_2NAME" id="name" /><i class="text-error"></i>
+                    </div>
+                    </div>
+                    <div class="span6 pull-left">
+                    	<label class="control-label">生日：</label>
+                    <div class="controls">
+                      <input type="date" class="input-large disabled edit-box" readonly value="" check="U_6DATE" id="brith" /><i class="text-error"></i>
+                      </div>
+                    
+                    </div>
+                  </div>
+
+                   <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">性别：</label>
+                        
+                        <div class="controls">
+                      <select class="input-medium disabled edit-box" disabled id="gendar" check="U_8CODE"  >
+                      	<option value="">-请选择-</option>
+                      	<option value="1">男</option>
+                        <option value="2">女</option>
+                      </select>
+                    </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">身份证号：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" id="idcard" check="U_ZG_IDCARD"  /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                  </div>
+				
+                   <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">*EMAIL：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" check="U_IN_EMAIL" id="email" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="span6 pull-left">
+                        <label class="control-label">手机：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="mobile" />
+                        </div>
+                    </div>
+                    
+                  </div>
+                    
+                  <div class="control-group clearfix">
+                        <label class="control-label">电话：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" check="U_TL_PHONE" id="telephone" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                  <div class="control-group" id="geo">
+                    <label class="control-label">家庭区域：</label>
+                    <div class="controls">
+                      <select class="input-medium disabled edit-box" disabled id="province" >
+                      </select>
+                      <select class="input-medium  disabled edit-box" disabled id="city" >
+                      </select>
+                      <select class="input-medium  disabled edit-box" disabled id="county" >
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">家庭地址：</label>
+                    <div class="controls">
+                      <input type="text" class="input-xlarge disabled edit-box" readonly value="" check="U_9VALUE" id="address" /><i class="text-error"></i>
+                    </div>
+                  </div>
+                  
+                   <div class="control-group">
+                   
+                   <div class="span6 pull-left">
+                        <label class="control-label">用户帐号：</label>
+                        <div class="controls">
+                          <input type="text" class="disabled" readonly value="" id="account"  /><i class="text-error"></i>
+                        </div>
+                     </div>
+                     
+                     
+                   <div class="span6 pull-left">
+                    <label class="control-label">用户昵称：</label>
+                    <div class="controls">
+                      <input type="text" class="disabled edit-box" readonly value="" id="nick" check="U_2NAME"  /><i class="text-error"></i>
+                    </div>
+                  </div>
+
+                  </div>
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">激活时间：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="activeTime" />
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">最后登入时间：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="loginTime" />
+                        </div>
+                    </div>
+                    
+                  </div>
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">登入次数：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="loginNum" />
+                        </div>
+                    </div>
+
+                    </div>
+
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="button" class="btn btn-inverse redactBtn" value="编辑信息" />
+                      <input type="button" class="btn btn-inverse saveBtn hide" value="保存信息" />
+                      <input type="button" class="btn btn-inverse colseBtn hide" value="取消修改" />
+                    </div>
+                  </div>
+          
+          </form>
+          
+          
+          
+          
+        </div> 
+      </div>
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot">
+		
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+/*clear default style*/
+.on{background:#3a81da;}
+.on a{text-decoration:none;color:white;}
+li.headLi{padding: 0 10px;border-radius: 2%;}
+.tab-head{border-bottom:1px solid #eee;padding-bottom:15px;}
+.tab-pane{margin-top:10px;}
+.cur{cursor:pointer;}
+.page{ height: 34px;line-height: 34px;}
+.magR{margin-right:20px;}
+.paging-box{margin-top:20px;}
+.panel-head{height: 34px;line-height: 34px;padding: 0px 20px;margin: 5px; background:#eee;}
+.msgBox li{width: 28%;margin: 0.5%; border: 1px solid #ddd; padding: 10px;}
+.margT{margin:20px;}
+.boxStyle{width:1080px; margin-left:-490px;}
+.boxStyle .modal-body{overflow-y:scroll;max-height:400px;}
+.hidden{display:none;}
+.margPart{margin-right:20px; margin-top:5px;width:100px;}
+
+.entList li{height:60px; border: 1px solid #ddd;margin-bottom:30px;line-height:60px;text-align:center;}
+.entList li.on{background:#08c;color:white;transition:all 0.1s ease;}
+.entList li h4{padding-top:10px;}
+.proList li{height:80px; border: 1px solid #ddd;margin-right:50px;padding-top:20px;}
+.proList li h4{padding-left:10px;}
+.proList li button{margin-right:10px;margin-top:10px;}
+.mgTop10{margin-top:10px;margin-bottom:50px;}
+
+.maxH{max-height:260px;overflow-y:auto;}
+
+.textBox2{font-size: 15px; line-height: 20px; width: 90%;}
+#logForm  textarea{width:99%;margin-bottom:10px;}
+#cmtList{margin-top:60px;}
+
+#proList li{margin:1%};
+
+
+.tab-content{margin-bottom:50px;}
+

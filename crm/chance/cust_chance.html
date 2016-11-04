@@ -1,0 +1,778 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CRM 我管辖的机会</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../static/css/list.css">
+    <link rel="stylesheet" href="../../static/css/pro.css">
+    
+    <script src="../../static/js/common/jquery.js"></script>
+    <script src="../../static/js/common/reData.js"></script>
+    <script src="../../static/js/common/common.js"></script>
+    <script src="../../static/js/common/bootstrap.min.js"></script>
+    <script src="../../static/js/enclosure/header.js"></script>
+    <script src="../../static/js/enclosure/left_crm.js"></script>
+    <script src="../../static/js/common/geo.js"></script>
+    <script src="../../static/js/crm/chance/cust_chance.js"></script>
+    <script src="../../static/js/enclosure/cust_topDetail.js"></script>
+    <script src="../../static/js/common/alert.js"></script>
+    <script src="../../static/js/common/jedate.js"></script>
+  <link rel="stylesheet" href="../../static/css/jedate.css">
+<script src="../../static/js/common/alert.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <!--head-->
+
+    <div class="navbar navbar-inverse bg-head clearfix row-fluid">
+
+    </div>
+
+    <!--main-->
+    <div class="tabbable tabs-left row-fluid">
+        <ul class="nav nav-tabs span2 nav-borderL inav">
+
+        </ul>
+        <div class="tab-content span9">
+        <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+            <div class="clearfix page-header">
+                <h4 class="pull-left ">当前位置: 机会&nbsp;&nbsp;【<span id="custName"></span>】&nbsp;&nbsp;【<span id="lastTime"></span>】</h4>
+                
+                <!-- <a class="btn btn-blue pull-right" title="编辑" class="followContBox" href="#followContBox" data-toggle="modal" id="new_follow" ><i class="icon-plus icon-white"></i>新建跟进</a> -->
+            </div>
+
+            <table class="table table-striped">
+                <tbody id="custTopDetail">
+               
+                </tbody>
+            </table>
+            
+             		<div class="row"  style="margin-left:20px;">
+		      		<ul class="nav nav-tabs span10" id="myTab"  >
+							   <li><a href="" id="cst">客户信息</a></li>
+                <li><a href="" id="ctm">客户联系人</a></li>
+                <li><a href="" id="vst">行动</a></li>
+                <li><a href="" id="chnc">机会</a></li>
+                <li><a href="" id="ctrn">合同</a></li>
+							 
+					</ul>
+					<div class="span2" >
+					<a class="btn btn-blue pull-right" title="编辑" class="seeContBox" href="#seeContBox" data-toggle="modal" id="new_chance"><i class="icon-plus icon-white"></i>新建机会</a>
+					</div>
+			</div>
+       
+            <table class="table table-vcenter">
+                <thead>
+                <tr>
+
+                    <th>开始日期</th>
+                    <th>城市</th>
+                    <th>标题</th>
+                    <th>产品</th>
+                    <th>阶段</th>
+                    <th>状态</th>
+                    <th class="text-right">预计采购额(万)</th>
+                    <th class="text-right">预计成功率(%)</th>
+                    <th>操作</th>
+                    <th>查看跟进列表</th>
+                    <th>新建跟进</th>
+                    <th>新建合同</th>
+                </tr>
+                </thead>
+                <tbody id="empList">
+        
+                </tbody>
+            </table>
+            <div class="paging-box clearfix">
+
+                <div class="pull-left page magR" id="">当前第&nbsp;&nbsp;<i id="nowPage">1</i>&nbsp;&nbsp;页</div>
+                <div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage">0</i>&nbsp;&nbsp;页</div>
+
+                <div class="pull-right">
+                    <span class="btn btn-blue " id="firstPage">首页</span>
+                    <span class="btn btn-blue" id="previousPage">上一页</span>
+                    <span class="btn btn-blue" id="nextPage">下一页</span>
+                    <span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>跳转到</span>
+                    <input type="text" class="input-small" id="goPage">&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+                    <span class="btn btn-blue" id="jumpPage">go</span>
+                </div>
+
+            </div>
+
+            <!------------------------------------------------新建机会startt-------------------------------------------->
+            <div id="seeContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">机会详情</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="newChncForm">
+                        <div class="control-group clearfix">
+                            <div class="span6 pull-left">
+                                <label class="control-label">*机会标题</label>
+                                <div class="controls">
+                                 <input type="text" id="chncName"  requir="true" check="U_2NAME_T" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+
+                            <div class="span6 pull-left">
+                                <label class="control-label">联系人</label>
+                                <div class="controls">
+                                    <select id="chncCtmer"  check="">
+                                        <option value=''>-请选择-</option>
+                                    </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group clearfix">
+                            <div class="span6 pull-left">
+                                <label class="control-label">*相关产品</label>
+                                <div class="controls">
+                                    <select id="chncProduct" requir="true" check="">
+                                        <option value="">-请选择-</option>
+                                        
+                                    </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">*机会来源</label>
+                                <div class="controls">
+                                    <select id="chncSrc" requir="true" check="">
+                                        <option value="">- 请选择 -</option>
+                                        <option value="10">展会</option>
+                                        <option value="20">联络</option>
+                                        <option value="30">广告</option>
+                                        <option value="90">其他</option>
+                                    </select><i class="text-error"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="control-group clearfix">
+                            <div class="span6 pull-left">
+                                <label class="control-label">*所处阶段</label>
+                                <div class="controls">
+                                    <select id="chncPhase" requir="true" check="">
+                                        <option value="">- 请选择 -</option>
+                                        <option value="10"> 机会确认</option>
+                                        <option value="20">技术选型</option>
+                                        <option value="30">商务谈判</option>
+                                        <option value="40">签订合同</option>
+                                    </select><i class="text-error"></i>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="control-group clearfix">
+
+                            <div class="control-group">
+                                <label class="control-label">*城市</label>
+                                <div class="controls">
+                                    <select class="input-medium edit-box" id="province" ></select>
+                                    <select class="input-medium   edit-box" id="city" ></select>
+                                    <select class="input-medium   edit-box" id="county" requir="true"  check=""></select><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="control-group clearfix">
+                                
+                                 <div class="span6 pull-left">
+                                <label class="control-label">*机会概况</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="chncInfo"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                                
+                            </div>
+                        <div class="control-group clearfix">
+                           <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                    <input  type="text" id="chncTamount"  requir="true" check="U_NM_MNY" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                          
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">地址</label>
+                                <div class="controls">
+                                    <input type="text" id="chncAddress" check="U_9VALUE" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率(%)</label>
+                                <div class="controls">
+                                    <input type="text" id="chncRatio"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="span6 pull-left">
+                                    <label class="control-label">机会商务进展</label>
+                                    <div class="controls">
+                                        <textarea rows="2" id="chncInfoBusi" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="control-group clearfix">
+                              <div class="span6 pull-left">
+                                <label class="control-label">*有效起始日期</label>
+                                <div class="controls">
+                                    <input type="text" id="chncStart"  requir="true"  check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                           <div class="span6 pull-left">
+                                    <label class="control-label">机会技术进展</label>
+                                    <div class="controls">
+                                        <textarea rows="2" id="chncInfoTech" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="control-group clearfix">
+                         
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">*有效截止日期</label>
+                                <div class="controls">
+                                    <input type="text" id="chncEnd" requir="true" check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会对手信息</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="chncInfoCmpt" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+						</div>
+                           
+                      
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                <button class="btn btn-primary" id="saveChnc">添加</button>
+            	</div>
+            </div>
+            
+        </div>
+
+        <!------------------------------------------------ 新建机会end -------------------------------------------->
+
+
+        <!------------------------------------------------修改机会startt-------------------------------------------->
+        <div id="editContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">机会详情编辑</h3>
+            </div>
+            <div class="modal-body">
+            <!-- 修改开始 -->
+                <form class="form-horizontal" id="removeChncForm">
+                    <div class="control-group clearfix">
+                        <div class="span6 pull-left">
+                            <label class="control-label">*机会标题</label>
+                            <div class="controls">
+                                <input type="text" id="chncName1" name="chncName" requir="true" check="U_2NAME_T"><i class="text-error"></i>
+                            </div>
+                        </div>
+
+                        <div class="span6 pull-left">
+                            <label class="control-label">联系人</label>
+                            <div class="controls">
+                                <select id="chncCtmer1" check="" >
+                                <option value=''>-请选择-</option>
+                                </select><i class="text-error"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group clearfix">
+                        <div class="span6 pull-left">
+                            <label class="control-label">*相关产品</label>
+                            <div class="controls">
+                                <select id="chncProduct1" check="" requie="true">
+                                   
+                                </select><i class="text-error"></i>
+                            </div>
+                        </div>
+                        <div class="span6 pull-left">
+                            <label class="control-label">*机会来源</label>
+                            <div class="controls">
+                                <select id="chncSrc1" requir="true" check="">
+                                    <option value="0">- 请选择 -</option>
+                                    <option value="10">展会</option>
+                                    <option value="20">联络</option>
+                                    <option value="30">广告</option>
+                                    <option value="40">其他</option>
+                                </select><i class="text-error"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="control-group clearfix">
+                        <div class="span6 pull-left">
+                            <label class="control-label">*所处阶段</label>
+                            <div class="controls">
+                                <input type="text" id="chncPhase1"  requir="true" check=""><i class="text-error"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group clearfix">
+                        <div class="control-group" id="geo">
+                            <label class="control-label">*城市：</label>
+                            <div class="controls">
+                                <select class="input-medium edit-box" id="province1" ></select>
+								<select class="input-medium   edit-box" id="city1" ></select>
+                                <select class="input-medium   edit-box" id="county1" check=""></select><i class="text-error"></i>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="control-group clearfix">
+                           
+                          <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率(%)</label>
+                                <div class="controls">
+                                    <input type="text" id="chncRatio1"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">地址</label>
+                                <div class="controls">
+                                    <input type="text" id="chncAddress1" check="U_9VALUE" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                    <input  type="text" id="chncTamount1"  requir="true" check="U_NM_MNY" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                    <label class="control-label">机会商务进展</label>
+                                    <div class="controls">
+                                        <textarea rows="2" id="chncInfoBusi1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="control-group clearfix">
+                              <div class="span6 pull-left">
+                                <label class="control-label">*有效起始日期</label>
+                                <div class="controls">
+                                    <input type="text" id="chncStart1"  requir="true"  check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                           <div class="span6 pull-left">
+                                    <label class="control-label">机会技术进展</label>
+                                    <div class="controls">
+                                        <textarea rows="2" id="chncInfoTech1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="control-group clearfix">
+                         
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">*有效截止日期</label>
+                                <div class="controls">
+                                    <input type="text" id="chncEnd1" requir="true" check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会对手信息</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="chncInfoCmpt1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+						</div>
+                            <div class="control-group clearfix">
+                                
+                              <div class="span6 pull-left">
+                                <label class="control-label">*机会概况</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="chncInfo1"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                          <div class="control-group" style="padding-left:92%">
+						<a class="btn btn-primary" id="removeChnc">修改</a>
+                      </div>
+                            </div>
+				</form>
+				<!--修改结束  -->
+				
+				<!-- 完成开始 -->
+				<form class="form-horizontal" id="confirmChncForm" >
+                        <div class="control-group clearfix">
+                            <div class="span6 pull-left" id="confirmChncinput">
+                                <label class="control-label">*确认意见</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="confirmComment1"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left" style="padding-left:35%;" id="confirmBtn">
+		                        <a class="btn btn-primary" id="confirmChnc">确认</a>
+								<a class="btn btn-primary" id="abandonChnc">放弃</a>
+                            </div>
+                        </div>
+				</form>
+				
+				<!-- 审核开始 -->
+				<form class="form-horizontal" id="auditChncForm" >
+                        <div class="control-group clearfix">
+                        <div class="span6 pull-left" id="auditComment1Put">
+						     <label class="control-label">*审核意见</label>
+						    <div class="controls">
+						     <textarea rows="2" id="auditComment1"  requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+						    </div> 
+						</div>
+                            <div class="span6 pull-left" id="auditResult1Put">
+                                <label class="control-label">*机会结论</label>
+                                <div class="controls">
+                                  <select id="chncResult1"  requir="true" check="" >
+						        	<option value="0">- 请选择 -</option>
+                                    <option value="10">待定</option>
+                                    <option value="20">放弃</option>
+                                    <option value="30">成功</option>
+                                    <option value="40">失败</option>
+                                </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group clearfix">
+                        <div class="span6 pull-left">
+						 	<a class="btn btn-primary" id="auditChnc" style="margin-left:190%;">审核</a>
+						</div>
+                        </div>
+                </form>
+    <!-- 结束-->
+            </div>
+         <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        </div>
+      </div>
+       
+    
+    <!------------------------------------------------新建跟进   startt-------------------------------------------->
+    <div id="followContBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">跟进详情</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" id="newFlowForm">
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*联系人</label>
+                        <div class="controls">
+                            <select id="vstCtmer" requir="true" check="">
+                                <option value=''>-请选择-</option>
+                            </select><i class="text-error"></i>
+                        </div>
+                    </div>
+
+                    <div class="span6 pull-left">
+                        <label class="control-label">*行动方式</label>
+                        <div class="controls">
+                            <select id="vstMode" requir="true" check="">
+                                <option value="">- 请选择 -</option>
+                                <option value="10">电话</option>
+                                <option value="20">邮件</option>
+                                <option value="30">拜访</option>
+                                <option value="50">短信</option>
+                                <option value="51">微信</option>
+                                <option value="52">QQ</option>
+                            </select><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*城市</label>
+                        <div class="controls">
+                            <select class="input-medium edit-box" id="province2" ></select>
+                            <select class="input-medium   edit-box" id="city2" ></select>
+                            <select class="input-medium   edit-box" id="county2" requir="true"  check=""></select> <i class="text-error"></i>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">地址</label>
+                        <div class="controls">
+                            <input type="text" id="address" check="U_9VALUE" placeholder='请输入'><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*起始日期</label>
+                      <div class="controls">
+                              <input size="16" type="text" value="" class="form_datetime" id="vstStart" requir="true" check="U_6DATETIME"><i class="text-error"></i>
+                      </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">截止日期</label>
+	                     <div class="controls">
+	                          <input size="16" type="text" value="" class="form_datetime" id="vstEnd"  check="U_6DATETIME"><i class="text-error"></i>
+	                     </div>
+                    </div>
+                </div>
+                
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*行动目标</label>
+                        <div class="controls">
+                            <textarea rows="2" id="vstTarget"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                        </div>
+                    </div>
+
+                    <div class="span6 pull-left">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                            <textarea rows="2" id="remark" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="savePro">添加</button>
+        </div>
+    </div>
+
+    <!------------------------------------------------ 新建跟进end -------------------------------------------->
+
+
+    <!------------------------------------------------修改跟进   startt-------------------------------------------->
+    <div id="flwedContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">跟进详情</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" id="remProForm">
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*联系人</label>
+                        <div class="controls">
+                            <select id="vstCtmer1" requir="true" check="">
+                                <option value=''>-请选择-</option>
+                            </select><i class="text-error"></i>
+                        </div>
+                    </div>
+
+                    <div class="span6 pull-left">
+                        <label class="control-label">*行动方式</label>
+                        <div class="controls">
+                            <select id="vstMode1" requir="true" check="">
+                                <option value="">- 请选择 -</option>
+                                <option value="10">电话</option>
+                                <option value="20">邮件</option>
+                                <option value="30">拜访</option>
+                                <option value="50">短信</option>
+                                <option value="51">微信</option>
+                                <option value="52">QQ</option>
+                            </select><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group clearfix">
+
+                    <div class="span6 pull-left">
+                        <label class="control-label">*城市</label>
+                        <div class="controls">
+                            <select class="input-medium edit-box" id="province3" ></select>
+                            <select class="input-medium   edit-box" id="city3" ></select>
+                            <select class="input-medium   edit-box" id="county3"  requir="true" check=""></select>
+                            <i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">地址</label>
+                        <div class="controls">
+                            <input type="text" id="address1" check="check="U_9VALUE""><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*起始日期</label>
+                      <div class="controls">
+                              <input size="16" type="text" value="" class="form_datetime" id="vstStart1" requir="true" check="U_6DATETIME"><i class="text-error"></i>
+                     	</div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">截止日期</label>
+                      <div class="controls">
+                              <input size="16" type="text" value="" class="form_datetime" id="vstEnd1" requir="true" check="U_6DATETIME"><i class="text-error"></i>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="control-group clearfix">
+                    <div class="span6 pull-left">
+                        <label class="control-label">*行动目标</label>
+                        <div class="controls">
+                            <textarea rows="2" id="vstTarget1"  requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                            <textarea rows="2" id="remark1" check="U_3DESC"></textarea><i class="text-error"></i>
+                        </div>
+                    </div>
+                </div>
+                  <div class="control-group" style="padding-left:90%">
+                  		<div></div>
+						<a class="btn btn-primary" id="remPro">修改</a>
+						
+                      </div>
+                  </form>
+                  <!-- 跟进完成开始 -->
+                  <form class="form-horizontal" id="fulfilFlowForm">
+                           <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*机会阶段</label>
+                                <div class="controls">
+                                     <select id="trcPhase" requir="true" check="">
+                                                  <option value="">- 请选择 -</option>
+                                                  <option value="10">机会确认</option>
+                                                  <option value="20">技术选型</option>
+                                                  <option value="30">商务谈判</option>
+                                                  <option value="40">签订合同</option>
+                                        </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会对手信息</label>
+                                <div class="controls">
+                                  <textarea rows="2" id="trcInfoCmpt" check="U_3DESC" ></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                          </div>
+                               <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                  <input type="text"  id="trcTamount"  requir="true" check="U_NM_MNY"><i class="text-error"></i>
+                                </div>
+                            </div>
+                             <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率（%）</label>
+                                <div class="controls">
+                                  <input type="text"  id="trcRatio"  requir="true" check="U_NM_PERCENT"><i class="text-error"></i>
+                                </div>
+                            </div>
+                          
+                          </div>
+                          
+                              <div class="control-group clearfix">
+                            
+                             <div class="span6 pull-left">
+                                <label class="control-label">*行动详情</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="vstRecord" requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                             <div class="span6 pull-left">
+                                <label class="control-label">机会技术跟进</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="trcInfoTech" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="control-group clearfix">
+                                <div class="span6 pull-left">
+                                <label class="control-label">机会概况</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="trcInfo" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                               
+                                
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会商务跟进</label>
+                                <div class="controls">
+                                   <textarea rows="2" id="trcInfoBusi" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                          </div>
+                        
+                          
+                          <a class="btn btn-primary" id="fulfilFlow" style="margin-left:90%;">完成</a>
+               </form>
+      <!-- 跟进完成结束 -->   
+        <!-- 跟进审核开始 --> 
+        <form class="form-horizontal" id="auditFolwForm">
+                             <div class="control-group clearfix">
+                         
+                            <div class="span6 pull-left" id="auditCommentPut">
+                                <label class="control-label">*审核意见</label>
+                                <div class="controls">
+                                  <textarea rows="2" id="auditComment"  requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            
+                                <div class="span6 pull-left" id="vstResultPut">
+                                <label class="control-label">*行动结论</label>
+                                <div class="controls">
+                                <select id="vstResult" requir="true" check="">
+                                     <option value="">- 请选择 -</option>
+                                    <option value="10">待定</option>
+                                   	<option value="20">成功</option>
+                                    <option value="30">失败</option>
+                                 </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                          </div>
+<a class="btn btn-primary" id="auditFolw" style="margin-left:90%;">审核</a>
+  </form>
+    <!-- 跟进审核结束 --> 
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+          
+        </div>
+    </div>
+
+
+</div>
+
+<!--footer-->
+<div class="row-fluid foot"></div>
+
+</div>
+</body>
+</html>

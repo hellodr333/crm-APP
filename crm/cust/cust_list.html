@@ -1,0 +1,568 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 我管辖的客户</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/pro.css">
+<link rel="stylesheet" href="../../static/css/tree.css">
+
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+   
+<script src="../../static/js/enclosure/left_crm.js"></script>
+ <script src="../../static/js/common/reData.js"  ></script>  
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/crm/cust/cust_list.js"></script>
+<script src="../../static/js/crm/cust/user_empTree.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <div  class="nav nav-tabs span2 nav-borderL inav">
+      
+      </div>
+      <div class="tab-content span9">
+      
+      
+      
+		        <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+      	  
+      	  
+      	  
+		      <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 我的客户</h4>
+		      		 <a class="btn btn-blue pull-right" href="#addCust" data-toggle="modal"  id="addCustBox" ><i class="icon-plus icon-white"></i>新建客户</a>
+		      </div>
+		      
+         <!----------------------------------------------------添加客户   start-------------------------------------------------------->
+          <div id="addCust" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">添加新客户</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal "   id="custForm">
+	                      <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*客户名称</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="name"  check="U_2NAME"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">网址</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="homePage"  check="U_IN_URL" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				               </div>			           
+	                   <div class="control-group clearfix">
+				                    <div class="control-group" id="geo">
+						                    <label class="control-label">*所在区域：</label>
+						                    <div class="controls">
+						                      <select class="input-medium edit-box"  id="province"  >  
+					
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="city" >               
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="county"  check=""  requir="true">  
+					
+						                      </select><i class="text-error"></i>
+						                    </div>
+				                  </div>
+				      </div>			    
+	                   <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">地址</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="address"  check="U_9VALUE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">邮编</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="postalCode"  check="U_ZG_POSTCODE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>			
+				               
+				               
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*企业全称</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="formalName"  check="U_2NAME_L"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">涉税编号</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="formalNo"  check="U_ZG_IDENT"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">营业执照</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="cmpLiceNse"  check="U_ZG_IDENT"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">主营业务</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="cmpBusness"  check="U_3DESC"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户类型</label>
+					                    <div class="controls">
+					                      <select  id="custType"  check=""  requir="true">
+						                          <option value="">- 请选择 -</option>
+					                            <option value="10">业方</option>
+					                            <option value="20">施工</option>
+					                            <option value="30">监理</option>
+					                            <option value="40">设计</option>
+					                            <option value="50">咨询</option>
+					                              <option value="60">政府</option>
+					                            <option value="90">其他</option>
+						                        </select><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="legalMan"  check="U_2NAME_P"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户状态</label>
+					                    <div class="controls">
+					                      <select  id="custStatus"  check=""  requir="true">
+						                          <option value="">- 请选择 -</option>
+					                            <option value="10">正常</option>
+					                            <option value="20">冻结</option>
+					                            <option value="30">销户</option>
+						                        </select><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人手机</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="legalMobile"  check="U_TL_MOBILE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                 <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                        <label class="control-label">备注：</label>
+					                    <div class="controls">
+			
+					                      <textarea rows="3"  class=" edit-box"  id="remark" check="U_3DESC"></textarea><i class="text-error"></i>
+			
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				              
+	               
+
+	                </form>
+	            
+	          </div>
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			            <button class="btn btn-primary"   id="saveCust">添加</button>
+	          </div>
+      	  </div>
+      	  <!----------------------------------------------------添加客户   end-------------------------------------------------------->
+      	  
+      	  
+      	
+			
+    
+      	  
+			 <!-- ------------------------------------变更经理   start -->
+        <div id="chgMangBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">选择经理</h3>
+	          </div>
+	          <div class="modal-body">
+	          <div  class="control-group ">
+	          			<form  class="form-horizontal">
+	          					<div>
+						          		<label class="control-label">选择经理</label>
+						          		<div class="controls">
+														<input type="text"   id="crmResp" readonly> 
+							                           <!-- <div class="btn-group">
+							                            	<a class="btn" tabindex="-1"   id="searchManager">选择</a>
+							                          </div> -->
+											</div>
+										    <!--企业树-->
+						                    <div class="controls">
+						                       <span class="tree well span10"  id="managerC"  style="margin-top:20px; ">
+							                          <ul style="margin:0px;"  class="pull-left" ></ul>
+							                         <table class="table table-hover table-vcenter pull-right span8">
+									                            <thead>
+									                                <tr>
+									                                    <th class="span4">姓名</th>
+									                                    <th class="span2">职级</th>
+									                                    <th class="span3">所属部门</th>
+									                                    <th class="span3"><a href="#" class="btn btn-small prPage" >上一页</a>
+									                                    	<a href="#" class="btn btn-small nePage" >下一页</a>
+									                                     </th>
+									                                </tr>
+									                            </thead>
+									                            <tbody id="managerList">
+									                                <tr>
+									                                  
+									                                </tr>
+									                            </tbody>
+							                        </table>
+						                      </span>   
+											</div>
+									</div>
+				          			</form>
+				          </div>
+						
+	          </div>
+	          <div class="modal-footer">
+	            <button class="btn " data-dismiss="modal" aria-hidden="true">取消</button>
+	      		<button class="btn btn-primary"  id="chgMangSave">确认</button>
+	          </div>
+      	  </div>
+       <!-- 变更经理   end -->
+       
+       <!-- ------------------------------------选择经理   start -->
+        <div id="searchManBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">选择经理</h3>
+	          </div>
+	          <div class="modal-body">
+	          <div  class="control-group ">
+	          			<form  class="form-horizontal">
+	          					<div>
+						          		<label class="control-label">选择经理</label>
+						          		<div class="controls">
+														<input type="text"   id="manIpt" > 
+							                           <!-- <div class="btn-group">
+							                            	<a class="btn" tabindex="-1"   id="choseManager">选择</a>
+							                          </div> -->
+											</div>
+										    <!--企业树-->
+						                    <div class="controls">
+						                       <span class="tree well span10"  id="managerS"  style="margin-top:20px; ">
+							                          <ul style="margin:0px;"  class="pull-left" ></ul>
+							                         <table class="table table-hover table-vcenter pull-right span8">
+									                            <thead>
+									                                <tr>
+									                                    <th class="span4">姓名</th>
+									                                    <th class="span2">职级</th>
+									                                    <th class="span3">所属部门</th>
+									                                    <th class="span3"><a href="#" class="btn btn-small prPage" >上一页</a>
+									                                    	<a href="#" class="btn btn-small nePage" >下一页</a>
+									                                     </th>
+									                                </tr>
+									                            </thead>
+									                            <tbody id="schManagerList">
+									                                <tr>
+									                                  
+									                                </tr>
+									                            </tbody>
+							                        </table>
+						                      </span>   
+											</div>
+									</div>
+				          			</form>
+				          </div>
+						
+	          </div>
+	          <div class="modal-footer">
+	            <button class="btn " data-dismiss="modal" aria-hidden="true">取消</button>
+	      		<button class="btn btn-primary"  id="schMangSave">确认</button>
+	          </div>
+      	  </div>
+       <!-- ----选择经理   end -->
+       
+			
+			
+      	  <!-- ---------------------------------------------------添加客户   end------------------------------------------------>
+      	  
+		      <div class=" clearfix">
+					<form id="searchForm"  class="pull-left">
+						<div class="control-group form-horizontal search_box">
+							<div>
+							  <select class="input-medium   edit-box"  id="choType" >  
+				  					  <option  selected value="">- 全部类型 -</option>
+		                            <option value="10">业方</option>
+		                            <option value="20">施工</option>
+		                            <option value="30">监理</option>
+		                            <option value="40">设计</option>
+		                            <option value="50">咨询</option>
+		                              <option value="60">政府</option>
+		                            <option value="90">其他</option>
+			                      </select>
+								<select class="input-medium  edit-box"  id="provinceS"  >  
+			                      </select>
+			                      <select class="input-medium   edit-box"  id="cityS" >               
+			                      </select>
+			                       <select class="input-medium   edit-box hide"  id="countyS" >               
+			                      </select>
+			                      
+			                      <input type="text"  class="input-medium " placeholder="轻击输客户名称过滤"   id="schCustName" name=""/> 
+			                      
+									<!-- <input type="text"  class="btn input-mini"  readonly  id="" value=""   name=""/>  -->
+								<div class="input-append">
+										  <input class="input-medium" id="showIpt" type="text"   placeholder="请选择客户经理过滤" readonly>
+										 <button class="btn" type="button"  id="searchMan"  href="#searchManBox" data-toggle="modal">选择客户经理</button>
+								</div>
+									<input   type="button"  id="searchBtn"  name=""  value="搜索"    class="btn input-mini" />	
+							</div>
+						</div>
+					</form>
+					<div class="pull-right">
+							<label class="checkbox">
+						  		    <input type="checkbox" id="myCust" > 	我管辖的
+						    </label>
+						
+					</div>
+				</div>
+				
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>客户名称</th>
+                                <th>客户经理</th>
+                                <th>联系人</th>
+                                <th>联系人手机</th>
+                                <th>城市</th>
+                                <th>类型</th>
+                                <th>状态</th>
+                                <th>最后行动时间</th>
+                                <th>操作</th>
+                                <th>查看</th>
+                                <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="custList">
+                     <!--    <tr>
+                                <td>阿里巴巴</td>
+                                <td>丁蓉</td>
+                                <td>尼尼</td>
+                                <td>156 </td>
+                                <td>上海</td>
+                                <td>施工</td>
+                                 <td>开始</td>
+                                <td>2016.2.20</td>
+                                <td>
+                                	<a  class="" href="#updEmpBox" data-toggle="modal">变更经理</a>
+                                </td>
+                                  <td>
+                                	<a  class="" href="#viewDetail" data-toggle="modal"><i class="icon-eye-open"></i></a>
+                                </td>
+                                 <td>
+                                	<a  class=""  href="cust_detail.html" ><i class="icon-pencil"></i></a>
+                                </td>
+                            </tr>  -->
+                        </tbody>
+                    </table>
+                    
+			    <!----------------------------------------------------查看客户   start-------------------------------------------------------->
+          <div id="viewDetail" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">客户信息</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal "   id="custForm">
+	                      <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*客户名称</label>
+					                    <div class="controls">
+					                      <input type="text" class="disabled"   disabled placeholder=""  id="name1"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">网址</label>
+				                         <div class="controls">
+					                      <input type="text"   class="disabled"  disabled  id="homePage1"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				               </div>			           
+	                   <div class="control-group clearfix">
+				                    <div class="control-group" id="geo">
+						                    <label class="control-label">所在区域</label>
+						                    <div class="controls">
+						                      <select class="input-medium edit-box disabled"  disabled id="province1" >  
+					
+						                      </select>
+					
+						                      <select class="input-medium   edit-box disabled"  disabled id="city1" >               
+						                      </select>
+					
+						                      <select class="input-medium   edit-box disabled" disabled  id="county1" >  
+					
+						                      </select>
+						                    </div>
+				                  </div>
+				      </div>			    
+	                   <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">地址</label>
+					                    <div class="controls">
+					                      <input type="text"   class="disabled"  id="address1" disabled    ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">邮编</label>
+				                         <div class="controls">
+					                      <input type="text"   class="disabled"  id="postalCode1" disabled   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>			
+				               
+				               
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*企业全称</label>
+					                    <div class="controls">
+					                      <input type="text"   class="disabled"  id="formalName1"  disabled   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">涉税编号</label>
+				                         <div class="controls">
+					                      <input type="text"   class="disabled"   id="formalNo1"  disabled  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">营业执照</label>
+					                    <div class="controls">
+					                      <input type="text"  class="disabled"  id="cmpLiceNse1" disabled   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">主营业务</label>
+				                         <div class="controls">
+					                      <input type="text"    class="disabled" id="cmpBusness1" disabled    ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户类型</label>
+					                    <div class="controls">
+						                   <input type="text"    class="disabled" disabled  id="custType1"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人</label>
+				                         <div class="controls">
+					                      <input type="text"    class="disabled" disabled  id="legalMan1"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户状态</label>
+					                    <div class="controls">
+					                     <!--  <select  id="custStatus1" disabled  class="disabled" >
+						                         
+					                         
+						                        </select> -->
+						                         <input type="text"    class="disabled" disabled  id="custStatus1"    ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人手机</label>
+				                         <div class="controls">
+					                      <input type="text"  class="disabled"  disabled  id="legalMobile1"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                 <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                        <label class="control-label" >备注</label>
+					                    <div class="controls">
+			
+					                      <textarea rows="3"  disabled class=" edit-box disabled"  id="remark1"></textarea><i class="text-error"></i>
+			
+					                    </div>
+				                    </div>
+				              </div>		
+
+	                </form>
+	            
+	          </div>
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	          </div>
+      	  </div>
+
+      	  <!-- ---------------------------------------------------查看客户   end------------------------------------------------>
+      	   
+      	   
+      	   
+                    	<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue " id="firstPage">首页</span>
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+									<span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>跳转到</span>
+									<input type="text" class="input-small" id="goPage"/>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+									 <span class="btn btn-blue"  id="jumpPage">go</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 我的行动</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/tree.css" />
+
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_crm.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/crm/visits/vst_list.js"></script>
+<script src="../../static/js/crm/cust/user_empTree.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+      		  <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+		      <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 我的行动</h4>
+		      </div>
+		 <!-- ------------------------------------选择经理   start -->
+        <div id="searchManBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:0px; width:60%; left:20%;">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">选择经理</h3>
+	          </div>
+	          <div class="modal-body">
+	          <div  class="control-group ">
+	          			<form  class="form-horizontal">
+	          					<div>
+						          		<label class="control-label">选择经理</label>
+						          		<div class="controls">
+														<input type="text"   id="manIpt" > 
+							                           <!-- <div class="btn-group">
+							                            	<a class="btn" tabindex="-1"   id="choseManager">选择</a>
+							                          </div> -->
+											</div>
+										    <!--企业树-->
+						                    <div class="controls">
+						                       <span class="tree well span10"  id="managerS"  style="margin-top:20px; ">
+							                          <ul style="margin:0px;"  class="pull-left" ></ul>
+							                         <table class="table table-hover table-vcenter pull-right span8">
+									                            <thead>
+									                                <tr>
+									                                    <th class="span4">姓名</th>
+									                                    <th class="span2">职级</th>
+									                                    <th class="span3">所属部门</th>
+									                                    <th class="span3"><a href="#" class="btn btn-small prPage" >上一页</a>
+									                                    	<a href="#" class="btn btn-small nePage" >下一页</a>
+									                                     </th>
+									                                </tr>
+									                            </thead>
+									                            <tbody id="schManagerList">
+									                                <tr>
+									                                  
+									                                </tr>
+									                            </tbody>
+							                        </table>
+						                      </span>   
+											</div>
+									</div>
+				          			</form>
+				          </div>
+						
+	          </div>
+	          <div class="modal-footer">
+	            <button class="btn  btn-primary" data-dismiss="modal" aria-hidden="true">取消</button>
+	      		<button class="btn btn-primary"  id="schMangSave">保存</button>
+	          </div>
+      	  </div>
+       <!-- ----选择经理   end -->     
+         <!--------------------------------------查看行动详情------------------------->
+          <div id="qryVst" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">行动详情</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal" id="vstForm">
+	                  <div class="control-group">
+                        <label class="control-label">客户联系人</label>
+                        <div class="controls">
+                          <input type="text"  id="vstCtmer" disabled class="disabled" />
+                        </div>
+	                  </div>
+	                  
+	                  <div class="control-group">
+                        <label class="control-label">所在区域</label>
+                        <div class="controls">
+                          <select class="input-mini disabled edit-box" disabled id="province" >
+                          </select>
+                          <select class="input-mini  disabled" disabled id="city" >
+                          </select>
+                          <select class="input-mini  disabled" disabled id="county" >
+                          </select>
+                    	</div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">地址</label>
+                        <div class="controls">
+                          <input type="text"  id="vstAddress" disabled class="disabled" />
+                        </div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        	<label class="control-label">联络起始时间</label>
+                            <div class="controls">
+                              <input type="date"  id="vstStart" disabled class="disabled" />
+                            </div>
+                        </div>
+                        
+                      <div class="control-group">
+                        	<label class="control-label">联络结束时间</label>
+                            <div class="controls">
+                              <input type="date"  id="vstEnd" disabled class="disabled" />
+                            </div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">行动目标</label>
+                        <div class="controls">
+                          <textarea rows="4" class="disabled" disabled id="vstTarget"></textarea>
+                         </div>
+                      </div>
+
+                      <div class="control-group">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                          <textarea rows="4" class="disabled" disabled id="remark"></textarea>
+                         </div>
+                      </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">行动详情</label>
+                        <div class="controls">
+                          <textarea rows="4" class="disabled" disabled id="vstRecord"></textarea>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">行动参与人</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstPartners" disabled class="disabled"></textarea>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">行动下一步计划</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstPlans" disabled class="disabled"></textarea>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">行动打分</label>
+                        <div class="controls">
+                          <input type="text"  id="vstScore" disabled class="disabled"/>
+                         </div>
+                      </div>
+                      
+                      
+                      <div class="control-group">
+                        <label class="control-label">审核意见</label>
+                        <div class="controls">
+                          <textarea rows="4" class="disabled" disabled id="aiditComment"></textarea>
+                         </div>
+                      </div>
+                      
+                       <div class="control-group">
+                        <label class="control-label">行动结论</label>
+                        <div class="controls">
+                          <select class="input-mini disabled edit-box" disabled id="vstResult" >
+                          	<option value="">-</option>
+                          	<option value="10">待定</option>
+                            <option value="20">成功</option>
+                            <option value="30">失败</option>
+                          </select>
+                    	</div>
+	                  </div>
+
+	                </form>
+	            
+	          </div>
+	          <div class="modal-footer">
+	         	<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	          </div>
+      	  </div>
+
+      	  <!-- ---------------------------查看行动详情  end-------------------------------->
+      	  
+		      <div class="control-group form-horizontal search_box">
+						<select class="input-small" id="vstModeSelect">
+                        	<option value="">全部方式</option>
+                        	<option value="10">电话</option>
+                            <option value="20">邮件</option>
+                            <option value="30">拜访</option>
+                            <option value="50">短信</option>
+                            <option value="51">微信</option>
+                            <option value="52">QQ</option>
+                        </select>
+                        
+                        <select class="input-small" id="vstResultSelect">
+                        	<option value="">全部结论</option>
+                        	<option value="10">待定</option>
+                            <option value="20">成功</option>
+                            <option value="30">失败</option>
+                        </select>
+                        
+                        <select class="input-small" id="vstStatusSelect">
+                        	<option value="">全部状态</option>
+                        	<option value="10">计划</option>
+                            <option value="20">执行</option>
+                            <option value="30">完成</option>
+                            <option value="40">已评</option>
+                        </select>
+                        
+                        <select class="input-medium" id="provinceSelect" >
+                        </select>
+                        
+                        <select class="input-medium" id="citySelect" >
+                        </select>
+                        
+                         <select class=" hide" id="countySelect">
+                        </select>
+                        
+                      	<div class="input-append">
+                          <input class="input-large" id="bizUserSelect" type="text"   placeholder="请选择客户经理过滤" readonly>
+                          <button class="btn" type="button"  id="searchMan"  href="#searchManBox" data-toggle="modal">选择客户经理</button>
+                </div>
+	                      
+                        <input type="button"  id="searchBtn" value="搜索"   class="btn input-mini" />
+						<label class="checkbox pull-right" style="padding-top:10px;">
+                        	<input type="checkbox" id="myPre" />我管辖的
+                        </label>
+                  </div>
+				
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>行动时间</th>
+                                <th>客户名称</th>
+                                <th>联系人</th>
+                                <th>城市</th>
+                                <th>客户经理</th>
+                                <th>行动类型</th>
+                                <th>行动方式</th>
+                                <th>行动目标</th>
+                                <th>行动状态</th>
+                                <th>行动结论</th>
+                                <th>详情</th>
+                                <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vstList">
+                        </tbody>
+                    </table>
+                    
+                    
+                    	<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue " id="firstPage">首页</span>
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+									<span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>跳转到</span>
+									<input type="text" class="input-small" id="goPage"/>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+									 <span class="btn btn-blue"  id="jumpPage">go</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

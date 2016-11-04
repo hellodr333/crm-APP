@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户登录</title>
+<link  rel="stylesheet"  href="../static/css/bootstrap.min.css"/>
+<link  rel="stylesheet"  href="../static/css/reg_login.css"/>
+
+<script src="../static/js/common/common.js"></script>
+<script src="../static/js/common/jquery.js"></script>
+<script src="../static/js/common/ajax.js"></script>
+<script src="../static/js/common/reData.js"></script>
+<script src="../static/js/login/login.js"></script>
+
+</head>
+<body>
+	<div class="log-navbar">
+		<div class="container1366  navbar-head">
+			<img src="../static/images//myluban-logo.png"  alt=""/>
+		</div>
+	</div>
+	<div class="container600 mainBox">
+		<h2>用户登录</h2>
+		<div >	
+				<ul class="loginList">
+					<li class="tipLi" id="tipLi">
+							<div >用户名或密码不正确</div>
+					</li>
+					<li>
+						<label style="position:relative;">
+								<input type="text"  class=" input-large textIn"   id="loginMobile"  placeHolder="手机号"  name="" />
+								<span class="mobileIcon"></span>
+						</label>
+					</li>
+					<li>
+						<label style="position:relative;">
+							<input type="password"  class=" input-large textIn"  id="loginPs"  placeHolder="请输入6位数字的密码"  name=""/>
+								<span class="psIcon"></span>
+						</label>
+					</li>
+					<li id="loginEntbox" style="display:none">
+						<label style="position:relative;">
+							<select id="loginEnt">
+                                 <option style="text-align:center" id="checkEnt">请选择企业</option>
+                            </select>
+						</label>
+					</li>
+					<li>
+					<input  type="button"  class="login btn btn-primary"  id="loginBtn" value="登录"  name=""/>
+					</li>
+					<li>
+						<a href="../login/register.html">立即注册</a>	<a href="../login/lose_password.html">忘记密码</a>
+					</li>
+				</ul>
+		</div>
+	</div>
+</body>
+</html>

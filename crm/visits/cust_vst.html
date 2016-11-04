@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 行动</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/jedate.css">
+
+<script src="../../static/js/common/jquery.js"  ></script>
+<script src="../../static/js/common/reData.js"></script>
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+<script src="../../static/js/common/jedate.js"></script>
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_crm.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/crm/visits/cust_vst.js"></script>
+<script src="../../static/js/enclosure/cust_topDetail.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+        
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+      			<!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+		       <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 行动&nbsp;&nbsp;【<span id="custName"></span>】&nbsp;&nbsp;【<span id="lastTime"></span>】</h4>
+		      </div>
+		      <table class="table table-striped">
+                     <tbody id="custTopDetail">
+                    		
+                       </tbody>
+                    </table>
+      			<div class="row"  style="margin-left:20px;">
+		      		<ul class="nav nav-tabs span10" id="myTab"  >
+							  <li><a href=""  id="cst" >客户信息</a></li>
+							  <li><a href=""   id="ctm" >客户联系人</a></li>
+							  <li class="active"><a href=""  id="vst" >行动</a></li>
+							  <li><a href=""   id="chance" >机会</a></li>
+							   <li><a href=""  id="contract" >合同</a></li>
+
+					</ul>
+                    <div class="span2">
+						 <a class="btn btn-blue pull-right" href="#addVst" data-toggle="modal" id="addVstCtm"><i class="icon-plus icon-white"></i>新建行动</a>
+					</div>
+      			</div> 
+		      
+         <!------------------------------编辑行动   start-------------->
+          <div id="updVst" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">编辑行动</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal" id="updVstForm">
+	                  <div class="control-group">
+                        <label class="control-label">*客户联系人</label>
+                        <div class="controls">
+                          <select class=" input-medium" id="vstCtmerUpd" check="" requie="true" >
+                          	
+                          </select><i class="text-error"></i>	
+                        </div>
+	                  </div>
+	                  
+	                  <div class="control-group">
+                        <label class="control-label">所在区域</label>
+                        <div class="controls">
+                          <select class="input-small" id="provinceUpd"  >
+                          </select>
+                          <select class="input-small" id="cityUpd" >
+                          </select>
+                          <select class="input-small" id="countyUpd" check="" requie="true">
+                          </select><i class="text-error"></i>
+                    	</div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">*行动方式</label>
+                        <div class="controls">
+                          <select class="input-small" id="vstModeUpd"  requir="true" check="">
+                          	<option value="">行动方式</option>
+                        	<option value="10">电话</option>
+                            <option value="20">邮件</option>
+                            <option value="30">拜访</option>
+                            <option value="50">短信</option>
+                            <option value="51">微信</option>
+                            <option value="52">QQ</option>
+                          </select><i class="text-error"></i>
+                    	</div>
+	                  </div>
+                       <div class="control-group">
+                        <label class="control-label">地址</label>
+                        <div class="controls">
+                          <input type="text"  id="vstAddressUpd" check="U_9VALUE" /><i class="text-error"></i>
+                        </div>
+	                  </div>
+                      <div class="control-group">
+                        	<label class="control-label">*联络起始时间</label>
+                            <div class="controls">
+                              <input size="16" type="text" value=""  class="form_datetime" id="vstStartUpd" check="U_6DATETIME" requir="true" /><i class="text-error"></i>
+                            </div>
+                        </div>
+                        
+                      <div class="control-group">
+                        	<label class="control-label">联络结束时间</label>
+                            <div class="controls">
+                              <input size="16" type="text" value=""  class="form_datetime" id="vstEndUpd" check="U_6DATETIME" /><i class="text-error"></i>
+                            </div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">*行动目标</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstTargetUpd" requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+
+                      <div class="control-group">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="remarkUpd" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                      <div class="control-group" style="padding-left:70%">
+						<a class="btn btn-primary" id="updVstBtn">修改</a>
+                      </div>
+	                </form>
+                    
+                    
+                    <!--完成-->
+                    <form class="form-horizontal" id="compVstForm">
+                        <div class="control-group">
+                        <label class="control-label">*行动详情</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstRecord" check="U_3DESC" requir="true"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                       <div class="control-group">
+                        <label class="control-label">行动参与人</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstPartners" check="U_9VALUE"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">行动下一步计划</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstPlans" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">行动打分</label>
+                        <div class="controls">
+                          <input type="text"  id="vstScore" check="U_4INT_S" /><i class="text-error"></i>
+                         </div>
+                      </div>
+					  <div class="control-group" style="padding-left:70%">
+                      	<a class="btn btn-primary" id="compVstBtn">完成</a>
+                      </div>
+	                </form>
+                    
+                    
+                    
+                    <!--审核-->
+                    <form class="form-horizontal hide" id="chkVstForm">
+                        <div class="control-group">
+                        <label class="control-label">*审核意见</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="auditComment" check="U_3DESC" requir="true"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label">*行动结论</label>
+                        <div class="controls">
+                          <select class="input-small" id="vstResult"  requir="true" check="">
+                          	<option value="">行动结论</option>
+                        	<option value="10">待定</option>
+                            <option value="20">成功</option>
+                            <option value="30">失败</option>
+                          </select><i class="text-error"></i>
+                    	</div>
+	                  </div>
+					   <div class="control-group" style="padding-left:70%">
+                       	<a class="btn btn-primary" id="chkVstBtn">审核</a>
+                       </div>
+	                </form>
+                    
+                    
+	            
+	          </div>
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	          </div>
+      	  </div>
+
+      	  <!-- ---------------------   编辑行动 end   -------------------------->
+          
+          <!------------------------------新建行动   start-------------->
+          <div id="addVst" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">新建行动</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal" id="addVstForm">
+	                  <div class="control-group">
+                        <label class="control-label">*客户联系人</label>
+                        <div class="controls">
+                          <select class=" input-medium" id="vstCtmer" check="" requir="true" >
+                          	
+                          </select><i class="text-error"></i>	
+                        </div>
+	                  </div>
+	                  
+	                  <div class="control-group">
+                        <label class="control-label">*所在区域</label>
+                        <div class="controls">
+                          <select class="input-small" id="province" >
+                          </select>
+                          <select class="input-small" id="city">
+                          </select>
+                          <select class="input-small" id="county" check="" requir="true">
+                          </select><i class="text-error"></i>
+                    	</div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">*行动方式</label>
+                        <div class="controls">
+                          <select class="input-small" id="vstMode"  requir="true" check="">
+                          	<option value="">行动方式</option>
+                        	<option value="10">电话</option>
+                            <option value="20">邮件</option>
+                            <option value="30">拜访</option>
+                            <option value="50">短信</option>
+                            <option value="51">微信</option>
+                            <option value="52">QQ</option>
+                          </select><i class="text-error"></i>
+                    	</div>
+	                  </div>
+                       <div class="control-group">
+                        <label class="control-label">地址</label>
+                        <div class="controls">
+                          <input type="text"  id="vstAddress" check="U_9VALUE" /><i class="text-error"></i>
+                        </div>
+	                  </div>
+                      <div class="control-group">
+                        	<label class="control-label">*联络起始时间</label>
+                            <div class="controls">
+                              <input size="16" type="text" value="" class="form_datetime" id="vstStart" requir="true" check="U_6DATETIME" /><i class="text-error"></i>
+                            </div>
+                        </div>
+                        
+                      <div class="control-group">
+                        	<label class="control-label">联络结束时间</label>
+                            <div class="controls">
+                              <input size="16" type="text" value="" class="form_datetime" id="vstEnd" check="U_6DATETIME" /><i class="text-error"></i>
+                            </div>
+	                  </div>
+                      
+                      <div class="control-group">
+                        <label class="control-label">*行动目标</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="vstTarget" requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+
+                      <div class="control-group">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                          <textarea rows="4"  id="remark" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+
+	                </form>
+	          </div>
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                         <button class="btn btn-primary" id="addVstBtn">添加</button>
+	          </div>
+      	  </div>
+
+      	  <!-- ---------------------   新建行动 end   -------------------------->
+      	  
+		
+				
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>行动时间</th>
+                                <th>联系人</th>
+                                <th>城市</th>
+                                <th>行动类型</th>
+                                <th>行动方式</th>
+                                <th>行动目标</th>
+                                <th>行动状态</th>
+                                <th>行动结论</th>
+                                <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vstList">
+                        </tbody>
+                    </table>
+                    
+                    
+                    	<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue " id="firstPage">首页</span>
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+									<span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>跳转到</span>
+									<input type="text" class="input-small" id="goPage"/>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+									 <span class="btn btn-blue"  id="jumpPage">go</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

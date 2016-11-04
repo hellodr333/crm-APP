@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 合同统计</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/pro.css">
+
+<script src="../../static/js/common/common.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_crm.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/common/day.js"></script>
+ <script src="../../static/js/common/reData.js"  ></script>  
+<script src="../../static/js/crm/chart/chart_ctractTbl.js"></script>
+
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <div  class="nav nav-tabs span2 nav-borderL inav">
+      
+      </div>
+      <div class="tab-content span9">
+		      <div class="row"  style="margin-left:20px;">
+		      		<ul class="nav nav-tabs span12" id="myTab"  >
+							  <li><a href="../chart/chart.html#chart_ctract"  id="chartP" >合同统计图表</a></li>
+							  <li><a href=""   id="chartT" >合同统计报表</a></li>
+					</ul>
+					<div class="pull-right">
+							<label class="checkbox">
+						  		    <input type="checkbox"  id="myCust"> 	我管辖的
+						    </label>
+						
+					</div>
+      			</div> 
+		      <ul class="nav nav-tabs"  id="chartTab" >		  
+						  <li  id="weekTab"><a href="#week" data-toggle="tab">周报</a></li>
+						  <li  id="monthTab"><a href="#month" data-toggle="tab">月报</a></li>
+						  <li id="qotTab"><a href="#qot" data-toggle="tab">季报</a></li>
+						  <li  id="yearTab"><a href="#year" data-toggle="tab">年报</a></li>
+				</ul>
+				<div class="tab-content">
+							  <div class="tab-pane active" id="qot">
+							  			 <table class="table table-bordered table-striped table-vcenter">
+							  					 <caption><h5><span id="setQot"><!-- 2016年4季( 2016.10.01 ~ 2016.12.31 ) --></span>销售预测报表 (单位:万)</h5></caption>
+						                        <thead>
+						                          	   <th >城市</th>
+						                                 <th class="text-right">期初数</th>
+						                                 <th class="text-right">提交金额</th>
+						                                 <th class="text-right">生效金额</th>
+						                                  <th class="text-right">完成金额</th>
+						                                 <th class="text-right">终止金额</th>
+						                                 <th class="text-right">期末数</th>
+						                                 <th class="text-right">增长率(%)</th>
+						                        </thead>
+						                        <tbody id="qotData">
+								                           
+						                        </tbody>
+						                    </table>
+							  </div>
+							  <div class="tab-pane" id="week">
+							  		<table class="table table-bordered table-striped table-vcenter">
+							  			 <caption><h5><span id="setWek"><!-- 2016年第44周( 2016-10-17 ~ 2016-10-23 ) --></span>销售预测报表 (单位:万)</h5></caption>
+						                        <thead>
+						                          	   <th >城市</th>
+						                                 <th class="text-right">期初数</th>
+						                                 <th class="text-right">提交金额</th>
+						                                 <th class="text-right">生效金额</th>
+						                                  <th class="text-right">完成金额</th>
+						                                 <th class="text-right">终止金额</th>
+						                                 <th class="text-right">期末数</th>
+						                                 <th class="text-right">增长率(%)</th>
+						                        </thead>
+						                        <tbody id="weekData">
+						                       		   <tr>
+									                                <td >北京市</td>
+									                                 <td  >1</td>
+									                                  <td  >1</td>
+								                                   <td  >1</td>
+								                                    <td  >1</td>
+								                                     <td  >1</td>
+									                                 <td >2</td>
+									                                 <td >2</td>
+								                            </tr> 
+								                             <tr>
+									                                <td >累计</td>
+									                                 <td  >1</td>
+									                                <td >1</td>
+									                                 <td >2</td>
+									                                 <td >1</td>
+									                                 <td >2</td>
+									                                 <td >2</td>
+									                                   <td >2</td>
+								                            </tr> 
+						                        </tbody>
+						                    </table>
+							  </div>
+							  <div class="tab-pane" id="month">
+							  			<table class="table table-bordered table-striped table-vcenter">
+							  			<caption><h5><span id="setMon"><!-- 2016年10月( 2016-10-01 ~ 2016-10-31 ) --></span>销售预测报表 (单位:万)</h5></caption>
+						                        <thead>
+						                          	   <th >城市</th>
+						                                 <th class="text-right">期初数</th>
+						                                 <th class="text-right">提交金额</th>
+						                                 <th class="text-right">生效金额</th>
+						                                  <th class="text-right">完成金额</th>
+						                                 <th class="text-right">终止金额</th>
+						                                 <th class="text-right">期末数</th>
+						                                 <th class="text-right">增长率(%)</th>
+						                        </thead>
+						                        <tbody id="monData">
+								                          
+						                        </tbody>
+						                    </table>
+							  </div>
+							  <div class="tab-pane" id="year">
+							  			<table class="table table-bordered table-striped table-vcenter">
+							  				 <caption><h5><span id="setYear"><!-- 2016年( 2016-01-01 ~ 2016-12-31 ) --></span>销售预测报表 (单位:万)</h5></caption>
+						                       <thead>
+						                          	   <th >城市</th>
+						                                 <th class="text-right">期初数</th>
+						                                 <th class="text-right">提交金额</th>
+						                                 <th class="text-right">生效金额</th>
+						                                  <th class="text-right" >完成金额</th>
+						                                 <th class="text-right">终止金额</th>
+						                                 <th class="text-right">期末数</th>
+						                                 <th class="text-right">增长率(%)</th>
+						                        </thead>
+						                        <tbody id="yearData">
+								                          
+						                        </tbody>
+						                    </table>
+							  </div>
+				</div>
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

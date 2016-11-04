@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 客户详情</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/pro.css">
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_crm.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+ <script src="../../static/js/common/reData.js"  ></script>  
+<script src="../../static/js/crm/cust/ctm_detail.js"></script>
+<script src="../../static/js/enclosure/cust_topDetail.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+    		  <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+		      	  
+		      	  
+		      <div class="clearfix page-header">
+		      	<h4 class="pull-left ">当前位置: 客户&nbsp;&nbsp;【<span id="custName"></span>】&nbsp;&nbsp;【<span id="lastTime"></span>】</h4>
+		      </div>
+		      <table class="table table-striped">
+                      <tbody id="custTopDetail">
+                    		
+                       </tbody>
+                    </table>
+      		<div class="row"  style="margin-left:20px;">
+		      		<ul class="nav nav-tabs span10" id="myTab"  >
+							   <li><a href=""  id="cst" >客户信息</a></li>
+							  <li><a href=""   id="ctm" >客户联系人</a></li>
+							  <li><a href=""   id="vst" >行动</a></li>
+							  <li><a href=""   id="chance" >机会</a></li>
+							   <li><a href=""  id="contract" >合同</a></li>
+							 
+					</ul>
+					<div class="span2" >
+							 <a class="btn btn-blue pull-right" href="#addCtmBox"  data-toggle="modal"  id="newCtm" ><i class="icon-plus icon-white"></i>新建联系人</a>
+					</div>
+			</div>
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>联系人</th>
+                                  <th>职务</th>
+                                <th>联系手机</th>
+                                <th>城市</th>
+                               <th>联系人Email</th>
+                               <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="custList">
+                      <!-- <tr>
+                                <td>阿里巴巴</td>
+                                <td>丁蓉</td>
+                                <td>尼尼</td>
+                                <td>156 </td>
+                                <td>上海</td>
+                                <td>
+                                	<a  class="editCtm"  href="#editCtm"  data-toggle="modal"  id="editCtmBox"><i class="icon-pencil"></i></a>
+                                </td>
+                            </tr>  -->
+                        </tbody>
+                    </table>
+				<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+					
+				<!-- ------------------------------------------------------------编辑联系人 start------------------------------------ -->
+			<div id="editCtm" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">编辑联系人</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal "   id="updCtmForm">
+	                      <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*姓名</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmName1"  check="U_2NAME_P"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">*职务</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmTitle1"  check="U_8CODE"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				               </div>			           
+	                 	    
+	                   <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*手机</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmMobile1"  check="U_TL_MOBILE"  requir="true"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">邮箱</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmEmail1"  check="U_IN_EMAIL"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>			
+				                 <div class="control-group clearfix">
+				                    <div class="control-group" id="ctmGeo">
+						                    <label class="control-label">*城市：</label>
+						                    <div class="controls">
+						                      <select class="input-medium edit-box"  id="province1" >  
+					
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="city1" >               
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="county1" check="" requir="true" >  
+					
+						                      </select><i class="text-error"></i>
+						                    </div>
+				                  </div>
+				      </div>		
+				               
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*联系人状态</label>
+					                    <div class="controls">
+					                      <select  id="ctmStatus1"  check=""   requir="true">
+						                          <option value="">- 请选择 -</option>
+					                            <option value="10">有效</option>
+					                            <option value="20">无效</option>
+						                        </select>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">地址</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmAddres1"  check="U_9VALUE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">电话</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmTelephone1"  check="U_TL_PHONE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">微信</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmWx1"  check="U_8CODE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                 <div class="control-group clearfix">
+				                  	<div class="span6 pull-left">
+				                        <label class="control-label">QQ</label>
+					                    <div class="controls">
+												  <input type="text"  placeholder="请输入"  id="ctmQq1"  check="U_8CODE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                   	<div class="span6 pull-left">
+				                        <label class="control-label">备注</label>
+					                    <div class="controls">
+			
+					                      <textarea rows="3"  placeholder="请输入"  class=" edit-box"  id="remark1" check="U_3DESC"></textarea><i class="text-error"></i>
+			
+					                    </div>
+				                    </div>
+				              </div>		
+
+	                </form>
+	            
+	          </div>
+	          
+	          
+	          
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			            <button class="btn btn-primary"   id="saveCtm">保存</button>
+	          </div>
+      	  </div>
+      	  <!-- ------------------------------------------------------------编辑联系人 end------------------------------------ -->		
+					
+			<!-- ------------------------------------------------------------添加联系人 start------------------------------------ -->
+			<div id="addCtmBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">添加联系人</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal "   id="addCtmForm">
+	                      <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*姓名</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmName"  check="U_2NAME_P"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">*职务</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmTitle"  check="U_8CODE"  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				               </div>			           
+	                 	    
+	                   <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*手机</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmMobile"  check="U_TL_MOBILE"  requir="true"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">邮箱</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmEmail"  check="U_IN_EMAIL" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>			
+				                 <div class="control-group clearfix">
+				                    <div class="control-group" id="ctmGeo">
+						                    <label class="control-label">*城市</label>
+						                    <div class="controls">
+						                      <select class="input-medium edit-box"  id="province" >  
+					
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="city" >               
+						                      </select>
+					
+						                      <select class="input-medium   edit-box"  id="county" check=""  requir="true">  
+					
+						                      </select><i class="text-error"></i>
+						                    </div>
+				                  </div>
+				      </div>		
+				               
+				                <div class="control-group clearfix">
+				                   	<!-- <div class="span6 pull-left">
+				                       <label class="control-label">*联系人状态</label>
+					                    <div class="controls">
+					                      <select  id="ctmStatus"  check=""   requir="true">
+						                        <option value="">- 请选择 -</option>
+					                            <option value="10">有效</option>
+					                            <option value="20">无效</option>
+						                        </select><i class="text-error"></i>
+					                    </div>
+				                    </div> -->
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">地址</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmAddres"  check="U_9VALUE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">电话</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmTelephone"  check="U_TL_PHONE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">微信</label>
+				                         <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="ctmWX"  check="U_8CODE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                 <div class="control-group clearfix">
+				                  	<div class="span6 pull-left">
+				                        <label class="control-label">QQ</label>
+					                    <div class="controls">
+												  <input type="text"  placeholder="请输入"  id="ctmQQ"  check="U_8CODE"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                   	<div class="span6 pull-left">
+				                        <label class="control-label">备注</label>
+					                    <div class="controls">
+			
+					                      <textarea rows="3"  placeholder="请输入"  class=" edit-box"  id="remark" check="U_3DESC"></textarea><i class="text-error"></i>
+			
+					                    </div>
+				                    </div>
+				              </div>		
+
+	                </form>
+	            
+	          </div>
+	          
+	          
+	          
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			            <button class="btn btn-primary"   id="addCtm">添加</button>
+	          </div>
+      	  </div>
+      	  <!-- ------------------------------------------------------------新建联系人 end------------------------------------ -->
+      	  
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

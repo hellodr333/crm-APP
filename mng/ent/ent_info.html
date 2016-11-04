@@ -1,0 +1,208 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>企业信息</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+
+<script src="../../static/js/common/jquery.js"></script>
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/common/reData.js"></script>
+<script src="../../static/js/mng/ent/ent_info.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_mng.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid" style="margin-bottom:50px;">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      	
+      </ul>
+      <div class="tab-content span8">
+      	<!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+      
+        <div class="active">
+          <h4 class="panel-title">企业信息</h4>
+          <form class="form-horizontal" id="form1">
+             
+                  <div class="control-group">
+                    <label class="control-label">*企业名称：</label>
+                    <div class="controls">
+                      <input type="text" class=" disabled edit-box" requir="true" readonly value="" check="U_2NAME" id="name" /><i class="text-error"></i>
+                    </div>
+                  </div>
+                  <div class="control-group" id="geo">
+                    <label class="control-label">所在区域：</label>
+                    <div class="controls">
+                      <select class="input-medium disabled edit-box" disabled id="province" >
+                      </select>
+                      <select class="input-medium  disabled edit-box" disabled id="city" >
+                      </select>
+                      <select class="input-medium  disabled edit-box" disabled id="county" >
+                      </select>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label">单位地址：</label>
+                    <div class="controls">
+                      <input type="text" class="input-xlarge disabled edit-box" readonly value="" check="U_9VALUE" id="address" /><i class="text-error"></i>
+                    </div>
+                  </div>
+                   <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">邮编：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" check="U_ZG_POSTCODE" id="postalCode" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">网址：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" id="homePage" check="U_IN_URL"  /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                  </div>
+				
+                   <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">法人：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" check="U_2NAME_P" id="legalMan" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">电话：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" check="U_TL_PHONE" id="telephone" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">营业执照号：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" id="cmpLicense" check="U_8CODE" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">主营业务范围：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly id="cmpBusiness" check="U_3DESC" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">企业全称：</label>
+                    <div class="controls">
+                      <input type="text" class="disabled edit-box" readonly value="" id="formalName" check="U_2NAME_L"  /><i class="text-error"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">涉税编号：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled edit-box" readonly value="" id="formalNo" check="U_8CODE" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">企业状态：</label>
+                        <div class="controls">
+                        <select class="disabled" disabled id="entStatus" check="U_8CODE">
+                          <option value=""></option>
+                          <option value="10">注册</option>
+                          <option value="20">激活</option>
+                          <option value="30">暂停</option>
+                          <option value="40">恢复</option>
+                          <option value="90">销户</option>
+                        </select>
+                        </div>
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">备注：</label>
+                    <div class="controls">
+                      <textarea rows="3" class="disabled edit-box" readonly id="remark" check="U_3DESC"></textarea><i class="text-error"></i>
+                    </div>
+                  </div>
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">创建时间：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="createdDate" />
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">创建人：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="createdBy" />
+                        </div>
+                    </div>
+                    
+                  </div>
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">最后修改时间：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="lastModifiedDate" />
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">最后修改人：</label>
+                        <div class="controls">
+                          <input type="text" class="input-large disabled" readonly value="" id="lastModifiedBy" />
+                        </div>
+                    </div>
+                    
+                  </div>
+                  
+                  
+                  
+                  <div class="control-group">
+                    <div class="controls">
+                      <input type="button" class="btn btn-inverse redactBtn" value="编辑信息" />
+                      <input type="button" class="btn btn-inverse saveBtn hide" value="保存信息" />
+                      <input type="button" class="btn btn-inverse colseBtn hide" value="取消修改" />
+                    </div>
+                  </div>
+          
+          </form>
+          
+          
+          
+          
+        </div> 
+      </div>
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot">
+		
+    </div>
+</div>
+
+</body>
+</html>

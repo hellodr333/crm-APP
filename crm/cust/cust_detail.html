@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CRM 客户详情</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+
+
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+
+<script src="../../static/js/enclosure/left_crm.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+ <script src="../../static/js/common/reData.js"  ></script>  
+<script src="../../static/js/crm/cust/cust_detail.js"></script>
+<script src="../../static/js/enclosure/cust_topDetail.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+		        <!-- 确认是否成功弹框 -->
+				      	  <div id="makeSureBox">
+						 
+				      	  </div>
+				      	  
+				      	  
+				      	  
+		      <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 客户&nbsp;&nbsp;【<span id="custName"></span>】&nbsp;&nbsp;【<span id="lastTime"></span>】</h4>
+		      </div>
+		      <table class="table table-striped">
+                     <tbody id="custTopDetail">
+                    		
+                       </tbody>
+                    </table>
+      			<div class="row"  style="margin-left:20px;">
+		      		<ul class="nav nav-tabs span12" id="myTab"  >
+							  <li><a href=""  id="cst" >客户信息</a></li>
+							  <li><a href=""   id="ctm" >客户联系人</a></li>
+							  <li><a href=""   id="vst" >行动</a></li>
+							  <li><a href=""   id="chance" >机会</a></li>
+							   <li><a href=""  id="contract" >合同</a></li>
+							   
+					</ul>
+      			</div> 
+      			<form class="form-horizontal "   id="custForm" style="padding-bottom:20px;">
+	                      <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label " >*客户名称</label>
+					                    <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"    disabled id="name"  check="U_2NAME"   requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">网址</label>
+				                         <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"  disabled  id="homePage"  check="U_IN_URL" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				               </div>			           
+	                   <div class="control-group clearfix">
+				                    <div class="control-group" id="geo">
+						                    <label class="control-label">所在区域</label>
+						                    <div class="controls">
+						                      <select class="input-medium edit-box disabled"  disabled id="province"  >  
+					
+						                      </select>
+					
+						                      <select class="input-medium   edit-box disabled" disabled   id="city" >               
+						                      </select>
+					
+						                      <select class="input-medium   edit-box disabled" disabled  id="county"  check=""  requir="true">  
+					
+						                      </select><i class="text-error"></i>
+						                    </div>
+				                  </div>
+				      </div>			    
+	                   <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">地址</label>
+					                    <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"  disabled  id="address"  check="U_9VALUE"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">邮编</label>
+				                         <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"  disabled  id="postalCode"  check="U_ZG_POSTCODE"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>			
+				               
+				               
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*企业全称</label>
+					                    <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"   disabled id="formalName"   check="U_2NAME_L"  requir="true"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">涉税编号</label>
+				                         <div class="controls">
+					                      <input type="text"  class=" edit-box disabled"   disabled  id="formalNo"  check="U_ZG_IDENT"   ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">营业执照</label>
+					                    <div class="controls">
+					                      <input type="text"   class=" edit-box disabled"  disabled  id="cmpLiceNse"  check="U_ZG_IDENT" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">主营业务</label>
+				                         <div class="controls">
+					                      <input type="text"  class=" edit-box disabled"  disabled  id="cmpBusness"  check="U_3DESC" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				               
+				               <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户类型</label>
+					                    <div class="controls">
+					                      <select  id="custType" disabled check=""  requir="true"    class=" edit-box disabled">
+						                          <option value="">- 请选择 -</option>
+					                            <option value="10">业方</option>
+					                            <option value="20">施工</option>
+					                            <option value="30">监理</option>
+					                            <option value="40">设计</option>
+					                            <option value="50">咨询</option>
+					                              <option value="60">政府</option>
+					                            <option value="90">其他</option>
+						                        </select><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人</label>
+				                         <div class="controls">
+					                      <input type="text"  class=" edit-box disabled"    disabled id="legalMan"  check="U_2NAME_P"  ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label" >*客户状态</label>
+					                    <div class="controls">
+					                      <select  id="custStatus"  check=""  requir="true"  disabled  class=" edit-box disabled" >
+						                          <option value="">- 请选择 -</option>
+					                            <option value="10">正常</option>
+					                            <option value="20">冻结</option>
+					                            <option value="30">销户</option>
+						                        </select>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">法人手机</label>
+				                         <div class="controls">
+					                      <input type="text"  class=" edit-box disabled"  disabled   id="legalMobile"  check="U_TL_MOBILE" ><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                 <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                        <label class="control-label">备注</label>
+					                    <div class="controls">
+			
+					                      <textarea rows="3"  class=" edit-box disabled" disabled  id="remark" check="U_3DESC"></textarea><i class="text-error"></i>
+			
+					                    </div>
+				                    </div>
+				              </div>		
+				              
+				                <div class="control-group">
+					                    <div class="controls">
+					                      <input type="button" class="btn btn-primary redactBtn"  value="编辑信息" />
+					                      <input type="button" class="btn btn-primary saveBtn hide"  id="saveBtn" value="保存信息" />
+					                      <input type="button" class="btn colseBtn hide" value="取消修改" />
+					                    </div>
+			                  </div>
+	                  
+	                </form>
+      
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

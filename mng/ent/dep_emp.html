@@ -1,0 +1,622 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>人员管理</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/tree.css" />
+<link rel="stylesheet" href="../../static/css/jedate.css">
+
+<script src="../../static/js/common/jquery.js"></script>
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/common/jedate.js"></script>
+<script src="../../static/js/common/reData.js"></script>
+<script src="../../static/js/mng/ent/dept.js"></script>
+<script src="../../static/js/mng/ent/deptTree.js"></script>
+<script src="../../static/js/mng/ent/empTree.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_mng.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+    
+    	<ul class="nav nav-tabs span2 nav-borderL inav">
+           
+          </ul>
+    
+      <div class="span2 nav-borderL" style="min-width:300px;">
+      <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+      	<!--a type="button" class="btn btn-block border-blue" href="#addEmpBox" data-toggle="modal"><i class="icon-home"></i>添加团队</a-->
+        
+        <!--添加部门-->
+        <div id="addDepartBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">添加部门</h3>
+          </div>
+          <div class="modal-body">
+                <form class="form-horizontal" id="addDeptFrom">
+                  <div class="control-group">
+                    <label class="control-label">*部门名称</label>
+                    <div class="controls">
+                      <input type="text" placeholder="请输入部门名称" id="departName" check="U_2NAME_P" requir="true"><p class="text-error"></p>
+                    </div>
+                  </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="addDepart">添加</button>
+          </div>
+        </div>
+        
+        <!--修改部门信息-->
+        <div id="updDepartBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">修改部门信息</h3>
+          </div>
+          <div class="modal-body">
+                <form class="form-horizontal" id="updDeptFrom">
+                  <div class="control-group">
+                    <label class="control-label">*部门名称</label>
+                    <div class="controls">
+                      <input type="text" placeholder="请输入部门名称" id="updDepartName" check="U_2NAME_P" requir="true"><p class="text-error"></p>
+                    </div>
+                  </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="updDepart">保存</button>
+          </div>
+        </div>
+        
+        
+        <!--编辑员工-->
+        <div id="updEmpBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:60%; margin-left:0px; left:20%;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">编辑员工信息</h3>
+          </div>
+          <div class="modal-body">
+                <form class="form-horizontal" id="updEmpForm">
+                
+                
+                 <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                       	<label class="control-label">*姓名</label>
+                   	 	<div class="controls">
+                      		<input type="text" placeholder="请输入员工名称" id="updEmpName" check="U_2NAME_P" requir="true"><i class="text-error"></i>
+                    	</div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">手机</label>
+                        <div class="controls">
+                          <input type="text" placeholder="请输入员工手机号" id="updEmpMobile" check="U_TL_MOBILE"><i class="text-error"></i>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">邮箱</label>
+                        <div class="controls">
+                          <input type="text" placeholder="请输邮箱 例：abc@123.com" id="updEmpEmail" check="U_IN_EMAIL"><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">员工职级</label>
+                        <div class="controls">
+                          <select id="updEmpTitle">
+                          <option value="">- 请选择 -</option>
+                          <option value="01">董事</option>
+                          <option value="10">高管</option>
+                          <option value="20">经理</option>
+                          <option value="30">主管</option>
+                          <option value="40">资深</option>
+                          <option value="50">员工</option>
+                          <option value="60">临工</option>
+                        </select>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label">所属部门</label>
+                    <div class="controls">
+                       <input type="text" placeholder="请输入" id="updEmpDept" check="U_1ID" /><i class="text-error"></i>
+                       <div class="btn-group">
+                       	<a class="btn" tabindex="-1" id="choseDept">选择部门</a>
+                      </div>
+                    </div>
+                       <!--企业树-->
+                    <div class="controls">
+                     
+                      <span class="tree well span10" id="deptC" style="margin-top:20px; display:none;">
+                      	  <button type="button" class="close">×</button>
+                          <ul style="margin:0px;" class="pull-left"></ul>
+                      </span>
+					</div>
+                  </div>
+
+                  
+                  <div class="control-group">
+                        <label class="control-label">员工岗位</label>
+                        <div class="controls">
+                          <input type="text" placeholder="请输员工岗位" id="updEmpPos" check="U_1ID"><i class="text-error"></i>
+                        </div>
+                  </div>
+                  
+                  <div class="control-group">
+                        <label class="control-label">汇报对象</label>
+                        <div class="controls">
+                          <input type="text" placeholder="请输入" id="updEmpSuperior">
+                           <div class="btn-group">
+                            <a class="btn" tabindex="-1" id="choseEmp">选择汇报对象</a>
+                          </div>
+ 
+                        </div>
+                     <div class="controls">
+                     
+                      <span class="tree well span10" id="empC" style="margin-top:20px; display:none;">
+                      	  <button type="button" class="close">×</button>
+                          <ul style="margin:0px;" class="pull-left"></ul>
+                         <table class="table table-hover table-vcenter pull-right span8">
+                            <thead>
+                                <tr>
+                                    <th class="span4">姓名</th>
+                                    <th class="span2">职级</th>
+                                    <th class="span3">所属部门</th>
+                                    <th class="span3"><a href="#" class="btn btn-small" id="prevpage">上一页</a>
+                                    	<a href="#" class="btn btn-small" id="nextpage">下一页</a>
+                                     </th>
+                                </tr>
+                            </thead>
+                            <tbody id="empList2">
+                                <tr>
+                                  
+                                </tr>
+                            </tbody>
+                        </table>
+                      </span>   
+                       
+                       </div> 
+                    </div>
+                  
+                  
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">员工编号</label>
+                        <div class="controls">
+                          <input type="text" placeholder="请输入" id="updEmpNo" check="U_4INT"><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">员工状态：</label>
+                        <div class="controls">
+                        <select id="updEmpStatus" check="updEmpStatus">
+                          <option value="">-请选择-</option>
+                          <option value="10">试用</option>
+                          <option value="20">正式</option>
+                          <option value="30">临时</option>
+                          <option value="90">离职</option>
+                        </select>
+                    </div>
+                  </div>
+                 </div>
+                  
+                  <div class="control-group clearfix">
+                   	<div class="span6 pull-left">
+                        <label class="control-label">合同起始日期</label>
+                        <div class="controls">
+                          <input type="text" id="updEmpFrom" check="U_6DATETIME"/><i class="text-error"></i>
+                        </div>
+                    </div>
+                    <div class="span6 pull-left">
+                        <label class="control-label">合同截止日期</label>
+                        <div class="controls">
+                          <input type="text" id="updEmpThru" check="U_6DATETIME" /><i class="text-error"></i>
+                        </div>
+                    </div>
+                  </div>
+                  
+                   <div class="control-group">
+                    <label class="control-label">备注</label>
+                    <div class="controls">
+                      <textarea rows="3" id="updEmpRemark" check="U_3DESC"></textarea><i class="text-error"></i>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  	
+          
+           
+                </form>
+          </div>
+          <div class="modal-footer">
+          	<button class="btn" id="opnEmp">开通用户</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="updEmp">确认</button>
+          </div>
+        </div>
+        
+        
+        <!--删除部门-->
+        <div id="delDeptBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">是否确认删除当前部门？</h3>
+          </div>
+          <!--div class="modal-body">
+          </div-->
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary" id="delDept">删除</button>
+          </div>
+        </div>
+        <!--删除人员-->
+        <div id="delEmpBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">是否确认删除当前员工？</h3>
+          </div>
+          <!--div class="modal-body">
+          </div-->
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary" id="delEmp">删除</button>
+          </div>
+        </div>
+        
+        
+        
+        
+        <!--开通用户权限-->
+        <div id="grsEmpBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">用户权限设置</h3>
+          </div>
+          <div class="modal-body">
+                <form class="form-horizontal" id="grsEmpForm">
+					<table class="table table-bordered">
+                    	<tbody>
+                        	<tr>
+                            	<td colspan="4">
+                                	<label class=" checkbox inline">
+                                      <input type="checkbox" id="SUPER" value="SUPER">企业管理员
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	
+                                	<div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios1" id="EOA" value="EOA">OA管理者
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios1" id="EOA_0" value="EOA_0">OA操作
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios1" checked value="">无权限
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                	
+                                	<div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios2" id="CRM" value="CRM">CRM管理者
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="radio">
+                                           <input type="radio" name="optionsRadios2" id="CRM_0" value="CRM_0">CRM操作
+                                         </label>
+                                     </div>
+                                     <div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios2" checked value="">无权限
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                	
+                               		<div>
+                                	<label class="radio">
+                                      <input type="radio" name="optionsRadios3" id="PRJ" value="PRJ">项目管理者
+                                    </label>
+                                    </div>
+                                    <div>
+                                    <label class="radio">
+                                      <input type="radio" name="optionsRadios3" id="PRJ_0" value="PRJ_0">项目操作
+                                    </label>
+                                    </div>
+                                    <div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios3" checked value="">无权限
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                	
+                                	<div>
+                                	<label class="radio">
+                                      <input type="radio" name="optionsRadios4" id="SET" value="SET">设置管理者
+                                    </label>
+                                    </div>
+                                    <div>
+                                    <label class="radio">
+                                      <input type="radio" name="optionsRadios4" id="SET_0" value="SET_0">设置操作
+                                    </label>
+                                    </div>
+                                    <div>
+                                        <label class="radio">
+                                          <input type="radio" name="optionsRadios4" checked value=''>无权限
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+ 
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="grsEmp">确认</button>
+          </div>
+        </div>
+        
+        
+        
+        <!--企业树-->
+       <span id="tree1">
+        	<div class="tree well" id="treeBox">
+       		 <ul style="margin:0px;">
+            <!--<li>
+                <span><i class="icon-folder-open"></i>鲁班软件有限公司</span>
+                <ul>
+                    <li>
+                        <span><i class="icon-minus-sign"></i>MyLuBan</span><a href="" class="edit_ico"><i class="icon-pencil"></i></a><a href=""  class="edit_ico"><i class="icon-remove"></i></a><a href=""  class="edit_ico"><i class="icon-plus"></i></a>
+                        <ul>
+                            <li>
+                                <span> CRM</span> <a href="">查看</a>
+                            </li>
+                            <li>
+                                <span><i class="icon-minus-sign"></i>myluban</span> <a href="">查看</a>
+                                <ul>
+                                    <li>
+                                        <span>fwq</span> <a href="">查看</a>
+                                    </li>
+                                    <li>
+                                        <span>dr</span> <a href="">查看</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span><i class="icon-minus-sign"></i>人力资源</span>
+                        <ul>
+                            <li>
+                                <span><i class="icon-minus-sign"></i>招聘组</span> <a href="">查看</a>
+                                <ul>
+                                    <li>
+                                        <span> 招聘1组</span> <a href="">查看</a>
+                                    </li>
+                                    <li>
+                                        <span> 招聘2组</span> <a href="">查看</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span> 培训组</span> <a href="">查看</a>
+                            </li>
+                            <li>
+                                <span> 考核组</span> <a href="">查看</a>
+                            </li>
+                            <li>
+                                <span> 员工关系组</span> <a href="">查看</a>
+                            </li>
+                            <li>
+                                <span> 行政组</span> <a href="">查看</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>-->
+       		 </ul>
+
+        </div>
+  
+ </span>       
+        
+        
+      </div>
+      <div class="tab-content span7">
+      
+          <h4 class="panel-title">成员信息</h4>
+          
+          <a class="btn btn-blue" href="#addEmpBox" data-toggle="modal"><i class="icon-plus icon-white"></i>添加新成员</a>
+          <!--a class="btn btn-green" href="#addBatch" data-toggle="modal"><i class="icon-file icon-white"></i>批量添加成员</a>
+          
+          
+          <!--个人导入-->
+          <div id="addEmpBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">添加新成员</h3>
+          </div>
+          <div class="modal-body">
+                <form class="form-horizontal" id="addEmpFrom">
+                  <div class="control-group">
+                    <label class="control-label">*姓名</label>
+                    <div class="controls">
+                      <input type="text" placeholder="请输入姓名" id="empName" check="U_2NAME_P" requir="true"><p class="text-error"></p>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label">*手机号</label>
+                    <div class="controls">
+                      <input type="text" placeholder="请输入手机号" id="empMobile" check="U_TL_MOBILE" requir="true"><p class="text-error"></p>
+                    </div>
+                  </div>
+                  
+                  <div class="control-group">
+                    <label class="control-label">*邮箱</label>
+                    <div class="controls">
+                      <input type="text" placeholder="请输入邮箱" id="empMail" check="U_IN_EMAIL" requir="true"><p class="text-error"></p>
+                    </div>
+                  </div>
+
+                  
+                </form>
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            <button class="btn btn-primary" id="addEmp">添加</button>
+          </div>
+        </div>
+          <!--批量导入-->
+          <div id="addBatch" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">批量导入成员信息</h3>
+          </div>
+          <div class="modal-body">
+                <p>步骤1：下载模板 <a href="#">123.xlse</a></p>
+                <p>步骤2：修改模板信息</p>
+                <p>步骤3：上传文件</p>
+            	<div class="input-append">
+                  <input class=" input-large" type="text">
+                  <button class="btn btn-primary" type="button">上传</button>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+          </div>
+        </div>
+          
+          
+          
+          
+          
+          <table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>姓名</th>
+                                <th>手机号</th>
+                                <th>职级</th>
+                                <th>所属部门</th>
+                                <th>最后修改时间</th>
+                                <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="empList">
+                            <!--tr>
+                                <td>1</td>
+                                <td>范伟秋</td>
+                                <td>15216762697</td>
+                                <td>
+                                    <div class="label label-table label-important">部门经理</div>
+                                </td>
+                                <td>my luban</td>
+                                <td>2016.08.05</td>
+                                <td>
+                                	<a title="编辑" href="#updEmpBox"><i class="icon-pencil"></i></a>
+									<a title="删除"  href="#delEmpBox" data-toggle="modal"><i class="icon-remove"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>范伟秋</td>
+                                <td>15216762697</td>
+                                <td>
+                                    <div class="label label-table label-warning">项目经理</div>
+                                </td>
+                                <td>my luban</td>
+                                <td>2016.08.05</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>范伟秋</td>
+                                <td>15216762697</td>
+                                <td>
+                                    <div class="label label-table label-info">普通员工</div>
+                                </td>
+                                <td>my luban</td>
+                                <td>2016.08.05</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>范伟秋</td>
+                                <td>15216762697</td>
+                                <td>
+                                    <div class="label label-table label-info">普通员工</div>
+                                </td>
+                                <td>my luban</td>
+                                <td>2016.08.05</td>
+                                <td></td>
+                            </tr-->
+                        </tbody>
+                    </table>
+          			<div class="paging-box clearfix">
+
+                        <div class="pull-left page magR" id="">当前第&nbsp;&nbsp;<i id="nowPage">1</i>&nbsp;&nbsp;页</div>
+                        <div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage">0</i>&nbsp;&nbsp;页</div>
+                        
+                        <div class="pull-right">
+                            <span class="btn btn-blue " id="firstPage">首页</span>
+                            <span class="btn btn-blue" id="previousPage">上一页</span>
+                            <span class="btn btn-blue" id="nextPage">下一页</span>
+                            <span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>跳转到</span>
+                            <input type="text" class="input-small" id="goPage">&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+                             <span class="btn btn-blue" id="jumpPage">go</span>
+                        </div>
+        
+                </div>
+       
+      </div>
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot">
+		
+    </div>
+</div>
+</body>
+</html>

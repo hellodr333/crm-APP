@@ -1,0 +1,233 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>企业产品</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+<script src="../../static/js/common/reData.js"></script>
+ <script src="../../static/js/common/jquery.js"  ></script>  
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_mng.js"></script>
+<script src="../../static/js/mng/intpr/intpr_product.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+      		<!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+		      <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 企业产品</h4>
+		      </div>
+  
+         <!--------------------------------------修改详情------------------------->
+          <div id="updPro" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">产品详情</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal" id="updProForm">
+                            <div class="control-group">
+                            	<label class="control-label">*产品名称</label>
+                                <div class="controls">
+                                  <input type="text"  id="prodNameUpd" requir="true" check="U_2NAME" /><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品分类</label>
+                                <div class="controls">
+                                  <select class="input-large" id="prodCategoryUpd" requir="true" check="" >
+                                  	<option value="">请选择</option>
+                                    <option value="10">软件</option>
+                                    <option value="20">实施</option>
+                                    <option value="30">租赁</option>
+                                    <option value="40">咨询</option>
+                                    <option value="90">其他</option>
+                          		  </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfoUpd" check="U_3DESC" requir="true"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">技术信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfoTechUpd" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">方案信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfoSoluUpd" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品状态</label>
+                                <div class="controls">
+                                  <select class=" input-large" id="prodStatusUpd" check="" requir="true">
+                                  	<option value="">请选择</option>
+                                    <option value="10">有效</option>
+                                    <option value="20">失效</option>
+                          		  </select><i class="text-error"></i>
+                                </div>
+                            </div>
+	                </form>
+	            
+	          </div>
+	          <div class="modal-footer">
+	         	<button class="btn  btn-primary" data-dismiss="modal" aria-hidden="true">取消</button>
+	      		<button class="btn btn-primary"  id="updProBtn">修改</button>
+	          </div>
+      	  </div>
+
+      	  <!-----------------------------查看详情  end-------------------------------->
+          <!----------------------------      新建          ------------------------->
+          <div id="addPro" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3 id="myModalLabel">新建产品</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal" id="addProForm">
+                            <div class="control-group">
+                            	<label class="control-label">*产品名称</label>
+                                <div class="controls">
+                                  <input type="text"  id="prodName" requir="true" check="U_2NAME" /><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品分类</label>
+                                <div class="controls">
+                                  <select class="input-large" id="prodCategory" requir="true" check="" >
+                                  	<option value="">请选择</option>
+                                    <option value="10">软件</option>
+                                    <option value="20">实施</option>
+                                    <option value="30">租赁</option>
+                                    <option value="40">咨询</option>
+                                    <option value="90">其他</option>
+                          		  </select><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfo" check="U_3DESC" requir="true"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">技术信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfoTech" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">方案信息</label>
+                                <div class="controls">
+                                  <textarea rows="4" id="prodInfoSolu" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                            	<label class="control-label">*产品状态</label>
+                                <div class="controls">
+                                  <select class=" input-large" id="prodStatus" check="" requir="true">
+                                  	<option value="">请选择</option>
+                                    <option value="10">有效</option>
+                                    <option value="20">失效</option>
+                          		  </select><i class="text-error"></i>
+                                </div>
+                            </div>
+	                </form>
+	          </div>
+	          <div class="modal-footer">
+	         	<button class="btn  btn-primary" data-dismiss="modal" aria-hidden="true">取消</button>
+	      		<button class="btn btn-primary"  id="addProBtn">添加</button>
+	          </div>
+      	  </div>
+
+      	  <!-----------------------------新建  end-------------------------------->
+      	  
+		      <div class="control-group form-horizontal search_box">
+						<select class=" input-medium" id="prodCategorySelect">
+                        	<option value="">全部分类</option>
+                        	<option value="10">软件</option>
+                            <option value="20">实施</option>
+                            <option value="30">租赁</option>
+                            <option value="40">咨询</option>
+                            <option value="90">其他</option>
+                        </select>
+
+                         <input class="input-large" id="prodNameSelect" type="text"   placeholder="轻击输入产品名称过滤" />
+  
+	                      
+                        <input type="button"  id="searchBtn" value="搜索"   class="btn input-mini" />
+                        
+                        <label class="pull-right">
+                        	<a class="btn btn-blue pull-right" href="#addPro" data-toggle="modal" id="addProList"><i class="icon-plus icon-white"></i>新建产品</a>
+                        </label>
+                        
+                  </div>
+				
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>产品名称</th>
+                                <th>产品分类</th>
+                                <th>产品信息</th>
+                                <th>产品状态</th>
+                                <th>最后修改时间</th>
+                                <th>编辑</th>
+                            </tr>
+                        </thead>
+                        <tbody id="proList">
+                        	
+                        </tbody>
+                    </table>
+                    
+                    
+                    	<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue " id="firstPage">首页</span>
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+									<span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>跳转到</span>
+									<input type="text" class="input-small" id="goPage"/>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+									 <span class="btn btn-blue"  id="jumpPage">go</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

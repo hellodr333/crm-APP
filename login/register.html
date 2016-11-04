@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户注册</title>
+<link  rel="stylesheet"  href="../static/css/bootstrap.min.css" / >
+<link  rel="stylesheet"  href="../static/css/reg_login.css" / >
+
+<script src="../static/js/common/common.js"></script>
+<script src="../static/js/common/jquery.js"></script>
+<script src="../static/js/common/bootstrap.min.js"></script>
+<script src="../static/js/common/ajax.js"></script>
+<script src="../static/js/common/reData.js"></script>
+<script src="../static/js/login/register.js"></script>
+
+</head>
+<body>
+	<div class="reg-navbar">
+		<div class="container1366  navbar-head">
+			<img src="../static/images//myluban-logo.png"  alt=""/>
+		</div>
+	</div>
+	<div class="container700 mainBox">
+		<h2>企业注册</h2>
+		<div  >
+			<ul class="regList">
+				<li>
+					<label for="adminMobile" >手机号码：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="text"  class="input-large " name="U_TL_MOBILE"  id="adminMobile" />
+						<span class="no-empty">手机号码不能为空</span>
+						<span class="error">请输入11位手机号</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label for="adminMail" >邮箱：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="text"  class="input-large"  name="U_IN_EMAIL"  id="adminMail" />
+						<span class="no-empty">邮箱不能为空</span>
+						<span class="error">请输入有效邮箱</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label for="adminName" >姓名：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="text"  class="input-large" name="name60" id="adminName" />
+						<span class="no-empty">客户名称不能为空</span>
+						<span class="error">请输入正确的客户名称</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label for="adminOrgName" >企业名称：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="text"  class="input-large" name="orgName" id="adminOrgName" />
+						<span class="no-empty">企业名称不能为空</span>
+						<span class="error">请输入正确的企业名称</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label for="adminPsword" >密码：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="password"  class="input-large" name="psword"  id="adminPsword" />
+						<span class="no-empty">密码不能为空</span>
+						<span class="error">请输入6位数字密码</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label for="adminPsword2" >确认密码：
+						<span class="form-required">*</span>	
+					</label>
+					<div>
+						<input type="password"  class="input-large" name="setNewPs"  id="adminPsword2" />
+						<span class="pswd2">请再次输入密码</span>
+						<span class="ok"></span>
+					</div>
+				</li>
+				<li>
+					<label >
+					</label>
+					 <div >		
+							<div id="addUser" class="alert hide" style="margin-bottom:0; ">
+			                	<button type="button" class="close" onclick="this.parentNode.style.display='none';">&times;</button>
+			                	<h4>请输入完整的信息</h4>
+		                </div>
+					</div> 
+				</li>
+				<li>
+					<label >
+					</label>
+					<div>
+					<button type="button" class="btn btn-primary"   id="submit">提交信息</button>	
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

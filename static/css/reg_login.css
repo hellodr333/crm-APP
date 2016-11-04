@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+
+/*clear default style*/
+
+body { font: 15px "Microsoft YaHei","Microsoft JhengHei","Microsoft YaHei"; }
+li{list-style:none;}
+i{font-style:normal;}
+.container600{ width:600px;margin:0 auto;}
+.container700{ width:700px;margin:0 auto;}
+.container1366{ width:1366px;margin:0 auto;}
+ .container600>div,  .container700>div{background:#eee;border: 1px solid #ccc;box-shadow: 5px 5px #eee;}
+ 
+ 
+/* register */
+.reg-navbar{width:100%;height:60px;background:#08c;font-size:18px;color:white;}
+.no-empty, .error, .ok, .pswd2, .noRepeat{display:none;}
+
+.reg-listHas  span.no-empty{display:inline-block;padding-left:10px;color:#3a87ad;}
+.reg-listErr  span.error{display:inline-block;padding-left:10px;color:#b94a48;} 
+.reg-listHas2  span.pswd2{display:inline-block;padding-left:10px;color:#3a87ad;}
+ 
+.reg-listOk span.ok{display:inline-block;margin-left:10px;background:url(../images/ok.png) no-repeat ;width:23px;height:23px;} 
+.reg-listOk2  span.ok{display:inline-block;margin-left:10px;background:url(../images/ok.png) no-repeat ;width:23px;height:23px;} 
+
+.form-required{color:red;}
+.mainBox>h2{margin-top:130px;margin-bottom:30px;}
+ .regList{margin:0;padding:0;padding-top:50px;}
+.regList li{height:46px;}
+.regList li label, .regList li>div{float:left;}
+.regList li label{width:36%;text-align:right;  line-height: 30px;height: 30px;}
+.regList li>div{margin-left:30px;width:55%;}
+
+
+/* login */
+.log-container{ width:1366px;margin:0 auto;}
+.log-navbar{width:100%;height:60px;background:#08c;font-size:18px;color:white;}
+.loginList{margin:0;padding:0;}
+.loginList .tipLi{height:32px;}
+.loginList .tipLi div{line-height:50px;display:none;color:#b94a48;}
+.loginList .tipLi div.on{display:block;}
+.loginList li{text-align:center;padding-bottom:18px;}
+.loginList li label{display:inline-block;}
+.mobileIcon{position:absolute;left:8px;top:4px;background:url(../images/user.png) no-repeat;width:28px;height:22px;border-right:1px solid #bbb;}
+.psIcon{position:absolute;left:8px;top:4px;background:url(../images/pswd.png) no-repeat;width:28px;height:22px;border-right:1px solid #bbb;}
+.textIn{text-indent:35px;}
+
+
+/* lose_password */
+.findList{margin:0;padding:0;padding-top:50px;}
+.findList li{overflow:hidden;padding-bottom:18px;}
+.findList li.on{display:none;}
+.findList li.error{display:none;}
+.findList span, .findList div{float:left;}
+.findList span{width:28%;text-align:right;margin-right:30px;    display: inline-block; line-height: 30px; height: 30px;}
+.findList div{width:65%;}
+ .registerMobile  i{visibility:hidden;} 
+ .registerMobile  i.on{visibility:visible;color:#b94a48;}   
+.registerMobile  i.ok1{visibility:visible;background:url(../images/ok.png) no-repeat ;width:23px;height:23px;display:inline-block;margin-left:10px;}   
+.tipYZM{width:100%;text-align:center;}
+
+.findList2{margin:0;padding:0;padding-top:50px;}
+.findList2 li{overflow:hidden;padding-bottom:18px;}
+.findList2  li> span, .findList2 li>div{float:left;}
+.findList2  li> span{width:27%;text-align:right;margin-right:30px;  line-height: 30px; height: 30px;}
+.findList2 div{width:66%;}
+
+
+
+
+
+
+
+
+
+
