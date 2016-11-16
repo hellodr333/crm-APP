@@ -61,22 +61,22 @@ $(function(){
 							
 						s+='<tr>\
 					                        <td >'+igeo.cityname(str.responseData[i].custCity)+'</td>\
-			                                 <td   class="text-right">'+(str.responseData[i].beginNums/10000)+'</td>\
-			                                  <td   class="text-right">'+(numArr[0]/10000)+'</td>\
-		                                   <td   class="text-right">'+(numArr[1]/10000)+'</td>\
-		                                    <td   class="text-right">'+(numArr[2]/10000)+'</td>\
-		                                     <td   class="text-right">'+(str.responseData[i].endNums/10000)+'</td>\
+			                                 <td   class="text-right">'+fmoney(str.responseData[i].beginNums/10000)+'</td>\
+			                                  <td   class="text-right">'+fmoney(numArr[0]/10000)+'</td>\
+		                                   <td   class="text-right">'+fmoney(numArr[1]/10000)+'</td>\
+		                                    <td   class="text-right">'+fmoney(numArr[2]/10000)+'</td>\
+		                                     <td   class="text-right">'+fmoney(str.responseData[i].endNums/10000)+'</td>\
 			                                 <td   class="text-right">'+hurndrePer(numArr[2],numArr[1])+'</td>\
 					               </tr> ';
 					
 					}
 						s+='<tr>\
 				                    <td >累计</td>\
-				                    <td  class="text-right">'+(bNum/10000)+'</td>\
-				                    <td  class="text-right">'+(bbNum/10000)+'</td>\
-				                    <td  class="text-right">'+(ccNum/10000)+'</td>\
-				                    <td  class="text-right">'+(ddNum/10000)+'</td>\
-				                    <td  class="text-right">'+(eNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(bNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(bbNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(ccNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(ddNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(eNum/10000)+'</td>\
 				                    <td  class="text-right" >'+hurndrePer(ccNum,bbNum)+'</td>\
 				           </tr> ';
 					$('#'+box).html(s);

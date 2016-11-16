@@ -39,12 +39,11 @@ $(function(){
 						for(var i=0;i<str.responseData.length;i++){		
 							string += '  <tr id='+ str.responseData[i].id +'>\
 	                            <td>'+noData(setDate(str.responseData[i].costDate))+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].costs)+'</td>\
-	                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
-	                            <td >'+noData(igeo.geoname(str.responseData[i].costGeo))+' </td>\
-	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
+	                            <td >'+noData(igeo.cityname(str.responseData[i].costGeo))+' </td>\
+	                            <td class="text-right" style="width:150px;padding-right:50px">'+noData(fmoney(str.responseData[i].costs))+'</td>\
 	                            <td>'+noData(expType(str.responseData[i].costType))+'</td>\
 	                            <td>'+noData(repStatus(str.responseData[i].status))+'</td>\
+	                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
 	                              <td>\
 	                              <a title="查看" class="seeContBox" href="#seeContBox" data-toggle="modal"><i class="icon-eye-open"></i></a>\
 	                            </td>\
@@ -60,11 +59,11 @@ $(function(){
 					$('#contList').html(string);
 					
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}
@@ -138,7 +137,6 @@ $(document).delegate("#contList tr",'click',function(){
 				 $("#seeContform #costs").attr("cntrid",str.responseData.cntrId);
 				 $("#seeContform #costs").attr("custvisitid",str.responseData.custVisitId);
 				 $("#seeContform #costType").val(str.responseData.costType);  
-				 $("#seeContform #chncName").val(str.responseData.chncName); 
 				 $("#seeContform #costDate").val(setDate(str.responseData.costDate));  
 				 $("#seeContform #costMsg").val(str.responseData.costMsg); 
 				 geoNum = str.responseData.costGeo;

@@ -85,20 +85,20 @@ $(function(){
 									        </div>\
 								      </div>\
 						    </div>\
-						    			   <div class="accordion-group">\
+						    			   <div class="accordion-group hide" limit="CRM_7">\
 										      <div class="accordion-heading">\
 											        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSeven"><h4>管理报表</h4> </a>\
 										      </div>\
 										      <div id="collapseSeven" class="accordion-body collapse">\
 											        <div class="accordion-inner">\
 										    			   <ul>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngcust">客户发展</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngvisit">客户联络</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngchnc">销售预测</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngsths">机会历史</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngctract">合同统计</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mngrecord">业绩统计</a></li>\
-																	<li class="pd10"><a href="../../crm/mngChart/mngChart.html#chart_mnggranted">款项统计</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_1"><a href="../../crm/mngChart/mngChart.html#chart_mngcust">客户发展</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_2"><a href="../../crm/mngChart/mngChart.html#chart_mngvisit">客户联络</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_3"><a href="../../crm/mngChart/mngChart.html#chart_mngchnc">销售预测</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_3"><a href="../../crm/mngChart/mngChart.html#chart_mngsths">机会历史</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_4"><a href="../../crm/mngChart/mngChart.html#chart_mngctract">合同统计</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_5"><a href="../../crm/mngChart/mngChart.html#chart_mngrecord">业绩统计</a></li>\
+																	<li class="pd10 hide" limit="CRM_7_6"><a href="../../crm/mngChart/mngChart.html#chart_mnggranted">款项统计</a></li>\
 															</ul>\
 											        </div>\
 										      </div>\

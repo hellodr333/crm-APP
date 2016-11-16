@@ -101,6 +101,8 @@ function empTree(entpriseID,treeBoxID,showBoxID,empListBox,ID){
 				//获取员工类表～。单部门
 	
 	function getEmpTree(){
+		$("#updEmpSuperior").val("")
+		$("#")
 		$('li[deptID]').find("div span").css({"background":"","color":"#333"})
 		if(clickID==''){
 			$('li[deptID="'+ entpriseID +'"]').find(">div >span").css({"background":"#3a81da","color":"#fff"});
@@ -154,7 +156,7 @@ function empTree(entpriseID,treeBoxID,showBoxID,empListBox,ID){
 			pageNo = pageNo-1;
 			if(pageNo<1){
 				pageNo=1;
-				alert("已经到达第一页")
+				makeSure("makeSureBox","已经到达第一页")
 				}
 			getEmpTree();
 			})
@@ -162,7 +164,7 @@ function empTree(entpriseID,treeBoxID,showBoxID,empListBox,ID){
 			pageNo = pageNo+1;
 			if(pageNo>pagecount){
 				pageNo=pagecount;
-				alert("已经到达最后一页")
+				makeSure("makeSureBox","已经到达最后一页")
 				}
 			getEmpTree();
 			})

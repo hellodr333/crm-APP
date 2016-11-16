@@ -451,14 +451,12 @@ $(function(){
 				}else{
 					$("#opnEmp").removeAttr("disabled");
 					}
-			
-			var depName = focusID==''?'':$("#"+focusID +" td").eq(4).html();
 			$("#updEmpName").val(str.responseData.name);//名字
 			$("#updEmpMobile").val(str.responseData.mobile);//手机号
 			$("#updEmpEmail").val(str.responseData.email);//邮箱
 			$("#updEmpTitle").val(str.responseData.empTitle);//员工职级别
-			$("#updEmpDept").val(depName);//所属部门
-			$("#updEmpDept").attr("deptid",str.responseData.empDept)
+			$("#updEmpDept").val($("#"+clickID +" td").eq(4).html());//所属部门
+			$("#updEmpDept").attr("deptID",str.responseData.empDept)
 			$("#updEmpPos").val(str.responseData.empPos);//员工岗位
 			$("#updEmpSuperior").val(str.responseData.superior_view);//汇报对象
 			$("#updEmpNo").val(str.responseData.empNo);//员工编号
@@ -529,7 +527,7 @@ $(function(){
 	
 	//添加员工
 	
-
+	
 	checkForm("addEmpFrom")
 
 	$("#addEmp").click(function(){
@@ -537,7 +535,7 @@ $(function(){
 		if(checkForm2("addEmpFrom"))
 		$.ajax({
 		url:"/"+app+"/org/emp/add",
-		data:{scpEnt:entID,empDept:clickID,name:$("#empName").val(),mobile:$("#empMobile").val(),email:$("#empMail").val()},
+		data:{empDept:focusID,name:$("#empName").val(),mobile:$("#empMobile").val(),email:$("#empMail").val()},
 		type:'POST',
 		success:function(str){
 			var ladtDate=new Date().getTime();
@@ -586,7 +584,7 @@ $(function(){
 						makeSure("makeSureBox","添加成功!");
 							}
 				}else{
-					alert("添加失败！")
+					makeSure("makeSureBox","添加失败！")
 					}
 			}
 		})
@@ -650,7 +648,7 @@ $(function(){
 			mobile:$("#updEmpMobile").val(),//手机号
 			email:$("#updEmpEmail").val(),//邮箱
 			empTitle:$("#updEmpTitle").val(),//员工职级
-			empDept:$("#updEmpDept").attr("depid"),//所属部门
+			empDept:$("#updEmpDept").attr("depID"),//所属部门
 			empPos:$("#updEmpPos").val(),//员工岗位
 			superior:$("#updEmpSuperior").attr("empid"),//回报对象
 			empNo:$("#updEmpNo").val(),//员工编号

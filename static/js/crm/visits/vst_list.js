@@ -47,15 +47,15 @@ $(function(){
 						for(var i =0; i<str.responseData.length; i++){
 							msg += '<tr vstID="'+str.responseData[i].id+'">\
 									<td>'+  setDate(str.responseData[i].vstStart)+'</td>\
+									<td>'+  igeo.cityname(str.responseData[i].vstGeo) +'</td>\
 									<td custid="'+ str.responseData[i].vstCust +'">'+  str.responseData[i].vstCust_view+'</td>\
 									<td>'+  str.responseData[i].vstCtmer_view+'</td>\
-									<td>'+  igeo.cityname(str.responseData[i].vstGeo) +'</td>\
-									<td>'+  str.responseData[i].bizUser_view+' </td>\
+									<td>'+  str.responseData[i].vstTarget.slice(0,15) + (str.responseData[i].vstTarget.length>15?'...':'')+'</td>\
 									<td>'+  setTrcType(str.responseData[i].trcType)+'</td>\
 									<td>'+  setMode(str.responseData[i].vstMode)+'</td>\
-									<td>'+  str.responseData[i].vstTarget+'</td>\
 									<td>'+  setStatus(str.responseData[i].vstStatus)+'</td>\
 									<td>'+  setResult(str.responseData[i].vstResult)+'</td>\
+									<td>'+  str.responseData[i].bizUser_view+' </td>\
 									<td>\
 										<a  class="" href="#qryVst" data-toggle="modal"><i class="icon-eye-open"></i></a>\
 									</td>\
@@ -159,7 +159,7 @@ $(function(){
 
 	$(document).delegate("i.icon-pencil","click",function(){
 		var vstID = $(this).parent().parent().attr("vstid");
-		var custID = $(this).parent().parent().children().eq(1).attr("custid")
+		var custID = $(this).parent().parent().children().eq(2).attr("custid")
 		if($("tr[vstid='"+ vstID +"'] td").eq(5).html()=="机会跟进"){
 			location.href = "../chance/cust_chance.html?&custID="+custID; 
 			}else{

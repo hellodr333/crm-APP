@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>论坛</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/pro.css">
+
+<script src="../../static/js/common/jquery.js"></script>
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/common/geo.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_oa.js"></script>
+<script src="../../static/js/common/alert.js"></script>
+<script src="../../static/js/oa/forum/forum_list.js"></script> 
+
+<link rel="stylesheet" href="../../static/css/common.css" type="text/css" media="screen" />
+<script type="text/javascript" src="../../static/js/forumbox/xheditor-1.2.2.min.js"></script>
+<script type="text/javascript" src="../../static/js/forumbox/xheditor_lang/zh-cn.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      
+      </ul>
+      <div class="tab-content span9">
+       <!-- 确认是否成功弹框 -->
+		      	  <div id="makeSureBox">
+				 
+		      	  </div>
+       <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 论坛</h4>
+		      </div>
+		       <div class=" clearfix" style="margin:10px;">
+					<form id="searchForm"  class="pull-left" style="padding:0;margin:0">
+						<div class="control-group form-horizontal search_box">
+							<div>
+								<select class="input-medium  edit-box"  id="forumBox"  >
+								<option>--请选择--</option> 
+								<option value="1">--标题--</option> 
+								<option value="2">--话题作者--</option>  
+			                      </select>
+			                      <input type="text"  class="input-middle " placeholder="请输入" id="forumName" name=""/> 
+									<input   type="button"  id="searchBtn"  name=""  value="搜索"  class="btn input-mini" />	
+							</div>
+						</div>
+					</form>
+					<div class="pull-right">
+							<a class="btn btn-blue pull-right" class="addContBox" href="#addContBox" data-toggle="modal" id="addnCntr" >
+                         <i class="icon-plus icon-white" ></i>新建话题
+                         </a>
+						
+					</div>
+				</div>
+				
+				<table class="table table-hover table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>话题</th>
+                                <th>作者</th>
+                                <th>阅读</th>
+                                <th>回复</th>
+                                <th>发表时间</th>
+                                <th>最后回复</th>
+                                <th>操作</th>
+                                <th>置顶</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="contList">
+                        
+                        </tbody>
+                    </table>
+           
+           
+           </script> 
+         <!------------------------------------------------新建话题   start-------------------------------------------->
+                 <div id="addContBox" class="modal hide fade boxStyle1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >	
+                 				  <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">新建话题</h3>
+						          </div>
+						          <div class="modal-body">
+						              <div class=" clearfix">
+								            <div><span style="font-size:16px;font-weight:bold">标题：</span><input  check="U_2NAME_L" requir="true" id="forumTitle" type="text">*</div>
+											<form style="margin:0" id="addforumContent">
+							                   <textarea id="forumContent"  rows="12" cols="80" style="width:100% ;height:430px;">
+							                   </textarea><br /><br />
+											</form>
+										</div> 
+						          </div>
+						          <div class="modal-footer">
+						                     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="save" id="saveForum"/>保存</button>
+											 <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancelForum"/>取消</button>
+	                              </div>
+				        	</div>
+				        	
+			<!------------------------------------------------ 新建话题   end -------------------------------------------->  	
+				
+			<!------------------------------------------------修改话题   start-------------------------------------------->
+                 <div id="updContBox" class="modal hide fade boxStyle1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >						          <div class="modal-header">
+						            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">查看话题</h3>
+						          </div>
+						          <div class="modal-body">
+						              <div class=" clearfix">
+								            <div><span style="font-size:16px;font-weight:bold">标题：</span><input  check="U_2NAME_L" requir="true" id="forumTitle1" type="text">*</div>
+											<form style="margin:0">
+							                   <textarea id="forumContent1" rows="12" cols="80" style="width:100% ;height:430px;">
+							                   </textarea><br /><br />
+												
+											</form>
+										</div> 
+						          </div>
+						          <div class="modal-footer">
+											 <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="save" id="updForum"/>修改</button>
+											 <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="sub" id="subForum"/>发布</button>
+											 <button class="btn" data-dismiss="modal" aria-hidden="true" id="cancelForum"/>取消</button>
+	                              </div>
+				 </div>
+				        	
+			<!------------------------------------------------ 修改话题   end -------------------------------------------->  	
+					
+				      
+                    
+			<!--分页   start-->
+						<div class="paging-box clearfix">
+								<div class="pull-left page magR"  id="">当前第&nbsp;&nbsp;<i id="nowPage"></i>&nbsp;&nbsp;页</div>
+								<div class="pull-left  page" id="">共&nbsp;&nbsp;<i id="totalPage"></i>&nbsp;&nbsp;页</div>
+								
+								<div class="pull-right">
+									<span class="btn btn-blue " id="firstPage">首页</span>
+									<span class="btn btn-blue"  id="prevPage">上一页</span>
+									<span class="btn btn-blue"  id="nextPage">下一页</span>
+									<span class="btn btn-blue" id="lastPage">末页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>跳转到</span>
+									<input type="text" class="input-small" id="goPage"/>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;
+									 <span class="btn btn-blue"  id="jumpPage">go</span>
+								</div>
+			
+					</div>
+					<!--分页   end-->
+				
+     
+       
+      </div> 
+    </div>
+    
+    <!--footer-->
+    <div class="row-fluid foot"></div>
+</div>
+
+</body>
+</html>

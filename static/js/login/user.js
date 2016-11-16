@@ -12,6 +12,14 @@ $(function(){
 	var userID='';
 	var igeo='';
 	var geoNum='';
+	
+	$.jeDate("#brith",{
+		format:"YYYY-MM-DD hh:mm:ss",
+		isTime:true,
+		minDate:"1000-00-00",
+		zIndex:93000,
+	})
+	
 	function getInfo(){
 		$.ajax({
 			  type: 'POST',
@@ -36,6 +44,10 @@ $(function(){
 				$("#activeTime").val(setDate(str.responseData.stActiveTime));//激活时间
 				$("#loginTime").val(setDate(str.responseData.stLoginLast));//最后登入时间
 				$("#loginNum").val(str.responseData.stLoginNum);//登入次数
+				$("#stLoginLastIP").val(str.responseData.stLoginLastIp);
+				$("#regIP").val(str.responseData.regIp);
+				$("#regDate").val(setDate(str.responseData.regDate));
+				$("#usrStatus").val(userStatus(str.responseData.usrStatus));
 			  }
 		 })
 	}
@@ -71,6 +83,11 @@ $(function(){
 					"psnEmail" 		: $("#email").val(),   //email
 					"psnPhone" 		: $("#telephone").val(),   //电话
 					"usrNameNick"	: $("#nick").val(),  	  //用户昵称
+					
+					"stLoginLastIp"	: $("#stLoginLastIP").val(),
+					"regIp"			: $("#regIP").val(),
+					"regDate"		: $("#regDate").val(),
+					"usrStatus"		: $("#usrStatus").val(),
 			  },
 			  success: function(str){
 					console.log(str);

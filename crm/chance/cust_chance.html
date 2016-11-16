@@ -71,14 +71,15 @@
                 <thead>
                 <tr>
 
-                    <th>开始日期</th>
+                    
                     <th>城市</th>
                     <th>标题</th>
                     <th>产品</th>
-                    <th>阶段</th>
-                    <th>状态</th>
                     <th class="text-right">预计采购额(万)</th>
                     <th class="text-right">预计成功率(%)</th>
+                    <th>阶段</th>
+                    <th>状态</th>
+                    <th>开始日期</th>
                     <th>操作</th>
                     <th>查看跟进列表</th>
                     <th>新建跟进</th>
@@ -105,16 +106,15 @@
                 </div>
 
             </div>
-
-            <!------------------------------------------------新建机会startt-------------------------------------------->
-            <div id="seeContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">机会详情</h3>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="newChncForm">
-                        <div class="control-group clearfix">
+   <!------------------------------------------------新建机会   startt-------------------------------------------->
+                 <div id="seeContBox" class="modal hide fade boxStyle " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">						          <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">机会详情</h3>
+						          </div>
+						          <div class="modal-body">
+						                <form class="form-horizontal"  id="newChncForm">
+						                       
+                      <div class="control-group clearfix">
                             <div class="span6 pull-left">
                                 <label class="control-label">*机会标题</label>
                                 <div class="controls">
@@ -217,13 +217,13 @@
                                     <input type="text" id="chncRatio"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
                                 </div>
                             </div>
-                            
-                            <div class="span6 pull-left">
-                                    <label class="control-label">机会商务进展</label>
+                              <div class="span6 pull-left">
+                                    <label class="control-label">机会技术进展</label>
                                     <div class="controls">
-                                        <textarea rows="2" id="chncInfoBusi" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                        <textarea rows="2" id="chncInfoTech" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
                                     </div>
                                 </div>
+                            
                         </div>
                         <div class="control-group clearfix">
                               <div class="span6 pull-left">
@@ -232,10 +232,10 @@
                                     <input type="text" id="chncStart"  requir="true"  check="U_6DATE"><i class="text-error"></i>
                                 </div>
                             </div>
-                           <div class="span6 pull-left">
-                                    <label class="control-label">机会技术进展</label>
+                         <div class="span6 pull-left">
+                                    <label class="control-label">机会商务进展</label>
                                     <div class="controls">
-                                        <textarea rows="2" id="chncInfoTech" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                        <textarea rows="2" id="chncInfoBusi" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
                                     </div>
                                 </div>
                         </div>
@@ -257,30 +257,25 @@
                             </div>
 						</div>
                            
-                      
-                    </form>
-                </div>
-                <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-                <button class="btn btn-primary" id="saveChnc">添加</button>
-            	</div>
-            </div>
-            
-        </div>
-
-        <!------------------------------------------------ 新建机会end -------------------------------------------->
-
-
-        <!------------------------------------------------修改机会startt-------------------------------------------->
-        <div id="editContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">机会详情编辑</h3>
-            </div>
-            <div class="modal-body">
-            <!-- 修改开始 -->
-                <form class="form-horizontal" id="removeChncForm">
-                    <div class="control-group clearfix">
+						                   
+						                </form>
+						          </div>
+						          <div class="modal-footer">
+	         		                       	<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                            <button class="btn btn-primary" id="saveChnc">添加</button>
+	                              </div>
+				        	</div>
+				        	
+				      <!------------------------------------------------ 新建机会   end -------------------------------------------->  	
+				      
+   <!------------------------------------------------修改机会   startt-------------------------------------------->
+                 <div id="editContBox" class="modal hide fade boxStyle " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">						          <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">机会详情</h3>
+						          </div>
+						          <div class="modal-body">
+						                <form class="form-horizontal"  id="removeChncForm">
+						                <div class="control-group clearfix">
                         <div class="span6 pull-left">
                             <label class="control-label">*机会标题</label>
                             <div class="controls">
@@ -340,15 +335,23 @@
                             </div>
                         </div>
                     </div>
-                   <div class="control-group clearfix">
-                           
-                          <div class="span6 pull-left">
-                                <label class="control-label">*预计成功率(%)</label>
+                      <div class="control-group clearfix">
+                     <div class="span6 pull-left">
+                                <label class="control-label">*机会概况</label>
                                 <div class="controls">
-                                    <input type="text" id="chncRatio1"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
+                                    <textarea rows="2" id="chncInfo1"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
                                 </div>
                             </div>
-                            
+                            </div>
+                   <div class="control-group clearfix">
+                           
+                          
+                            <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                    <input  type="text" id="chncTamount1"  requir="true" check="U_NM_MNY" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
                             
                             <div class="span6 pull-left">
                                 <label class="control-label">地址</label>
@@ -358,18 +361,20 @@
                             </div>
                         </div>
                         <div class="control-group clearfix">
-                               <div class="span6 pull-left">
-                                <label class="control-label">*预计采购额(万)</label>
+                        <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率(%)</label>
                                 <div class="controls">
-                                    <input  type="text" id="chncTamount1"  requir="true" check="U_NM_MNY" placeholder='请输入'><i class="text-error"></i>
+                                    <input type="text" id="chncRatio1"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
                                 </div>
                             </div>
+                               
                             <div class="span6 pull-left">
-                                    <label class="control-label">机会商务进展</label>
+                                    <label class="control-label">机会技术进展</label>
                                     <div class="controls">
-                                        <textarea rows="2" id="chncInfoBusi1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                        <textarea rows="2" id="chncInfoTech1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
                                     </div>
                                 </div>
+                           
                         </div>
                         <div class="control-group clearfix">
                               <div class="span6 pull-left">
@@ -378,10 +383,10 @@
                                     <input type="text" id="chncStart1"  requir="true"  check="U_6DATE"><i class="text-error"></i>
                                 </div>
                             </div>
-                           <div class="span6 pull-left">
-                                    <label class="control-label">机会技术进展</label>
+                            <div class="span6 pull-left">
+                                    <label class="control-label">机会商务进展</label>
                                     <div class="controls">
-                                        <textarea rows="2" id="chncInfoTech1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                        <textarea rows="2" id="chncInfoBusi1" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
                                     </div>
                                 </div>
                         </div>
@@ -404,20 +409,14 @@
 						</div>
                             <div class="control-group clearfix">
                                 
-                              <div class="span6 pull-left">
-                                <label class="control-label">*机会概况</label>
-                                <div class="controls">
-                                    <textarea rows="2" id="chncInfo1"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
-                                </div>
-                            </div>
+                             
                           <div class="control-group" style="padding-left:92%">
 						<a class="btn btn-primary" id="removeChnc">修改</a>
                       </div>
                             </div>
-				</form>
-				<!--修改结束  -->
-				
-				<!-- 完成开始 -->
+						                   
+						                </form>
+						                <!-- 完成开始 -->
 				<form class="form-horizontal" id="confirmChncForm" >
                         <div class="control-group clearfix">
                             <div class="span6 pull-left" id="confirmChncinput">
@@ -463,22 +462,25 @@
                         </div>
                 </form>
     <!-- 结束-->
-            </div>
-         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-        </div>
-      </div>
+						          </div>
+						          <div class="modal-footer">
+	         		                        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	                              </div>
+				        	</div>
+				        	
+				      <!------------------------------------------------ 修改机会   end -------------------------------------------->  	
+				      
+     
        
-    
     <!------------------------------------------------新建跟进   startt-------------------------------------------->
-    <div id="followContBox" class="modal hide fade boxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-        <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">跟进详情</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal" id="newFlowForm">
-                <div class="control-group clearfix">
+                 <div id="followContBox" class="modal hide fade boxStyle " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">						          <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">新建跟进</h3>
+						          </div>
+						          <div class="modal-body">
+						                <form class="form-horizontal"  id="newFlowForm">
+						                
+						                    <div class="control-group clearfix">
                     <div class="span6 pull-left">
                         <label class="control-label">*联系人</label>
                         <div class="controls">
@@ -555,28 +557,25 @@
                         </div>
                     </div>
                 </div>
-                
-            </form>
-        </div>
+						                </form>
+						          </div>
+						          <div class="modal-footer">
+	         		                       	  <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                              <button class="btn btn-primary" id="savePro">添加</button>
+	                              </div>
+				        	</div>
+				        	
+				      <!------------------------------------------------新建跟进     end -------------------------------------------->   
+  
 
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-            <button class="btn btn-primary" id="savePro">添加</button>
-        </div>
-    </div>
-
-    <!------------------------------------------------ 新建跟进end -------------------------------------------->
-
-
-    <!------------------------------------------------修改跟进   startt-------------------------------------------->
-    <div id="flwedContBox" class="modal hide fade boxStyle in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">跟进详情</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal" id="remProForm">
-                <div class="control-group clearfix">
+ <!------------------------------------------------修改跟进   startt-------------------------------------------->
+                 <div id="flwedContBox" class="modal hide fade boxStyle " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">						          <div class="modal-header">
+						           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						            <h3 id="myModalLabel">跟进详情</h3>
+						          </div>
+						          <div class="modal-body">
+						                <form class="form-horizontal"  id="remProForm">
+						                <div class="control-group clearfix">
                     <div class="span6 pull-left">
                         <label class="control-label">*联系人</label>
                         <div class="controls">
@@ -658,8 +657,9 @@
 						<a class="btn btn-primary" id="remPro">修改</a>
 						
                       </div>
-                  </form>
-                  <!-- 跟进完成开始 -->
+						                   
+						                </form>
+						                 <!-- 跟进完成开始 -->
                   <form class="form-horizontal" id="fulfilFlowForm">
                            <div class="control-group clearfix">
                                <div class="span6 pull-left">
@@ -674,43 +674,7 @@
                                         </select><i class="text-error"></i>
                                 </div>
                             </div>
-                            <div class="span6 pull-left">
-                                <label class="control-label">机会对手信息</label>
-                                <div class="controls">
-                                  <textarea rows="2" id="trcInfoCmpt" check="U_3DESC" ></textarea><i class="text-error"></i>
-                                </div>
-                            </div>
-                          </div>
-                               <div class="control-group clearfix">
-                               <div class="span6 pull-left">
-                                <label class="control-label">*预计采购额(万)</label>
-                                <div class="controls">
-                                  <input type="text"  id="trcTamount"  requir="true" check="U_NM_MNY"><i class="text-error"></i>
-                                </div>
-                            </div>
-                             <div class="span6 pull-left">
-                                <label class="control-label">*预计成功率（%）</label>
-                                <div class="controls">
-                                  <input type="text"  id="trcRatio"  requir="true" check="U_NM_PERCENT"><i class="text-error"></i>
-                                </div>
-                            </div>
-                          
-                          </div>
-                          
-                              <div class="control-group clearfix">
                             
-                             <div class="span6 pull-left">
-                                <label class="control-label">*行动详情</label>
-                                <div class="controls">
-                                    <textarea rows="2" id="vstRecord" requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
-                                </div>
-                            </div>
-                             <div class="span6 pull-left">
-                                <label class="control-label">机会技术跟进</label>
-                                <div class="controls">
-                                    <textarea rows="2" id="trcInfoTech" check="U_3DESC"></textarea><i class="text-error"></i>
-                                </div>
-                            </div>
                           </div>
                           <div class="control-group clearfix">
                                 <div class="span6 pull-left">
@@ -719,16 +683,76 @@
                                     <textarea rows="2" id="trcInfo" check="U_3DESC"></textarea><i class="text-error"></i>
                                 </div>
                             </div>
-                               
-                                
-                            <div class="span6 pull-left">
+                               <div class="span6 pull-left">
+                                <label class="control-label">机会技术跟进</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="trcInfoTech" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            
+                          </div>
+                               <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                  <input type="text"  id="trcTamount"  requir="true" check="U_NM_MNY"><i class="text-error"></i>
+                                </div>
+                            </div>
+                              <div class="span6 pull-left">
                                 <label class="control-label">机会商务跟进</label>
                                 <div class="controls">
                                    <textarea rows="2" id="trcInfoBusi" check="U_3DESC"></textarea><i class="text-error"></i>
                                 </div>
                             </div>
+                          
                           </div>
-                        
+                          
+                              <div class="control-group clearfix">
+                            <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率（%）</label>
+                                <div class="controls">
+                                  <input type="text"  id="trcRatio"  requir="true" check="U_NM_PERCENT"><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会对手信息</label>
+                                <div class="controls">
+                                  <textarea rows="2" id="trcInfoCmpt" check="U_3DESC" ></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                            
+                             
+                          </div>
+                          <div class="control-group clearfix">
+                               
+                                 <div class="span6 pull-left">
+                                <label class="control-label">*行动详情</label>
+                                <div class="controls">
+                                    <textarea rows="2" id="vstRecord" requir="true" check="U_3DESC"></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                           <div class="span6 pull-left">
+                        <label class="control-label">跟进参与人</label>
+                        <div class="controls">
+                          <textarea rows="2"  id="vstPartners" check="U_9VALUE"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                          </div>
+                           <div class="control-group clearfix">
+                        <div class="span6 pull-left">
+                        <label class="control-label">跟进打分</label>
+                        <div class="controls">
+                          <input type="text"  id="vstScore" check="U_4INT_S" /><i class="text-error"></i>
+                         </div>
+                      </div>
+                      <div class="span6 pull-left">
+                        <label class="control-label">下一步行动计划</label>
+                        <div class="controls">
+                          <textarea rows="2"  id="vstPlans" check="U_3DESC"></textarea><i class="text-error"></i>
+                         </div>
+                      </div>
+                      </div>
+                      
                           
                           <a class="btn btn-primary" id="fulfilFlow" style="margin-left:90%;">完成</a>
                </form>
@@ -759,13 +783,14 @@
 <a class="btn btn-primary" id="auditFolw" style="margin-left:90%;">审核</a>
   </form>
     <!-- 跟进审核结束 --> 
-        </div>
-
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-          
-        </div>
-    </div>
+						          </div>
+						          <div class="modal-footer">
+	         		                       <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+	                              </div>
+				        	</div>
+				        	
+				      <!------------------------------------------------修改跟进     end -------------------------------------------->   
+   
 
 
 </div>

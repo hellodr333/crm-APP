@@ -1,5 +1,6 @@
 
 $(function(){
+	
 	//按钮
 	$("#subCont").css("display","none")
 	$("#conment").css("display","none")
@@ -61,9 +62,9 @@ $(function(){
 						for(var i=0;i<str.responseData.length;i++){		
 							string += '  <tr id='+ str.responseData[i].id +'>\
 	                            <td>'+noData(setDate(str.responseData[i].signDate))+'</td>\
-	                            <td >'+noData(igeo.geoname(str.responseData[i].signGeo))+' </td>\
+	                            <td >'+noData(igeo.cityname(str.responseData[i].signGeo))+' </td>\
 	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].tamount)+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].tamount))+'</td>\
 	                            <td>'+noData(str.responseData[i].signer)+'</td>\
 	                            <td>'+noData(str.responseData[i].signerCust)+'</td>\
 	                            <td>'+noData(contType(str.responseData[i].cntrType))+'</td>\
@@ -80,11 +81,11 @@ $(function(){
 						string+='<tr><td colspan="10" style="text-align:center">无数据</td></tr>'
 					}
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 					$('#contList').html(string);
 				}else{
 					console.log("获取失败")
@@ -166,7 +167,7 @@ $(function(){
 			<td style="padding-left:0px;padding-right:0px"><select style="width:180px" type="text" class="prodId"  requir="true" check="U_2NAME_P"><option value="">- 请选择 -</option></select><i class="text-error"></i></td>\
 			<td style="padding-left:0px;padding-right:0px"><input style="width:180px" type="text" class="prodPrice"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
 			<td style="padding-left:0px;padding-right:0px"><input style="width:180px" type="text" class="prodQty"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-			<td style="padding-left:0px;padding-right:0px"><input style="width:180px" type="text" class="prodAmount count" readonly="readonly" requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+			<td style="padding-left:0px;padding-right:0px"><input style="width:180px" type="text" class="prodAmount count" readonly="readonly"  check="U_2NAME_P"><i class="text-error"></i></td>\
 			<td><input type="button" value="删除" class="deldetail"></td>\
        </tr>'
 			$("#addContBox #detailList").append(dethtml)
@@ -313,7 +314,7 @@ $(function(){
 			
 		
 		if($("#addContBox .detaillist").length==0 || $("#addContBox .paymentlist").length==0){
-			alert("请至少添加一条明细和付款条款")
+			makeSure("makeSureBox","请至少添加一条明细和付款条款")
 			return false;
 		}
 		for(var a=0;a<$("#addContform .prodAmount").length;a++){
@@ -379,7 +380,7 @@ $(function(){
 						var s=$('#contList').html();
 						s += ' <tr id='+ str.responseData.id +'>\
                         <td>'+noData(setDate(str.responseData.signDate))+'</td>\
-                        <td >'+noData(igeo.geoname(str.responseData.signGeo))+' </td>\
+                        <td >'+noData(igeo.cityname(str.responseData.signGeo))+' </td>\
                         <td>'+noData(str.responseData.cntrName)+'</td>\
                         <td  class="text-right">'+noData(str.responseData.tamount)+'</td>\
                         <td>'+noData(str.responseData.signer)+'</td>\
@@ -418,6 +419,7 @@ $(function(){
 	
 	
 	$(document).delegate('.updContBox','click',function(){
+		$("#makeSubBox").css({"display":"none"})
 		var id=$(this).parent().parent().attr('id');
 		$.ajax({
 			url:'/'+app+'/crm/cnt/get',
@@ -469,7 +471,7 @@ $(function(){
 							<td style="padding-left:0px;padding-right:0px"><select value="'+str.responseData.items[i].prodId+'" style="width:180px" type="text" class="prodId span1"  requir="true" check="U_2NAME_P"><option value="'+str.responseData.items[i].prodId+'">'+str.responseData.items[i].prodName+'</option></select><i class="text-error"></i></td>\
 							<td style="padding-left:0px;padding-right:0px"><input value="'+str.responseData.items[i].prodPrice+'" style="width:180px" type="text" class="prodPrice"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
 							<td style="padding-left:0px;padding-right:0px"><input value="'+str.responseData.items[i].prodQty+'" style="width:180px" type="text" class="prodQty"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input value="'+str.responseData.items[i].prodAmount+'" style="width:180px" type="text" class="prodAmount count span1" readonly="readonly" requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input value="'+str.responseData.items[i].prodAmount+'" style="width:180px" type="text" class="prodAmount count span1" readonly="readonly"  check="U_2NAME_P"><i class="text-error"></i></td>\
 							<td><input type="button" value="删除" class="ideldetail"></td>\
 							<td><input type="button" value="修改" class="iupddetail"></td>\
 							</tr>'
@@ -660,7 +662,7 @@ $(function(){
 		ipayhtml+='<tr class="paymentlist" id="a'+pnum+'">\
 			<td style="padding-left:0px;padding-right:0px"><input type="date"  class="irpayDate" check="U_6DATE" requir="true"><i class="text-error"></i></td>\
 			<td style="padding-left:0px;padding-right:0px"><input type="text"  class="irpayAmount rcount"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-			<td style="padding-left:0px;padding-right:0px"><input type="text" readonly="ireadonly" class="status"   check="U_2NAME_P"><i class="text-error"></i></td>\
+			<td style="padding-left:0px;padding-right:0px"><input type="text" readonly="ireadonly" class="status" value="计划回款"  check="U_2NAME_P"><i class="text-error"></i></td>\
 			<td style="padding-left:0px;padding-right:0px"><input type="text"  class="iremark"  check="U_2NAME_P"><i class="text-error"></i></td>\
 			<td><input type="button" value="删除" class="idelpayment"></td>\
 			<td><input type="button" value="提交" class="niaddpayment"></td>\
@@ -731,7 +733,7 @@ $(function(){
 												
 												var id=str.responseData.id;
 									            $('#'+id).html('<td>'+noData(setDate(str.responseData.signDate))+'</td>\
-					                            <td >'+noData(igeo.geoname(str.responseData.signGeo))+' </td>\
+					                            <td >'+noData(igeo.cityname(str.responseData.signGeo))+' </td>\
 					                            <td>'+noData(str.responseData.cntrName)+'</td>\
 					                            <td>'+noData(str.responseData.tamount)+'</td>\
 					                            <td>'+noData(str.responseData.signer)+'</td>\
@@ -859,8 +861,11 @@ $(function(){
 					
 					
 //-------------------------------------------------------------------------- 提交----------------------------------------------------
-   				
+   	
+		
+	
 $("#updContBox").delegate("#subCont","click",function(){
+	$("#makeSubBox").css({"display":"block"})
 	 var ctotal=0;
 	 var rtotal=0;
 	for(var a=0;a<$(".count").length;a++){
@@ -871,12 +876,14 @@ $("#updContBox").delegate("#subCont","click",function(){
 	}
 	
 		if(ctotal==rtotal){
-			var msg = "提交后合同不可修改";
+			makeSub("makeSubBox","提交后合同不可修改，确认提交吗？");
+			
 		}else{
-			var msg = "应回款额与签约金额不相等，确认提交吗？";
+			makeSub("makeSubBox","应回款额与签约金额不相等，确认提交吗？"); 
 		}
-		  
-		 if (confirm(msg)==true){ 
+		
+		$(document).delegate("#makeSure",'click',function(){
+			$(this).parent().hide();
 			 $.ajax({
 					url:'/'+app+'/crm/cnt/sub',
 					data:{
@@ -908,9 +915,17 @@ $("#updContBox").delegate("#subCont","click",function(){
 						}
 					}
 				})
-		 }else{ 
-		  return false; 
-		 } 
+		})
+		$(document).delegate("#makeNo",'click',function(){
+			$(this).parent().hide();
+			 return false; 
+		})
+		
+		
+			
+			
+		
+		 
 		
 	
 	

@@ -61,10 +61,10 @@ $(function(){
 				                        <td >'+str.responseData[i].custCity+'</td>\
 				                         <td  class="text-right">'+numArr[0]+'</td>\
 				                         <td  class="text-right">'+numArr[1]+'</td>\
-				                         <td  class="text-right">'+(numArr[2]/10000)+'</td>\
-				                          <td  class="text-right">'+(numArr[3]/10000)+'</td>\
-				                         <td  class="text-right">'+(numArr[4]/10000)+'</td>\
-				                         <td  class="text-right">'+(numArr[5]/10000)+'</td>\
+				                         <td  class="text-right">'+fmoney(numArr[2]/10000)+'</td>\
+				                          <td  class="text-right">'+fmoney(numArr[3]/10000)+'</td>\
+				                         <td  class="text-right">'+fmoney(numArr[4]/10000)+'</td>\
+				                         <td  class="text-right">'+fmoney(numArr[5]/10000)+'</td>\
 				                </tr>  ';
 
 
@@ -73,10 +73,10 @@ $(function(){
 				                    <td >累计</td>\
 				                    <td  class="text-right">'+aNum+'</td>\
 				                    <td  class="text-right">'+bNum+'</td>\
-				                    <td  class="text-right">'+(cNum/10000)+'</td>\
-				                    <td  class="text-right">'+(dNum/10000)+'</td>\
-				                    <td  class="text-right">'+(eNum/10000)+'</td>\
-				                    <td  class="text-right">'+(fNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(cNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(dNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(eNum/10000)+'</td>\
+				                    <td  class="text-right">'+fmoney(fNum/10000)+'</td>\
 				           </tr> ';
 						$('#'+box).html(s);
 				}

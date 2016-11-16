@@ -42,15 +42,17 @@ $(function(){
 					var string='';
 					if(str.responseData.length>0){
 						for(var i=0;i<str.responseData.length;i++){		
+							
 							string += '  <tr id='+ str.responseData[i].id +' cntrCust='+str.responseData[i].cntrCust+'>\
+							    <td>'+noData(str.responseData[i].custName)+'</td>\
+							    <td >'+noData(igeo.cityname(str.responseData[i].signGeo))+'</td>\
+							    <td class="text-right">'+noData(fmoney(str.responseData[i].tamount))+'</td>\
 	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].tamount)+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].sttRepayAmount)+'</td>\
-	                            <td >'+noData(igeo.geoname(str.responseData[i].signGeo))+'</td>\
-	                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
+	                            <td>'+noData(str.responseData[i].cntrNo)+'</td>\
 	                            <td>'+noData(setDate(str.responseData[i].signDate))+'</td>\
-	                            <td>'+noData(str.responseData[i].custName)+'</td>\
-	                             <td>'+noData(str.responseData[i].cntrNo)+'</td>\
+	                            <td>'+noData(cntrStatus(str.responseData[i].status))+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].sttRepayAmount))+'</td>\
+	                             <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
 	                              <td>\
 	                              <a title="查看" class="seeContBox" href="#seeContBox" data-toggle="modal"><i class="icon-eye-open"></i></a>\
 	                            </td>\
@@ -66,11 +68,11 @@ $(function(){
 					}
 					$('#contList').html(string);
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}
@@ -156,11 +158,11 @@ $(document).delegate("#contList tr",'click',function(){
 				 var dethtml="";
 				 for(var i=0;i<str.responseData.items.length;i++){
 						dethtml+='<tr class="detaillist">\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+setDate(str.responseData.items[i].itemThru)+'" style="width:180px" type="date" class="itemThru" check="U_6DATE" requir="true"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.items[i].prodName+'" style="width:180px" type="text" class="prodName"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.items[i].prodPrice+'" style="width:180px" type="text" class="prodPrice"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.items[i].prodQty+'" style="width:180px" type="text" class="prodQty"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.items[i].prodAmount+'" style="width:180px" type="text" class="prodAmount" readonly="readonly" requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(setDate(str.responseData.items[i].itemThru))+'" style="width:180px" type="date" class="itemThru" check="U_6DATE" requir="true"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.items[i].prodName)+'" style="width:180px" type="text" class="prodName"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.items[i].prodPrice)+'" style="width:180px" type="text" class="prodPrice"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.items[i].prodQty)+'" style="width:180px" type="text" class="prodQty"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.items[i].prodAmount)+'" style="width:180px" type="text" class="prodAmount" readonly="readonly" requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
 				       </tr>'
 				 }
 				 $("#seeContBox #detailList").html(dethtml)
@@ -168,10 +170,10 @@ $(document).delegate("#contList tr",'click',function(){
 				 for(var i=0;i<str.responseData.repamentPlans.length;i++){
 					
 						payhtml+='<tr class="paymentlist">\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+setDate(str.responseData.repamentPlans[i].rpayDate)+'" type="date"  class="rpayDate" check="U_6DATE" requir="true"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.repamentPlans[i].rpayAmount+'"  type="text"  class="rpayAmount"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.repamentPlans[i].status+'" type="text" readonly="readonly" class="status"   check="U_2NAME_P"><i class="text-error"></i></td>\
-							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+str.responseData.repamentPlans[i].remark+'" type="text"  class="remark"check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(setDate(str.responseData.repamentPlans[i].rpayDate))+'" type="date"  class="rpayDate" check="U_6DATE" requir="true"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.repamentPlans[i].rpayAmount)+'"  type="text"  class="rpayAmount"  requir="true" check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(payStatus(str.responseData.repamentPlans[i].status))+'" type="text" readonly="readonly" class="status"   check="U_2NAME_P"><i class="text-error"></i></td>\
+							<td style="padding-left:0px;padding-right:0px"><input class="disabled" disabled value="'+noData(str.responseData.repamentPlans[i].remark)+'" type="text"  class="remark"check="U_2NAME_P"><i class="text-error"></i></td>\
 				       </tr>'
 				 }
 				 $("#seeContBox #paymentList").html(payhtml)

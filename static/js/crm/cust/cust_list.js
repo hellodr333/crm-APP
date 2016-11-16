@@ -14,7 +14,7 @@ $(function(){
 	getList(cType,geoId,cName,userID2);
 	
 	function getList(cType,geoId,cName,userID2){
-		console.log(geoId)
+		console.log({"cType":cType,"geoId":geoId,"cName":cName,"userID2":userID2})
 		$.ajax({
 			url:'/'+app+'/crm/cus/qry',
 			data:{
@@ -38,14 +38,14 @@ $(function(){
 					for(var i=0;i<str.responseData.length;i++){		
 						
 						string += '  <tr id='+ str.responseData[i].id +'>\
-				                            <td>'+noData(str.responseData[i].name)+'</td>\
-				                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
+				                            <td >'+noData(str.responseData[i].name)+'</td>\
+				                            <td >'+noData(igeo.cityname(str.responseData[i].geoId))+' </td>\
 				                            <td>'+noData(str.responseData[i].ext_mainCtmer)+'</td>\
 				                            <td>'+noData(str.responseData[i].ext_mainCtmerMobile)+'</td>\
-				                            <td >'+noData(igeo.cityname(str.responseData[i].geoId))+' </td>\
 				                            <td>'+noData(custType(str.responseData[i].custType))+'</td>\
 				                             <td>'+noData(custStatus(str.responseData[i].custStatus))+'</td>\
 				                            <td>'+noData(setDate(str.responseData[i].sttLastVisit))+'</td>\
+				                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
 				                            <td>'
 				                            
 				                            if(str.responseData[i].cntrCnt!=0){
@@ -62,13 +62,10 @@ $(function(){
 				                            	<a  class=""  href="cust_detail.html?custID='+ str.responseData[i].id +'" ><i class="icon-pencil"></i></a>\
 				                            </td>\
 				                        </tr> ';			
-						
-						
-						
+
 				}		
 					
-				
-					
+
 					if(str.responseData.length==0){
 						string += ' <tr><td colspan="11" ><p class="text-center">无数据</p></td></tr>'
 					}
@@ -253,8 +250,8 @@ $(function(){
 							 "postalCode" : $("#postalCode").val(),  
 							 "formalName" : $("#formalName").val(),  
 							 "formatNo" : $("#formatNo").val(),  
-							 "cmpLicense" : $("#cmpLicense").val(),  
-							 "cmpBusiness" : $("#cmpBusiness").val(),  
+							 "cmpLicense" : $("#cmpLiceNse").val(),  
+							 "cmpBusiness" : $("#cmpBusness").val(),  
 							 "custType" : $("#custType").val(),  
 							 "legalMan" : $("#legalMan").val(),  
 							 "legalMobile" : $("#legalMobile").val(),
@@ -274,13 +271,13 @@ $(function(){
 								
 								string += '  <tr id='+ str.responseData +'>\
 								                        <td>'+noData($("#name").val())+'</td>\
-								                        <td>'+noData(unescape(getCookie("user")))+'</td>\
+								                        <td >'+noData(igeo.cityname($('#county').val()))+' </td>\
 								                        <td>'+noData()+'</td>\
 								                        <td>'+noData()+'</td>\
-								                        <td >'+noData(igeo.geoname(igeo.geo()))+' </td>\
 								                        <td>'+noData(custType($("#custType").val()))+'</td>\
 								                         <td>'+noData(custStatus($("#custStatus").val()))+'</td>\
 								                        <td>'+noData()+'</td>\
+								                        <td>'+noData(unescape(getCookie("user")))+'</td>\
 								                        <td>\
 								                        <a  class="chgMang" href="#chgMangBox" data-toggle="modal">变更经理</a>\
 								                        </td>\

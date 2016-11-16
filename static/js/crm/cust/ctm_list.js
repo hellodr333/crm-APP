@@ -60,15 +60,15 @@ $(function(){
 					var string='';
 					for(var i=0;i<str.responseData.length;i++){		
 						string += '  <tr id='+ str.responseData[i].id +'   custId='+ str.responseData[i].custId +'>\
+						 <td>'+noData(str.responseData[i].custId_view)+'</td>\
                             <td>'+noData(str.responseData[i].ctmName)+'</td>\
-                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
-                            <td>'+noData(str.responseData[i].custId_view)+'</td>\
-                            <td>'+noData(str.responseData[i].ctmMobile)+'</td>\
                             <td >'+igeo.cityname(str.responseData[i].ctmGeo)+' </td>\
+                            <td>'+noData(str.responseData[i].ctmMobile)+'</td>\
                             <td>'+noData(str.responseData[i].ctmTelephone)+'</td>\
                             <td>'+noData(str.responseData[i].ctmEmail)+'</td>\
-                            <td>'+noData(setDate(str.responseData[i].sttLastVisit))+'</td>\
                              <td>'+noData(custStatus(str.responseData[i].ctmStatus))+'</td>\
+                             <td>'+noData(setDate(str.responseData[i].sttLastVisit))+'</td>\
+                             <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
                               <td>\
                             	<a  class="viewCtmDetail"  href="#viewCtmDetail"  data-toggle="modal"><i class="icon-eye-open"></i></a>\
                             </td>\

@@ -43,14 +43,14 @@ $(function(){
 						for(var i=0;i<str.responseData.length;i++){		
 							string += '  <tr id='+ str.responseData[i].id +'>\
 	                            <td>'+noData(setDate(str.responseData[i].invcDate))+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].invcAmount)+'</td>\
-	                            <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
-	                            <td >'+noData(igeo.geoname(str.responseData[i].signGeo))+' </td>\
+	                            <td>'+noData(str.responseData[i].custName)+'</td>\
+	                            <td >'+noData(igeo.cityname(str.responseData[i].signGeo))+' </td>\
 	                            <td>'+noData(str.responseData[i].invcTitle)+'</td>\
-	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].invcAmount))+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].cntrAmount))+'</td>\
 	                            <td>'+noData(ivcType(str.responseData[i].invcType))+'</td>\
 	                             <td>'+noData(ivoStatus(str.responseData[i].status))+'</td>\
-	                             <td class="text-right">'+noData(str.responseData[i].cntrAmount)+'</td>\
+	                             <td>'+noData(str.responseData[i].bizUser_view)+'</td>\
 	                              <td>\
 	                              <a title="查看" class="seeContBox" href="#seeContBox" data-toggle="modal"><i class="icon-eye-open"></i></a>\
 	                            </td>\
@@ -66,11 +66,11 @@ $(function(){
 					$('#contList').html(string);
 					
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}

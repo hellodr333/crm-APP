@@ -104,16 +104,16 @@ $(function () {
 						}
                         var s = $('#empList').html();
                         s += '<tr  id=' + str.responseData + '>\
-										<td>' + $("#chncStart").val() + '</td>\
-										<td>' + igeo.geoname(igeo.geo()) + ' </td>\
+										<td>' + igeo.cityname(igeo.geo()) + ' </td>\
 				                        <td>' + $("#chncName").val() + '</td>\
 				                        <td>' + $('option[value="'+ $("#chncProduct").val() +'"]').html() + '</td>\
-				                        <td>' + setChancPhase($("#chncPhase  option:selected").val()) + '</td>\
-				                        <td>录入</td>\
 				                        <td class="text-right">' + $("#chncTamount").val() + '</td>\
 				                        <td class="text-right">' + $("#chncRatio").val() + '</td>\
-				                        <td>\
-		                            	<a  class="editContBox"  href="#editContBox"  data-toggle="modal" ><i class="icon-pencil"></i></a>\
+				                        <td>' + setChancPhase($("#chncPhase  option:selected").val()) + '</td>\
+				                        <td>录入</td>\
+				                        <td>' + $("#chncStart").val() + '</td>\
+				                        <td status="10" >\
+		                            	<a  class="editContBox" href="#editContBox"  data-toggle="modal" ><i class="icon-pencil"></i></a>\
 		                            	</td>\
 		                            	<td class="" isShow="0"  style="text-align:center"><i class="icon-eye-open see_follow" style="display:none"></i>\
 		                            	</td>\
@@ -198,14 +198,14 @@ $(function () {
                             isShowHideCtractBtn="block";
                         }
                         string += '  <tr id=' + str.responseData[i].id + '>\
-						    <td>' + noData(setDate(str.responseData[i].chncStart)) + ' </td>\
-						    <td>' + noData(igeo.geoname(str.responseData[i].chncGeo)) + ' </td>\
+						    <td>' + noData(igeo.cityname(str.responseData[i].chncGeo)) + ' </td>\
                             <td>' + noData(str.responseData[i].chncName) + '</td>\
                             <td>' + noData(str.responseData[i].prodName) + '</td>\
+                            <td class="text-right">' + noData(fmoney(str.responseData[i].chncAmount)) + '</td>\
+                            <td class="text-right">' + noData(str.responseData[i].chncRatio) + '</td>\
                             <td>' + noData(setChancPhase(str.responseData[i].chncPhase)) + '</td>\
                             <td >' + noData(setChncStatus(str.responseData[i].chncStatus)) + '</td>\
-                            <td class="text-right">' + noData(str.responseData[i].chncAmount) + '</td>\
-                            <td class="text-right">' + noData(str.responseData[i].chncRatio) + '</td>\
+                            <td>' + noData(setDate(str.responseData[i].chncStart)) + ' </td>\
                             <td status="' + str.responseData[i].chncStatus + '">\
                             	<a  class="editContBox"  href="#editContBox"  data-toggle="modal" idd="' + str.responseData[i].id + '"><i class="icon-pencil"></i></a>\
                             </td>\
@@ -270,7 +270,7 @@ $(function () {
                                                 <td>' + noData(setMode(str.responseData[i].vstMode)) + '</td>\
                                                 <td>' + noData(str.responseData[i].vstTarget) + '</td>\
                                                 <td class="aaa">' + noData(setStatus(str.responseData[i].vstStatus)) + '</td>\
-                                                <td >' + noData(igeo2.geoname(str.responseData[i].vstGeo)) + ' </td>\
+                                                <td >' + noData(igeo2.cityname(str.responseData[i].vstGeo)) + ' </td>\
                                                 <td status="' + str.responseData[i].vstStatus + '"><a  class="flwedContBox"  href="#flwedContBox"  data-toggle="modal" idd="' + str.responseData[i].id + '" class="new_follow"><i class="icon-pencil"></i></a>\
                                                 </td></tr>';
                         }
@@ -520,6 +520,7 @@ $(function () {
                     $('#'+ id ).children().eq(8).attr("status",40);
                     $('#'+ id ).children().eq(5).html("关闭");
                     
+                    $('#'+ id).children().eq(9).children().css("display","block");
                     $("#editContBox").find("input,select,textarea").attr("disabled", "disabled");
                 }
             }
@@ -608,18 +609,18 @@ $(function () {
                     	if($('.folw_list').children("td").html()=="无数据"){
                     		$('.folw_list').children("td").html("")
 						}
-                        $('#' + id).html('<td>' +$("#chncStart1").val() + ' </td>\
-                        		 <td>' + igeo1.geoname(igeo1.geo()) + ' </td>\
+                        $('#' + id).html('<td>' + igeo1.cityname(igeo1.geo()) + ' </td>\
                                  <td>' + $("#chncName1").val() + '</td>\
                                  <td>' + $('option[value="'+ $("#chncProduct1").val() +'"]').html() + '</td>\
-                                 <td>' + $('option[value="'+ $("#chncProduct1").val() +'"]').html() + '</td>\
-                                 <td >录入</td>\
                                  <td class="text-right">' + $("#chncTamount1").val() + '</td>\
                                  <td class="text-right">' + $("#chncRatio1").val()+ '</td>\
+                                 <td>' + $('option[value="'+ $("#chncProduct1").val() +'"]').html() + '</td>\
+                                 <td >录入</td>\
+                                 <td>' +$("#chncStart1").val() + ' </td>\
                                  <td>\
                                  	<a  class="editContBox"  href="#editContBox"  data-toggle="modal"><i class="icon-pencil"></i></i></a>\
                                  </td>\
-                                 <td class="" style="text-align:center" isShow="0"><i class="icon-eye-open see_follow"></i>\
+                                 <td class=""  isShow="0"><i class="icon-eye-open see_follow"></i>\
                                  </td>\
                                  <td><a  class="followContBox"  href="#followContBox"  data-toggle="modal" idd=' + str.responseData.id + '><i style="display:none" class="icon-plus icon-blue" title="新建跟进"></i></a>\
                                  </td>\
@@ -628,6 +629,7 @@ $(function () {
                         $("#editContBox, .modal-backdrop").hide();
                         $('#editContBox input,  #editContBox select').val('');
                         $(".text-error").html("")
+                        $('#'+ id ).children().eq(9).children().css("display","none");
                         makeSure("makeSureBox","机会修改成功!");
                     }
                 }
@@ -641,7 +643,8 @@ $(function () {
         url: '/' + app + '/crm/cuc/qry',
         type: 'POST',
         data:{
-        	"DT_SCOPE":1
+        	"DT_SCOPE":1,
+        	"sc_custId":custID
         },
         success: function (str) {
 
@@ -691,7 +694,7 @@ $(function () {
                                         <td>' + setMode($("#vstMode").val())+ '</td>\
                                         <td>' + $("#vstTarget").val() + '</td>\
 				                        <td>计划</td>\
-				                        <td>' + igeo2.geoname(igeo2.geo()) + '</td>\
+				                        <td>' + igeo2.cityname(igeo2.geo()) + '</td>\
 				                        <td ><a  class="flwedContBox"  href="#flwedContBox"  data-toggle="modal"  class="new_follow"><i class="icon-pencil"></i></a>\
                                         </td>\
 				                    </tr>  ';
@@ -814,6 +817,9 @@ $(function () {
                 $("#vstRecord").val(str.responseData.vstRecord);
                 $('#auditComment').val(str.responseData.auditComment);
                 $('#vstResult').val(str.responseData.vstResult);
+                $("#vstPlans").val(str.responseData.vstPlans);
+				$("#vstPartners").val(str.responseData.vstPartners);
+				$("#vstScore").val(str.responseData.vstScore);
                 
             }
         });
@@ -837,7 +843,10 @@ $(function () {
                         "trcInfoBusi"	: $("#trcInfoBusi").val(),
                         "vstRecord"		: $("#vstRecord").val(),
                         "id"			:FOLLOWid,
-                        "vstCust"		: custID
+                        "vstCust"		: custID,
+                        "vstPlans"	    :$("#vstPlans").val(),
+    					"vstPartners"	:$("#vstPartners").val(),
+    					"vstScore"	    :$("#vstScore").val()
                     },
                     type: 'POST',
                     success: function (str) {

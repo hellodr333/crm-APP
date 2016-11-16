@@ -6,8 +6,8 @@ $(function(){
 	$("#comCont").css("display","none")
 	$("#backCont").css("display","none")
 	
-	chanceList();
-	function chanceList(){
+	
+	 function chanceList(){
 		$.ajax({
 	        url: '/' + app + '/crm/slc/qry',
 	        type: 'POST',
@@ -82,12 +82,10 @@ $(function(){
 							}
 							string += '  <tr id='+ str.responseData[i].id +'>\
 	                            <td style="width:150px">'+noData(setDate(str.responseData[i].costDate))+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].costs)+'</td>\
-	                            <td >'+noData(igeo.geoname(str.responseData[i].costGeo))+' </td>\
-	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].costs))+'</td>\
+	                            <td >'+noData(igeo.cityname(str.responseData[i].costGeo))+' </td>\
 	                            <td>'+noData(expType(str.responseData[i].costType))+'</td>\
 	                            <td>'+noData(repStatus(str.responseData[i].status))+'</td>\
-	                            <td>'+noData(str.responseData[i].sttCosts)+'</td>\
 	                              <td>\
 	                              <a title="编辑"  class="updContBox" href="'+nstatus+'" data-toggle="modal"><i class="icon-pencil"></i></a>\
 	                            </td>\
@@ -102,11 +100,11 @@ $(function(){
 					}
 					$('#contList').html(string);
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}
@@ -176,7 +174,6 @@ $(document).delegate("#contList tr",'click',function(){
 				 "cntrId":cntrId,
 				 "costs"          :$("#addContform #costs").val(),      //费用
 				 "costType"       :$("#addContform #costType").val(), 
-			     "custVisitId"    :$("#addContform #custVisitId").val(),
 				 "costDate"       :$("#addContform #costDate").val(),
 				 "costMsg"        :$("#addContform #costMsg").val(),
 				 "costGeo"        :igeo.geo(),
@@ -192,12 +189,10 @@ $(document).delegate("#contList tr",'click',function(){
 						var s=$('#contList').html();
 						s += '   <tr id='+ str.responseData +'>\
                         <td style="width:150px">'+noData($("#addContform #costDate").val())+'</td>\
-                        <td  class="text-right">'+noData($("#addContform #costs").val())+'</td>\
-                        <td >'+noData(igeo.geoname(igeo.geo()))+' </td>\
-                        <td>'+noData()+'</td>\
+                        <td  class="text-right">'+noData(fmoney($("#addContform #costs").val()))+'</td>\
+                        <td >'+noData(igeo.cityname(igeo.geo()))+' </td>\
                         <td>'+noData(expType($("#addContform #costType").val()))+'</td>\
                         <td>'+noData("草稿")+'</td>\
-                        <td>'+noData()+'</td>\
                           <td>\
                           <a title="编辑"  class="updContBox" href="#updContBox" data-toggle="modal"><i class="icon-pencil"></i></a>\
                         </td>\
@@ -239,9 +234,7 @@ $(document).delegate("#contList tr",'click',function(){
 				 $("#updContform #costs").val(str.responseData.costs);      //合同名称
 				 $("#updContform #costs").attr("expid",str.responseData.id);
 				 $("#updContform #costs").attr("cntrid",str.responseData.cntrId);
-				 $("#updContform #costs").attr("custvisitid",str.responseData.custVisitId);
 				 $("#updContform #costType").val(str.responseData.costType);  
-				 $("#updContform #custVisitId").val(str.responseData.custVisitId); 
 				 $("#updContform #costDate").val(setDate(str.responseData.costDate));  
 				 $("#updContform #costMsg").val(str.responseData.costMsg); 
 				 $("#auditComment").val(str.responseData.auditComment);
@@ -288,7 +281,6 @@ $(document).delegate("#contList tr",'click',function(){
 				 "id"             :$("#updContform #costs").attr("expid"),
 				 "costs"          :$("#updContform #costs").val(),      //合同名称
 				 "costType"       :$("#updContform #costType").val(), 
-			     "custVisitId"    :$("#updContform #custVisitId").val(),
 				 "costDate"       :$("#updContform #costDate").val(),  
 				 "costMsg"        :$("#updContform #costMsg").val(), 
 				 "costGeo"        :igeo.geo(),
@@ -299,14 +291,12 @@ $(document).delegate("#contList tr",'click',function(){
 					if(str.responseCode==0){
 						var id=str.responseData.id;
 			            $('#'+id).html('<td style="width:150px">'+noData(setDate(str.responseData.costDate))+'</td>\
-		                         <td  class="text-right">'+noData($("#updContform #costs").val())+'</td>\
-		                         <td >'+noData(igeo.geoname(str.responseData.costGeo))+' </td>\
-		                         <td>'+noData(str.responseData.cntrName)+'</td>\
+		                         <td  class="text-right">'+noData(fmoney($("#updContform #costs").val()))+'</td>\
+		                         <td >'+noData(igeo.cityname(str.responseData.costGeo))+' </td>\
 		                         <td>'+noData(expType(str.responseData.costType))+'</td>\
 		                         <td>'+noData(repStatus(str.responseData.status))+'</td>\
-		                         <td>'+noData(str.responseData.sttCosts)+'</td>\
-		                           <td>\
-		                           <a title="编辑"  class="updContBox" href="#updContBox" data-toggle="modal"><i class="icon-pencil"></i></a>\
+		                         <td>\
+                                 <a title="编辑"  class="updContBox" href="#updContBox" data-toggle="modal"><i class="icon-pencil"></i></a>\
 		                         </td>')
 		                         makeSure("makeSureBox","费用修改成功!");
 					}

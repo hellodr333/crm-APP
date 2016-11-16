@@ -36,9 +36,9 @@ $(function(){
 					for(var i=0;i<str.responseData.length;i++){		
 						string += '<tr  id='+ str.responseData[i].id +'>\
                                 <td>'+noData(str.responseData[i].ctmName)+'</td>\
+                                <td>'+noData(igeo.cityname(str.responseData[i].ctmGeo))+' </td>\
                                 <td>'+noData(str.responseData[i].ctmTitle)+'</td>\
                                 <td>'+noData(str.responseData[i].ctmMobile)+'</td>\
-                                <td>'+noData(igeo.cityname(str.responseData[i].ctmGeo))+' </td>\
                                 <td>'+noData(str.responseData[i].ctmEmail)+'</td>\
                                 <td>\
                                 	<a  class="editCtm"  href="#editCtm"  data-toggle="modal"  id="editCtmBox"><i class="icon-pencil"></i></a>\
@@ -159,9 +159,9 @@ $(function(){
 							
 							s += '<tr  id='+ str.responseData +'>\
 						                        <td>'+noData($("#ctmName").val())+'</td>\
+						                        <td>'+noData(igeo.cityname($('#county').val()))+' </td>\
 						                        <td>'+noData($("#ctmTitle").val())+'</td>\
 						                        <td>'+noData($("#ctmMobile").val())+'</td>\
-						                        <td>'+noData(igeo.cityname($('#county').val()))+' </td>\
 						                        <td>'+noData($("#ctmEmail").val())+'</td>\
 						                        <td>\
 						                        	<a  class="editCtm"  href="#editCtm"  data-toggle="modal"  id="editCtmBox"><i class="icon-pencil"></i></a>\

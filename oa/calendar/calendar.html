@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>日程</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/css/list.css">
+<link rel="stylesheet" href="../../static/css/pro.css">
+<link rel="stylesheet" href="../../static/css/jedate.css">
+
+<link rel="stylesheet" href="../../static/css/calendar.css">
+
+
+<script src="../../static/js/common/jquery.js"></script>
+<script src="../../static/js/common/common.js"></script>
+<script src="../../static/js/common/bootstrap.min.js"></script>
+<script src="../../static/js/common/jedate.js"></script>
+<script src="../../static/js/enclosure/header.js"></script>
+<script src="../../static/js/enclosure/left_oa.js"></script>
+
+
+<script src="../../static/js/oa/calendar/wdCalendar_lang_CH.js"></script>
+<script src="../../static/js/oa/calendar/jquery.calendar.js"></script>
+<script src="../../static/js/oa/calendar/jquery-migrate-1.2.1.js"></script>
+<script src="../../static/js/oa/calendar/calendar.js"></script>
+    
+    
+    
+</head>
+
+<body>
+<form id="deleteRepeat" name="deleteRepeat" method="post" action="" style="display:none;">
+					<input type="hidden" id="otype" name="$OPTYPE$" value="editCalendarEvents"/>
+					<input type="hidden" id="EventsID" name="EventsID" value=""/>
+					<input type="hidden" name="USERID" value=""/>
+					<input type="hidden" name="repeatDateTime" value=""/>
+					<input type="hidden" id="HIDE_IS_REPEAT" name="HIDE_IS_REPEAT" value=""/>
+					<input type="hidden" id="HIDE_REPEAT_TYPE" name="HIDE_REPEAT_TYPE" value=""/>
+					<input type="hidden" id="HIDE_REPEAT_NUM" name="HIDE_REPEAT_NUM" value=""/>
+					<input type="hidden" id="HIDE_REPEAT_PARM" name="HIDE_REPEAT_PARM" value=""/>
+					<input type="hidden" id="HIDE_REPEAT_END_PARM" name="HIDE_REPEAT_END_PARM" value=""/>
+				
+					<input type="hidden" name="$OPTYPE$" value="deleteRepeat"/>
+					<input type="hidden" id="repeatID" name="repeatID" value=""/>
+					<input type="hidden" id="pageTime" name="pageTime" value=""/>
+					<input type="hidden" id="delType" name="delType" value=""/>
+		<table style="width:570px;">
+			<thead>
+				<tr>
+					<th colspan="2" align="left">删除周期性活动</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2" align="left">您想仅删除这一系列中的此活动、所有活动，还是系列中的这一活动及将来所有活动？</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="save_group" onclick="closeRepeatForm(0)" value="仅此次活动 " title="仅此次活动" class="button" style="width:134px;"/>
+					</td>
+					<td align="left">此系列中的其他所有活动均会保留。</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="save_group" onclick="closeRepeatForm(1)" value="所有后续活动" title="所有后续活动" class="button" style="width:134px;"/>
+					</td>
+					<td align="left">此系列中的所有活动均会被删除。</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="save_group" onclick="closeRepeatForm(2)" value="此系列中的所有活动" title="此系列中的所有活动" class="button" style="width:134px;"/>
+					</td>
+					<td align="left">此系列中的所有活动均会被删除。</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" id="save_group" onclick="closeRepeatForm(-1)" value="取消此更改" title="取消此更改" class="button" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	
+	
+	
+<!-- -----------------------------------数据加载遮罩层------------------------------------------------ -->
+<div  id="backDrop" class="modal-backdrop  fade  in hide"   style="color:white;text-align:center;padding-top:100px;;"> 数据加载中，请稍等</div>
+
+<div class="container-fluid">
+	<!--head-->
+
+	<div class="navbar navbar-inverse bg-head clearfix row-fluid">
+        	
+    </div>
+	
+	<!--main-->
+    <div class="tabbable tabs-left row-fluid" style="margin-bottom:50px;">
+      <ul class="nav nav-tabs span2 nav-borderL inav">
+      	
+      </ul>
+      <div class="tab-content span9">
+      
+         <div class="clearfix page-header">
+		      		<h4 class="pull-left ">当前位置: 日程</h4>
+		 </div>
+		 
+		    <div class=" clearfix">
+					<form id="searchForm"  class="pull-left">
+						<div class="control-group form-horizontal ">
+							<div> 
+								<a class="btn btn-blue" href="#addCalendar"  data-toggle="modal"   id="faddbtn" ><i class="icon-plus icon-white"></i>新建日程</a>
+								 <button class="btn btn-blue" type="button"  id="showtodaybtn" >今天</button>
+								  <button class="btn btn-blue" type="button"  id="showreflashbtn" >刷新</button>
+								  <a class="btn btn-blue" href="" data-toggle=""  id="sfprevbtn" ><i class="icon-backward  icon-white"></i></a>
+								 <a class="btn btn-blue" href="" data-toggle=""  id="sfnextbtn" ><i class="icon-forward  icon-white"></i></a>
+								 
+								 <input size="16" type="text"  value=""  class="form_datetime"  id="txtdatetimeshow"/>
+
+							</div>
+						</div>
+					</form>
+				<div class="pull-right"  id="dateBtns"> 
+						 <button class="btn " type="button"  id="showdaybtn" >日</button>
+						  <button class="btn" type="button"  id="showweekbtn" >周</button>
+						   <button class="btn " type="button"  id="showmonthbtn" >月</button>
+				</div>
+				</div>
+				
+			<div id="gridcontainer" style="overflow-y: visible;">
+			</div>
+				
+				
+				
+				
+				
+				
+				<!-- ----------------------------------------新建日程弹出框   start   ------------------------------------- -->
+				
+			<div id="addCalendar" class="modal hide fade calBoxStyle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h3>新建日程</h3>
+	          </div>
+	          <div class="modal-body">
+	                <form class="form-horizontal "   id="eventForm">
+	                       <div class="control-group clearfix">
+				                   	<div class="span8 pull-left">
+				                       <label class="control-label">*标题</label>
+					                    <div class="controls">
+					                      <input type="text"  placeholder="请输入"  id="evtSubject"  check=""  requir="true"><i class="text-error"></i>
+					                    </div>
+				                    </div>
+				             </div>			      
+				                 <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label">*时间</label>
+					                    <div class="controls">
+					                     <input style="width:180px"   type="text"  value="" requir="true"  class="form_datetime"  id="evtStartTime"/>
+					                    </div>
+				                    </div>
+				                    <div class="span6 pull-left">
+				                        <label class="control-label">*到</label>
+				                         <div class="controls">
+					                    <input style="width:180px"   type="text"  value=""  requir="true" class="form_datetime"  id="evtEndTime"/>
+					                    </div>
+				                    </div>
+				               </div>			      
+				               
+				                <div class="control-group clearfix">
+				                   	<div class="span6 pull-left">
+				                       <label class="control-label"></label>
+					                    <div class="controls">
+					                     <input  type="checkbox"  value="y"  class=""  name="beAllDay"  id="beAllDay"/>&nbsp;&nbsp;全天日程&nbsp;&nbsp;
+					                       <input  type="checkbox"  value="y"  class=""  name="beRepeat"  id="beRepeat" />&nbsp;&nbsp;重复
+					                    </div>
+				                    </div>
+				                    </div>
+				                    
+				                    
+				                  <div class="control-group clearfix"  id="repeatBox" >
+				                   	<div class="">
+				                       <label class="control-label"></label>
+					                    <div class="controls">
+							                     <span class="tree well span10"   id=""  style="margin-top:20px;">
+										                     <div  style="text-align:center">重复日程设置</div>
+										                      	<div class="control-group clearfix">
+												                       <label class="control-label" >重复</label>
+													                    <div class="controls">
+															                      <select  id="REPEAT_TYPE"  check=""  requir="true" style="width:100px;">
+															                            <option  selected value="day">天</option>
+															                            <option value="week">周</option>
+															                            <option value="month">月</option>
+															                            <option value="year">年</option>
+																                     </select>
+													                    </div>
+											                    </div>  
+											                    <div class="control-group clearfix"  id="tr_repeat_num">
+												                       <label class="control-label" >重复频率</label>
+													                    <div class="controls">
+															                     <!--  <select  id="rptPeriod"  check=""  requir="true" style="width:100px;">
+															                            <option  selected value="">天</option>
+															                            <option value="">周</option>
+															                            <option value="">月</option>
+															                            <option value="">年</option>
+																                     </select> -->
+																                   <input  type="text"  value="6"  class=""  id="REPEAT_NUM" name="REPEAT_NUM"   />    
+																                   <span id="REPEAT_NUM_STR">天</span>
+													                    </div>
+											                    </div>  
+											                       <div  class="control-group clearfix"  id="tr_repeat_time">
+												                       <label class="control-label" >重复时间</label>
+													                    <div class="controls">
+															                      <input type="checkbox"  id="chb_weekday1" name="chb_weekday1" value="星期一"   />
+											        								<label for="chb_weekday1" style="display:inline;">&nbsp;一</label>
+											        								<input type="checkbox" id="chb_weekday2" name="chb_weekday2" value="星期二" />
+											        								<label for="chb_weekday2" style="display:inline;">&nbsp;二</label>
+											        								<input type="checkbox" id="chb_weekday3" name="chb_weekday3" value="星期三"  />
+											        								<label for="chb_weekday3" style="display:inline;">&nbsp;三</label>
+											        								<input type="checkbox" id="chb_weekday4" name="chb_weekday4" value="星期四" />
+											        								<label for="chb_weekday4" style="display:inline;">&nbsp;四</label>
+											        								<input type="checkbox" id="chb_weekday5" name="chb_weekday5" value="星期五"  />
+											        								<label for="chb_weekday5" style="display:inline;">&nbsp;五</label>
+											        								<input type="checkbox" id="chb_weekday6" name="chb_weekday6" value="星期六"  />
+											        								<label for="chb_weekday6" style="display:inline;">&nbsp;六</label>
+											        								<input type="checkbox" id="chb_weekday7" name="chb_weekday7" value="星期日"  />
+											        								<label for="chb_weekday7" style="display:inline;">&nbsp;日</label>
+													                    </div>
+											                    </div>  
+											                    <div class="control-group clearfix"  id="tr_repeat_date">
+												                       <label class="control-label" >重复日期</label>
+													                    <div class="controls">
+															                      <!--  <input  type="radio" checked  value="repeatT"  name="repeatT"    id=""/ >一月的某天
+															                         <input  type="radio"  value="repeatT"  name="repeatT"  id=""/>一周的某天 -->
+															                         <input type="radio" id="chb_repeatDateParm1" name="chb_repeatDateParm" value="monthDay" checked="checked"  />
+											        								<label for="chb_repeatDateParm1"  style="display:inline;">一月的某天</label>
+											        								<input type="radio" id="chb_repeatDateParm2" name="chb_repeatDateParm" value="weekDay" />
+											        								<label for="chb_repeatDateParm2"  style="display:inline;">一周的某天</label>
+													                    </div>
+											                    </div>  
+											                    
+											                     <div class="control-group clearfix">
+												                       <label class="control-label" >开始日期</label>
+													                    <div class="controls">
+															                    <input style="width:200px;" type="text"  value=""  class="form_datetime"  id="repeat_start"/>
+													                    </div>
+											                    </div> 
+											                    
+											                     <div class="control-group clearfix">
+												                       <label class="control-label" >结束日期</label>
+													                    <div class="controls">
+													                      <input  type="radio"  value="never"  name="repeat_end"  checked="checked"   id="repeat_end1"/ >&nbsp;&nbsp;从不<br/>
+													                    </div>
+											                    </div> 
+											                     <div class="control-group clearfix">
+													                    <div class="controls">
+													                
+													                       <input type="radio" id="repeat_end2"  name="repeat_end" value="END_NUM" style="margin-top:8px;"  />&nbsp;&nbsp;发生&nbsp;&nbsp;
+        																	<input type="text" id="repeat_end_parm2" name="repeat_end_parm"  style="width:200px;"  value="5"  />&nbsp;&nbsp;次后<br/>
+															                   
+													                    </div>
+											                    </div> 
+											                    <div class="control-group clearfix">
+													                    <div class="controls">
+													                        	<input type="radio" id="repeat_end3" name="repeat_end" value="END_TIME" style="margin-top:8px;" />&nbsp;&nbsp;在&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													                        	 <input style="width:200px;" type="text"  value=""  class="form_datetime"  id="repeat_end_parm3"/>&nbsp;&nbsp;后
+															                   
+													                    </div>
+											                    </div> 
+											                    
+											                      <div class="control-group clearfix">
+														                   	<div class=" pull-left">
+														                       <label class="control-label">摘要</label>
+															                    <div class="controls ">
+															                      <span id="tr_summary">每天&nbsp;</span>
+															                    </div>
+														                    </div>
+														             </div>		
+											                    
+											                     <div class="control-group clearfix">
+												                       <label class="control-label" ></label>
+													                    <div class="controls">
+														         			 <button class="btn" id="clear1">取消</button>
+																            <button class="btn btn-primary"   id="saveDiary">完成</button>
+													                    </div>
+											                    </div>                  
+							                      </span>   
+					                    </div>
+				                    </div>
+				                    </div>
+				                    
+				                     <div class="control-group clearfix">
+							                   	<div class=" pull-left">
+							                       <label class="control-label">地点</label>
+								                    <div class="controls ">
+								                      <input style="width:400px"  type="text"  placeholder="请输入"  id="evtLocation"  check=""  ><i class="text-error"></i>
+								                    </div>
+							                    </div>
+							             </div>		
+							             
+							              <div class="control-group clearfix">
+							                   	<div class="span8 pull-left">
+							                       <label class="control-label">日历</label>
+								                    <div class="controls">
+								                      <input type="text"  placeholder="请输入"  id="evtCal"  check="" ><i class="text-error"></i>
+								                    </div>
+							                    </div>
+							             </div>
+							             
+							              <div class="control-group clearfix">
+							                   	<div class="span8 pull-left">
+							                       <label class="control-label">说明</label>
+								                    <div class="controls">
+								                    <textarea  style="width:400px"  placeholder="请输入"  id="remark"  rows="4" check=""  > </textarea><i class="text-error"></i>
+								                    </div>
+							                    </div>
+							             </div>		
+	                </form>
+	            
+	          </div>
+	          <div class="modal-footer">
+	         			 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			            <button class="btn btn-primary"   id="saveEditCalendar">添加</button>
+	          </div>
+      	  </div>
+      	  <!----------------------------------------------------新建日程弹出框   end-------------------------------------------------------->
+				
+				
+			
+				
+	
+      </div>
+    </div>
+    
+    
+     <!-------------------------------------------------查看详情  start------------------------------------>
+      	<div id="calendarDetail"  style="width:600px;height:300px;border:1px solid #ccc;background:#fff;z-index:8999999999999999999999;position:fixed;left:50%;top:50px;margin-left:-300px;">
+      	   <div class="modal-header">
+	            <button type="button" id="close2"  class="close">×</button>
+	             <h3 id="">查看日程详细信息</h3>
+	          </div>
+	          <div class="modal-body">
+	             	<table class="table table-bordered table-vcenter">
+                        <thead>
+                        </thead>
+                        <tbody id="calList">
+	                    	<!--  <tr>
+	                               <td>日程标题:</td>
+	                                <td>123</td>
+	                            </tr>  
+	                             <tr>
+	                               <td>开始时间:</td>
+	                                <td>2017-10-2 06:30</td>
+	                            </tr>  
+	                             <tr>
+	                               <td>结束时间:</td>
+	                                <td>2017-10-2 06:30</td>
+	                            </tr>  
+	                             <tr>
+	                               <td>备注</td>
+	                                <td>的点点滴滴</td>
+	                            </tr>   -->
+                        </tbody>
+                    </table>
+                    
+	          </div>
+      	  </div>
+      	    	  
+   
+      	  		  
+      	  
+    <!--footer-->
+    <div class="row-fluid foot">
+		
+    </div>
+</div>
+
+</body>
+</html>

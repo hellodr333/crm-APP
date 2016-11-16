@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我管辖的合同</title>
+<title>我的合同</title>
 <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../static/css/list.css">
 <link rel="stylesheet" href="../../static/css/pro.css">
@@ -12,7 +12,6 @@
 <script src="../../static/js/common/bootstrap.min.js"></script>
 <script src="../../static/js/common/geo.js"></script>
 <script src="../../static/js/enclosure/header.js"></script>
-<script src="../../static/js/enclosure/left_crm.js"></script>
 <script src="../../static/js/enclosure/left_crm.js"></script>
 <script src="../../static/js/common/alert.js"></script>
 <script src="../../static/js/crm/contract/contract_list.js"></script> 
@@ -65,14 +64,16 @@
 				<table class="table table-hover table-vcenter">
                         <thead>
                             <tr>
-                                <th>合同名称</th>
-                                <th class="text-right">合同总额(万)</th>
-                                <th class="text-right">回款累计(万)</th>
-                                <th>城市</th>
-                                <th>客户经理</th>
-                                <th>签约时间</th>
+                                
                                 <th>客户名称</th>
+                                <th>城市</th>
+                                <th class="text-right">合同总额(万)</th>
+                                <th>合同名称</th>
                                 <th>合同编号</th>
+                                <th>签约时间</th>
+                                <th>状态</th>
+                                <th class="text-right">回款累计(万)</th>
+                                <th>客户经理</th>
                                 <th>查看</th>
                                 <th>编辑</th>
                             </tr>
@@ -123,18 +124,18 @@
 						                    </div>
 						                  </div>
 						                  
-						                  
+						                   
 						                  <div class="control-group clearfix">
 						                   	<div class="span6 pull-left">
 						                       	<label class="control-label">公司账户</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text" id="bankAccount" check="U_8CODE_L" requir="true"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled  id="bankAccount" check="U_8CODE_L" ><i class="text-error"></i>
 						                    	</div>
 						                    </div>
 						                    <div class="span6 pull-left">
 						                       	<label class="control-label">公司开户行</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text"  id="openBank"   requir="true" check="U_2NAME_L"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled     id="openBank"  check="U_2NAME_L"><i class="text-error"></i>
 						                    	</div>
 						                    </div>
 						                  </div>
@@ -144,45 +145,32 @@
 						                   	<div class="span6 pull-left">
 						                       	<label class="control-label">客户账户</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text"  id="bankAccountCust" check="U_8CODE_L" requir="true"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled   id="bankAccountCust" check="U_8CODE_L"><i class="text-error"></i>
 						                    	</div>
 						                    </div>
 						                    <div class="span6 pull-left">
 						                       	<label class="control-label">客户开户行</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text"   id="openBankCust"  requir="true" check="U_2NAME_L"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled  id="openBankCust"  check="U_2NAME_L"><i class="text-error"></i>
 						                    	</div>
 						                    </div>
 						                  </div>
 						                  
 						                  
-						                  <div class="control-group clearfix">
-						                   	<div class="span6 pull-left">
-						                        <label class="control-label">*签约时间</label>
-						                        <div class="controls">
-						                          <input class="disabled"  disabled type="date"  id="signDate" check="U_6DATE" requir="true"><i class="text-error"></i>
-						                        </div>
-						                    </div>
-						                    <div class="span6 pull-left">
-						                       	<label class="control-label">客户签约人</label>
-						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text"  id="signerCust"  requir="true" check="U_2NAME_P"><i class="text-error"></i>
-						                    	</div>
-						                    </div>
-						                  </div>
+						                  
 						                  
 						                  
 						                  <div class="control-group clearfix">
 						                   	<div class="span6 pull-left">
 						                        <label class="control-label">*合同生效时间</label>
 						                        <div class="controls">
-						                          <input  class="disabled" disabled type="date"  id="cntrFrom" check="U_6DATE" requir="true"><i class="text-error"></i>
+						                          <input type="date" class="disabled"  disabled  id="cntrFrom" check="U_6DATE" requir="true"><i class="text-error"></i>
 						                        </div>
 						                    </div>
 						                    <div class="span6 pull-left">
 						                        <label class="control-label">*合同截止时间</label>
 						                        <div class="controls">
-						                          <input class="disabled"  disabled type="date"  id="cntrThru"  check="U_6DATE"  requir="true"><i class="text-error"></i>
+						                          <input type="date" class="disabled"  disabled  id="cntrThru"  check="U_6DATE"  requir="true"><i class="text-error"></i>
 						                        </div>
 						                    </div>
 						                  </div>
@@ -190,32 +178,46 @@
 						                  
 						                   <div class="control-group clearfix">
 						                   	<div class="span6 pull-left">
-						                   	<label class="control-label">*城市</label>
+						                   	<label class="control-label">*签约城市</label>
 						                        <div class="controls">
-						                          <select  disabled class="input-medium  edit-box"  id="province2"  check="U_ZG_GEO">  
+						                          <select class="input-medium  edit-box disabled"  disabled  id="province"  check="U_ZG_GEO">  
 	                                                </select>
-	                                             <select  disabled class="input-medium   edit-box"  id="city2" check="U_ZG_GEO">               
+	                                             <select class="input-medium   edit-box disabled"  disabled   id="city" check="U_ZG_GEO">               
 	                                                 </select>
-	                                             <select  disabled class="input-medium   edit-box"  id="county2" check="U_ZG_GEO">  
-	                                                 </select>
-	                                                 <i class="text-error"></i>
+	                                             <select class="input-medium   edit-box disabled"  disabled  id="county" check="U_ZG_GEO"  requir="true">  
+	                                                 </select><i class="text-error"></i>
+	                                                 
 						                        </div>
 						                         
 						                    </div>
-						                  </div>
-						      
-						      
-						                <div class="control-group clearfix">
+						                   </div>
+						                 <div class="control-group clearfix">
 						                   	<div class="span6 pull-left">
+						                        <label class="control-label">*签约时间</label>
+						                        <div class="controls">
+						                          <input type="date" class="disabled"  disabled  id="signDate" check="U_6DATE" requir="true"><i class="text-error"></i>
+						                        </div>
+						                    </div>
+						                  	<div class="span6 pull-left">
 						                       	<label class="control-label">地址</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text" id="signAddress" check="U_2NAME_T" requir="true"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled  id="signAddress" check="U_2NAME_T"><i class="text-error"></i>
 						                    	</div>
 						                    </div>
+						                  </div>
+						      
+						                <div class="control-group clearfix">
+						                   
 						                    <div class="span6 pull-left">
 						                       	<label class="control-label">公司签约人</label>
 						                   	 	<div class="controls">
-						                      		<input class="disabled"  disabled type="text"   id="signer"  requir="true" check="U_2NAME_P"><i class="text-error"></i>
+						                      		<input type="text" class="disabled"  disabled   id="signer" check="U_2NAME_P"><i class="text-error"></i>
+						                    	</div>
+						                    </div>
+						                      <div class="span6 pull-left">
+						                       	<label class="control-label">客户签约人</label>
+						                   	 	<div class="controls">
+						                      		<input type="text" class="disabled"  disabled  id="signerCust"  check="U_2NAME_P"><i class="text-error"></i>
 						                    	</div>
 						                    </div>
 						                  </div>

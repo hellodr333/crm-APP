@@ -68,12 +68,12 @@ $(function(){
 					if(str.responseData.length!=0){
 						for(var i =0; i<str.responseData.length; i++){
 							msg += '<tr vstID="'+str.responseData[i].id+'">\
-									<td>'+  getNowFormatDate(str.responseData[i].vstStart) +'</td>\
-									<td vstCtmer="'+ str.responseData[i].vstCtmer +'">'+  str.responseData[i].vstCtmer_view+'</td>\
+									<td>'+  getNowFormatDate(str.responseData[i].vstStart).slice(0,10) +'</td>\
 									<td>'+  igeo.cityname(str.responseData[i].vstGeo) +'</td>\
+									<td vstCtmer="'+ str.responseData[i].vstCtmer +'">'+  str.responseData[i].vstCtmer_view+'</td>\
+									<td>'+  noData(str.responseData[i].vstTarget).slice(0,15) + (noData(str.responseData[i].vstTarget).length>15?'...':'')+'</td>\
 									<td>'+  setTrcType(str.responseData[i].trcType)+'</td>\
 									<td>'+  setMode(str.responseData[i].vstMode)+'</td>\
-									<td>'+  noData(str.responseData[i].vstTarget)+'</td>\
 									<td>'+  setStatus(str.responseData[i].vstStatus)+'</td>\
 									<td>'+  setResult(str.responseData[i].vstResult)+'</td>\
 									 <td>\
@@ -195,12 +195,12 @@ $(function(){
 								}
 						
 						msg += '<tr vstID="'+ str.responseData +'">\
-									<td>'+  $("#vstStart").val() +'</td>\
+									<td>'+  $("#vstStart").val().slice(0,10) +'</td>\
+									<td>'+  igeo.cityname($("#county").val()) +'</td>\
 									<td>'+  $('option[value="'+ $("#vstCtmer").val() +'"]').html() +'</td>\
-									<td>'+  igeo.geoname($("#county").val()) +'</td>\
+									<td>'+  noData($("#vstTarget").val()).slice(0,15)+(noData($("#vstTarget").val()).length>15?'...':'')+'</td>\
 									<td>客户联络</td>\
 									<td>'+  setMode($("#vstMode").val()) +'</td>\
-									<td>'+  noData($("#vstTarget").val()) +'</td>\
 									<td>计划</td>\
 									<td></td>\
 									 <td>\
@@ -287,11 +287,11 @@ $(function(){
 				success:function(str){
 					if(str.responseCode==0){
 						makeSure("makeSureBox","修改成功!");
-						$('tr[vstid="'+ vstID +'"] td').eq(0).html($("#vstStartUpd").val());
-						$('tr[vstid="'+ vstID +'"] td').eq(1).html($('option[value="'+ $("#vstCtmerUpd").val() +'"]').html());
-						$('tr[vstid="'+ vstID +'"] td').eq(2).html(igeo.geoname($("#countyUpd").val()));
-						$('tr[vstid="'+ vstID +'"] td').eq(4).html(setMode($("#vstModeUpd").val()));
-						$('tr[vstid="'+ vstID +'"] td').eq(5).html($("#vstTargetUpd").val());
+						$('tr[vstid="'+ vstID +'"] td').eq(0).html($("#vstStartUpd").val().slice(0,10));
+						$('tr[vstid="'+ vstID +'"] td').eq(2).html($('option[value="'+ $("#vstCtmerUpd").val() +'"]').html());
+						$('tr[vstid="'+ vstID +'"] td').eq(1).html(igeo.cityname($("#countyUpd").val()));
+						$('tr[vstid="'+ vstID +'"] td').eq(5).html(setMode($("#vstModeUpd").val()));
+						$('tr[vstid="'+ vstID +'"] td').eq(3).html($("#vstTargetUpd").val().slice(0,15)+($("#vstTargetUpd").val().length>15?'...':''));
 					}else{
 						makeSure("makeSureBox","修改失败!");
 						}

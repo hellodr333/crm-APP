@@ -1,72 +1,43 @@
 
 
 $(function(){
-	var htmlData ={
-			cust:{
-				"url"		:	"crm/cht/cus",
-				"title"		: 	"客户发展走势分析图（按分类  |  单位：家）",
-				"titleName"	: 	"客户发展走势图",
-				"show"		:	"-总数-",
-				"unit" 		:	"客户数",
-				"tbTitle"	:	"cust",
-				"nav"		:	"客户发展统计"
-				},
-			visit:{
-				"url"		:	"crm/cht/vst",
-				"title"		: 	"客户联络走势分析图（按方式  |  单位：次）",
-				"titleName"	: 	"客户联络走势图",
-				"show"		:	"-总数-",
-				"unit" 		:	"行动次数",
-				"tbTitle"	:	"visit",
-				"nav"		:	"客户联络统计"
-				},
-				sths:{
-					"url"		:	"crm/cht/cnh",
-					"title"		: 	"机会历史",
-					"titleName"	: 	"机会历史走势图",
-					"show"		:	"-总数-",
-					"unit" 		:	"机会数",
-					"tbTitle"	:	"sths",
-					"nav"		:	"机会历史统计"
-					},
-				ctract:{
-					"url"		:	"crm/cht/ctr",
-					"title"		: 	"合同统计分析图（按状态  |  单位：万元）",
-					"titleName"	: 	"合同统计图标",
-					"show"		:	"提交",
-					"unit" 		:	"金额（万）",
-					"tbTitle"	:	"ctract",
-					"nav"		:	"合同统计"
-					}
-			};
+	
+	tb({
+		"titleName"	: 	"我的数量走势",
+		"unit" 		:	"数量(个)",
+		},'echart_box1',0,2,true);
+	
+	tb({
+		"titleName"	: 	"我的金额走势",
+		"unit" 		:	"金额(万)",
+		},'echart_box2',2,5,false);
 	
 	
 	
-	tb(htmlData.cust,'echart_box1',8);
-	tb(htmlData.visit,'echart_box2',7);
-	tb(htmlData.sths,'echart_box3',4);
-	tb(htmlData.ctract,'echart_box4',3);
-	
-	function tb(jsonData,boxId,num){
+	function tb(jsonData,boxId,num1,num2,bollen){
 		$.ajax({
-			url:"/"+app+"/"+jsonData.url,
+			url:"/"+app+"/"+"crm/cht/hom",
 			data:{DT_SCOPE:$('#myCust').is(':checked')?2:1},
 			type:'POST',
 			success:function(str){
 				console.log(str)
 				if(str.responseCode==0){
-					markLine : {
-						
-					}					
-
+					var data1=[];
+					var dataShow={};
 					var data2=[];
 					var json={};
 
-					for(var i=0; i<str.responseData.typeLines.length;i++){
+					for(var i=num1; i<num2;i++){
+						data1.push(str.responseData.typeLines[i].itype);
+						var ilineArr=[];
+						for(var k=0;k<str.responseData.typeLines[i].iline.length; k++){
+							ilineArr.push(fmoney(str.responseData.typeLines[i].iline[k]/10000))
+							}
+						
 						json={
 								"name"		:		str.responseData.typeLines[i].itype,
 								"type"		:		'line',
-								"data"		:		str.responseData.typeLines[i].iline,
+								"data"		:		bollen?str.responseData.typeLines[i].iline:ilineArr,
 								"markPoint"	:		{data:[{type : 'max', name: '最大值'},{type : 'min', name: '最小值'}]},
 								"markLine"	:		{data:[{type : 'average', name: '平均值'}]}
 								}
@@ -83,6 +54,18 @@ $(function(){
 									tooltip: {
 											trigger:'axis'
 										},
+										legend: {
+											data:data1,
+											selected:data1
+										},
+										toolbox: {
+											show : true,
+											feature : {
+												magicType : {show: true, type: ['line', 'bar']},
+												restore : {show: true},
+												saveAsImage : {show: true}
+												}
+											},
 									calculable : true,
 									xAxis : [
 											{
@@ -98,7 +81,7 @@ $(function(){
 											}
 											],
 								  //对应数据。。。。。。。
-								  series : [data2[num]]
+								  series : data2
 					};
 					// 为echarts对象加载数据 
 					myChart.setOption(option);

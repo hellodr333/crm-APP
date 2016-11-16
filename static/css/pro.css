@@ -15,6 +15,8 @@ li.headLi{padding: 0 10px;border-radius: 2%;}
 .margT{margin:20px;}
 .boxStyle{width:1080px; margin-left:-490px;}
 .boxStyle .modal-body{overflow-y:scroll;max-height:400px;}
+.boxStyle1{width:980px; margin-left:-460px;}
+.boxStyle1 .modal-body{overflow-y:scroll;max-height:470px;}
 .hidden{display:none;}
 .margPart{margin-right:20px; margin-top:5px;width:100px;}
 
@@ -36,4 +38,8 @@ li.headLi{padding: 0 10px;border-radius: 2%;}
 
 
 .tab-content{margin-bottom:50px;}
+
+
+/* 日程 */
+.calBoxStyle{width:880px; margin-left:-440px;}
 

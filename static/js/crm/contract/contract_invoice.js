@@ -80,12 +80,11 @@ $(function(){
 							}
 							string += '  <tr id='+ str.responseData[i].id +'>\
 	                            <td>'+noData(setDate(str.responseData[i].invcDate))+'</td>\
-	                            <td class="text-right">'+noData(str.responseData[i].invcAmount)+'</td>\
+	                            <td class="text-right">'+noData(fmoney(str.responseData[i].invcAmount))+'</td>\
 	                            <td>'+noData(str.responseData[i].invcTitle)+'</td>\
-	                            <td>'+noData(str.responseData[i].cntrName)+'</td>\
 	                            <td>'+noData(ivcType(str.responseData[i].invcType))+'</td>\
 	                            <td>'+noData(ivoStatus(str.responseData[i].status))+'</td>\
-	                             <td class="text-right">'+noData(str.responseData[i].cntrAmount)+'</td>\
+	                             <td class="text-right">'+noData(fmoney(str.responseData[i].cntrAmount))+'</td>\
 	                             <td>'+noData(str.responseData[i].remark)+'</td>\
 	                              <td >\
 	                              <a title="编辑" class="updContBox updBtn" href="'+nstatus+'" data-toggle="modal"><div  ><i class="icon-pencil" ></i></div></a>\
@@ -102,11 +101,11 @@ $(function(){
 					}
 					$('#contList').html(string);
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}
@@ -199,9 +198,8 @@ $(function(){
 						var s=$('#contList').html();
 						s += '  <tr id='+ str.responseData +'>\
                         <td>'+noData($("#addContform #invcDate").val())+'</td>\
-                        <td class="text-right">'+noData($("#addContform #invcAmount").val())+'</td>\
+                        <td class="text-right">'+noData(fmoney($("#addContform #invcAmount").val()))+'</td>\
                         <td>'+noData($("#addContform #invcTitle").val())+'</td>\
-                        <td>'+noData()+'</td>\
                         <td>'+noData(ivcType($("#addContform #invcType").val()))+'</td>\
                         <td>'+noData("草稿")+'</td>\
                          <td>'+noData()+'</td>\
@@ -328,12 +326,11 @@ $(function(){
 					if(str.responseCode==0){
 						var id=str.responseData.id;
 			            $('#'+id).html('<td>'+noData(setDate(str.responseData.invcDate))+'</td>\
-	                            <td class="text-right">'+noData($("#updContform #invcAmount").val())+'</td>\
+	                            <td class="text-right">'+noData(fmoney($("#updContform #invcAmount").val()))+'</td>\
 	                            <td>'+noData(str.responseData.invcTitle)+'</td>\
-	                            <td>'+noData(str.responseData.cntrName)+'</td>\
 	                            <td>'+noData(ivcType(str.responseData.invcType))+'</td>\
 	                            <td>'+noData(ivoStatus(str.responseData.status))+'</td>\
-	                             <td class="text-right">'+noData(str.responseData.cntrAmount)+'</td>\
+	                             <td class="text-right">'+noData(fmoney(str.responseData.cntrAmount))+'</td>\
 	                             <td>'+noData(str.responseData.remark)+'</td>\
 	                              <td >\
 	                              <a title="编辑" class="updContBox updBtn" href="#updContBox" data-toggle="modal"><div  ><i class="icon-pencil" ></i></div></a>\

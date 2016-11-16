@@ -69,9 +69,13 @@
 								<option value="30">跟进</option>  
 								<option value="40">关闭</option>   
 	                      </select>
-	                    	<select class="input-small"  id="province"  > </select> 
-			                <select class="input-small"  id="city" > </select>              
-			               	<select class="input-small"  id="county" > </select>  
+	                      <select class="input-small  edit-box"  id="province"  >  
+			                      </select>
+			                      <select class="input-small   edit-box"  id="city" >               
+			                      </select>
+			                       <select class="input-small   edit-box hide"  id="county" >               
+			                      </select>
+	                    
 			               	<div class="input-append">
 										  <input class="input-medium" id="showIpt" type="text"   placeholder="请选择客户经理过滤" readonly>
 										 <button class="btn" type="button"  id="searchMan"  href="#searchManBox" data-toggle="modal">选择客户经理</button>
@@ -93,16 +97,16 @@
                             <tr>
                                 
                                 <th>客户</th>
-                                <th>客户经理</th>
                                 <th>城市</th>
                                 <th>产品</th>
+                                <th class="text-right">预计采购额(万)</th>
+                                <th class="text-right">预计成功率(%)</th>
                                 <th>阶段</th>
                                 <th>状态</th>
                                 <th>结论</th>
-                                <th class="text-right">预计采购额(万)</th>
-                                <th class="text-right">预计成功率(%)</th>
                                 <th>开始时间</th>
                                 <th>最后跟进时间</th>
+                                <th>客户经理</th>
                                 <th>查看</th>
                                 <th>操作</th>
                             </tr>
@@ -266,103 +270,79 @@
 						                        </div>
 						                    </div>
 						                  </div>
-						                  <div class="control-group clearfix">
-						                   	<div class="span6 pull-left">
-						                        <label class="control-label">*有效起止时间</label>
-						                        <div class="controls">
-						                          <input type="text"  id="chncStart" class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                        <div class="span6 pull-left">
-						                        <label class="control-label">地址</label>
-						                        <div class="controls">
-						                          <input type="text"  id="chncAddress"  class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                  
-						                  </div>
-						                 
-						                  
-						                       <div class="control-group clearfix">
-						                   	<div class="span6 pull-left">
-						                        <label class="control-label">*有效截止时间</label>
-						                        <div class="controls">
-						                          <input type="text"  id="chncEnd" class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                    
-						                     <div class="span6 pull-left">
-						                        <label class="control-label">*机会概况</label>
-						                        <div class="controls">
-						                          
-						                          <textarea rows="2" id="chncInfo" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                
-						                  </div>
-						      
-						                  <div class="control-group clearfix">
-						                   	<div class="span6 pull-left">
-						                        <label class="control-label">*预计成功率</label>
-						                        <div class="controls">
-						                           <input type="text"  id="chncRatio" class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                    	<div class="span6 pull-left">
-						                        <label class="control-label">机会技术进展</label>
-						                        <div class="controls">
-						                            <textarea rows="2" id="chncInfoTech" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                  </div>
-						                  
-						                   <div class="control-group clearfix">
-						                   	<div class="span6 pull-left">
-						                        <label class="control-label">*预计采购额</label>
-						                        <div class="controls">
-						                             <input type="text"  id="chncTamount" class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                    <div class="span6 pull-left">
-						                        <label class="control-label">机会对手信息</label>
-						                        <div class="controls">
-						                          <textarea rows="2" id="chncInfoCmpt" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                  </div>
-						                  
-						                  <div class="control-group clearfix">
-						                  
-						                    <div class="span6 pull-left">
-						                        <label class="control-label">机会商务进展</label>
-						                        <div class="controls">
-						                           <textarea rows="2" id="chncInfoBusi" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                     <div class="span6 pull-left" id="confirmCommentBox">
-						                        <label class="control-label">*确认意见</label>
-						                        <div class="controls">
-						                           <textarea rows="2" id="confirmComment" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                  </div>
-						       
-						                     <div class="control-group clearfix">
-						                 
-						                    <div class="span6 pull-left" id="auditCommentBox">
-						                        <label class="control-label">*审核意见</label>
-						                        <div class="controls">
-						                          <textarea rows="2" id="auditComment" class="disabled" disabled></textarea>
-						                        </div>
-						                    </div>
-						                    	<div class="span6 pull-left" id="chncResultBox">
-						                        <label class="control-label">*机会结论</label>
-						                        <div class="controls">
-						                            <input id="chncResult" class="disabled" disabled>
-						                        </div>
-						                    </div>
-						                   
-						                  </div>
+						                 <div class="control-group clearfix">
+                                
+                                 <div class="span6 pull-left">
+                                <label class="control-label">*机会概况</label>
+                                <div class="controls">
+                                    <textarea class="disabled" disabled rows="2" id="chncInfo"  requir="true" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+                                
+                            </div>
+                        <div class="control-group clearfix">
+                           <div class="span6 pull-left">
+                                <label class="control-label">*预计采购额(万)</label>
+                                <div class="controls">
+                                    <input class="disabled" disabled  type="text" id="chncTamount"  requir="true" check="U_NM_MNY" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                          
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">地址</label>
+                                <div class="controls">
+                                    <input class="disabled" disabled type="text" id="chncAddress" check="U_9VALUE" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group clearfix">
+                               <div class="span6 pull-left">
+                                <label class="control-label">*预计成功率(%)</label>
+                                <div class="controls">
+                                    <input class="disabled" disabled type="text" id="chncRatio"  requir="true" check="U_NM_PERCENT" placeholder='请输入'><i class="text-error"></i>
+                                </div>
+                            </div>
+                              <div class="span6 pull-left">
+                                    <label class="control-label">机会技术进展</label>
+                                    <div class="controls">
+                                        <textarea class="disabled" disabled rows="2" id="chncInfoTech" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        <div class="control-group clearfix">
+                              <div class="span6 pull-left">
+                                <label class="control-label">*有效起始日期</label>
+                                <div class="controls">
+                                    <input  class="disabled" disabled type="text" id="chncStart"  requir="true"  check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                         <div class="span6 pull-left">
+                                    <label class="control-label">机会商务进展</label>
+                                    <div class="controls">
+                                        <textarea class="disabled" disabled rows="2" id="chncInfoBusi" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class="control-group clearfix">
+                         
+                            
+                            <div class="span6 pull-left">
+                                <label class="control-label">*有效截止日期</label>
+                                <div class="controls">
+                                    <input type="text" class="disabled" disabled id="chncEnd" requir="true" check="U_6DATE"><i class="text-error"></i>
+                                </div>
+                            </div>
+                            <div class="span6 pull-left">
+                                <label class="control-label">机会对手信息</label>
+                                <div class="controls">
+                                    <textarea rows="2" class="disabled" disabled id="chncInfoCmpt" check="U_3DESC" placeholder='请输入'></textarea><i class="text-error"></i>
+                                </div>
+                            </div>
+						</div>
+                           
 						               
 						                </form>    
 						              </div>

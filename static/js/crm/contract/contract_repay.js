@@ -59,7 +59,7 @@ $(function(){
 							}
 							string += '  <tr invoiceid='+str.responseData[i].invoiceId+' id='+ str.responseData[i].id +'>\
 	                            <td  style="width:150px">'+noData(setDate(str.responseData[i].rpayDate))+'</td>\
-	                            <td class="text-right" style="width:180px">'+noData(str.responseData[i].rpayAmount)+'</td>\
+	                            <td class="text-right" style="width:180px">'+noData(fmoney(str.responseData[i].rpayAmount))+'</td>\
 	                            <td>'+noData(repType(str.responseData[i].rpayMethod))+'</td>\
 	                            <td>'+noData(str.responseData[i].ivcName)+'</td>\
 	                             <td>'+noData(repStatus(str.responseData[i].status))+'</td>\
@@ -80,11 +80,11 @@ $(function(){
 					$('#contList').html(string);
 					$('#'+invoiceid).css('background','rgb(232, 242, 254)')
 					if(str.resv1lng==0){
-						$("#nowPage").html(0)	
+						$("#nowPage").html(1)	
 					}else{
 						$("#nowPage").html(pageNo)	
 					}
-					$('#totalPage').html(str.resv1lng);
+					$('#totalPage').html(str.resv1lng==0?1:str.resv1lng);
 				}else{
 					console.log("获取失败")
 				}
@@ -170,7 +170,7 @@ $(document).delegate("#contList tr",'click',function(){
 						var s=$('#contList').html();
 						s += '   <tr invoiceid='+invoiceid+' id='+ str.responseData +'>\
                         <td>'+noData($("#addContform #rpayDate").val())+'</td>\
-                        <td class="text-right" style="width:180px">'+noData($("#addContform #rpayAmount").val())+'</td>\
+                        <td class="text-right" style="width:180px">'+noData(fmoney($("#addContform #rpayAmount").val()))+'</td>\
                         <td>'+noData(repType($("#addContform #rpayMethod").val()))+'</td>\
                         <td>'+noData()+'</td>\
                          <td>'+noData("草稿")+'</td>\
@@ -273,7 +273,7 @@ $(document).delegate("#contList tr",'click',function(){
 					if(str.responseCode==0){
 						var id=str.responseData.id;
 			            $('#'+id).html('<td>'+noData(setDate(str.responseData.rpayDate))+'</td>\
-	                            <td class="text-right" style="width:180px">'+noData($("#updContform #rpayAmount").val())+'</td>\
+	                            <td class="text-right" style="width:180px">'+noData(fmoney($("#updContform #rpayAmount").val()))+'</td>\
 	                            <td>'+noData(repType(str.responseData.rpayMethod))+'</td>\
 	                            <td>'+noData(str.responseData.ivcName)+'</td>\
 	                             <td>'+noData(repStatus(str.responseData.status))+'</td>\

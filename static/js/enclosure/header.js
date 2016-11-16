@@ -37,14 +37,14 @@ $(function(){
 	hhtml+="<a class='brand'>"+ unescape(getCookie("entName")) +"</a>";
 	hhtml+="</div>";
 	hhtml+='<ul class="nav nav-pills head" id="navBar">\
-			  <li limit="EOA" class="hide"><a href="../../xxx/index/index.html" id="xxx">OA</a></li>\
+			  <li limit="EOA" class="hide"><a href="../../oa/index_oa/index_oa.html" id="oa">OA</a></li>\
 			  <li limit="CRM" class="active hide"><a href="../../crm/index_crm/index_crm.html" id="crm">CRM</a></li>\
 			  <li limit="PRJ" class="hide"><a href="../../xxx/index/index.html" id="xxx">项目</a></li>\
 			  <li limit="SET" class="hide"><a href="../../mng/index_set/index_set.html" id="mng">设置</a></li>\
 			</ul>';
 	hhtml+="<ul class='nav pull-right head'>";
 	hhtml+='<li><a>用户 [ '+ unescape(getCookie("user"))  +' ] ,欢迎登入！</a></li>';
-	hhtml+='<li><a href="../../login/user.html">设置</a></li>';
+	hhtml+='<li><a href="../../login/user/user.html">设置</a></li>';
 	hhtml+='<li><a onclick="logout()" href="../../login/login.html">退出登入</a></li>';
 	hhtml+="</ul>";
 
@@ -61,7 +61,7 @@ $(function(){
 		$("#navBar li").removeClass("active")
 		
 		$("#navBar li").each(function(index){
-			if(window.location.href.indexOf($(this).find("a").attr("id"))!=-1){
+			if(window.location.href.indexOf('/'+$(this).find("a").attr("id")+'/')!=-1){
 				$(this).addClass("active")
 			}
 		})

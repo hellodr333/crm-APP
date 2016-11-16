@@ -48,7 +48,6 @@ function deptTree(entpriseID,treeBoxID,showBoxID){
 		event.stopPropagation();
 		
 		var clickID =$(this).parent().parent().parent().attr("depid");
-		
 		if($(this).hasClass("icon-plus-sign") && ($('li[depid="'+ clickID +'"] >ul').children().length==0)){
 			$.ajax({
 			url:"/"+app+"/org/dpt/qry",
@@ -88,10 +87,10 @@ function deptTree(entpriseID,treeBoxID,showBoxID){
 					$("#"+treeBoxID).find("div span").css({"background":"","color":"#333"})
 					$(this).find(">div >span").css({"background":"#3a81da","color":"#fff"})
 					event.stopPropagation();
-					if(entpriseID==$(this).attr("depid")){
+					if(entpriseID==$(this).attr("depID")){
 						$("#"+showBoxID).val("");
 						}else{
-						$("#"+showBoxID).val($(this).find('>.list11 >span').text()).attr("depid",$(this).attr("depid"));
+						$("#"+showBoxID).val($(this).find('>.list11 >span').text()).attr("depID",$(this).attr("depID"));
 						}
 					})
 	}

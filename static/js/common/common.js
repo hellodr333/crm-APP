@@ -76,13 +76,23 @@ function checkText(re,oText){
 				oText.nextSibling.innerHTML='';
 				return true;
 				}else{
-					oText.nextSibling.innerHTML="您填写的内容有误，请重新填写!";
+					oText.nextSibling.innerHTML="您输入的格式、长度有误!";
 					return false;
 					}
 			}		
 	}
 
-	
+//数字格式化
+function fmoney(s, n) {  
+    n = n > 0 && n <= 20 ? n : 2;  
+    s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";  
+    var l = s.split(".")[0].split("").reverse(), r = s.split(".")[1];  
+    t = "";  
+    for (i = 0; i < l.length; i++) {  
+        t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");  
+    }  
+    return t.split("").reverse().join("") + "." + r;  
+}  
 
 //显示NULL为“-”
 function  noData(str){return str== null || str== undefined || str=='' ? '-' : str ;}
@@ -136,11 +146,64 @@ function getNowFormatDate(time) {
             + " " + h + seperator2 + m
             + seperator2 + s;
     return currentdate;
+    
 }
 
+//yyyy-mm-dd 00:00
+function getNowFormatDate2(time) {
+    var date = new Date(time);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    
+  //....00
+	var h = date.getHours();
+	if (h >= 0 && date.getHours() <= 9) {
+        h = "0" + h;
+    }
+	var m = date.getMinutes();
+	if (m >= 0 && m <= 9) {
+        m = "0" + m;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate+ " " + h + seperator2 + m;
+    return currentdate;
+    
+}
 
-
-
+//yyyy-mm-dd 
+function getNowFormatDate3(time) {
+    var date = new Date(time);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    
+  //....00
+	var h = date.getHours();
+	if (h >= 0 && date.getHours() <= 9) {
+        h = "0" + h;
+    }
+	var m = date.getMinutes();
+	if (m >= 0 && m <= 9) {
+        m = "0" + m;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+    
+}
 
 
 
@@ -493,6 +556,22 @@ function custStatus(str){
 					break;
 				case '30':
 					return '销户';
+					break;
+				default:
+					return '';
+			}
+}
+
+function userStatus(str){
+			switch(str){
+				case '10':
+					return '注册';
+					break;
+				case '20':
+					return '分配';
+					break;
+				case '90':
+					return '注销';
 					break;
 				default:
 					return '';

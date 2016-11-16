@@ -40,16 +40,16 @@ $(function () {
             for (var i = 0; i < str.responseData.length; i++) {
                 string += '  <tr>\
 							<td >' + noData(str.responseData[i].chncCust_view) + ' </td>\
-							<td>' + noData(str.responseData[i].bizUser_view) + '</td>\
-							<td>' + noData(igeo.geoname(str.responseData[i].chncGeo)) + ' </td>\
+							<td>' + noData(igeo.cityname(str.responseData[i].chncGeo)) + ' </td>\
                             <td>' + noData(str.responseData[i].prodName) + '</td>\
+                            <td class="text-right">' + noData(fmoney(str.responseData[i].chncAmount)) + '</td>\
+                            <td class="text-right">' + noData(str.responseData[i].chncRatio) + '</td>\
                             <td>' + noData(setChancPhase(str.responseData[i].chncPhase))+ '</td>\
                             <td status="'+str.responseData[i].chncStatus+'">' + noData(setChncStatus(str.responseData[i].chncStatus)) + '</td>\
                             <td>' + noData(setChncResult(str.responseData[i].chncResult)) + '</td>\
-                            <td class="text-right">' + noData(str.responseData[i].chncAmount) + '</td>\
-                            <td class="text-right">' + noData(str.responseData[i].chncRatio) + '</td>\
                             <td>' + noData(setDate(str.responseData[i].chncStart)) + '</td>\
                             <td>' + noData(setDate(str.responseData[i].chncEnd)) + '</td>\
+                            <td>' + noData(str.responseData[i].bizUser_view) + '</td>\
                             <td>\
                             	<a  class="seeContBox"  href="#seeContBox"  data-toggle="modal" idd="'+str.responseData[i].id+'" status="'+str.responseData[i].chncStatus+'"><i class="icon-eye-open"></i></a>\
                             </td>\
@@ -137,48 +137,15 @@ $(function () {
 			$(this).hide();
 		})
 		$('#showIpt').val($('#manIpt').val());
-		userID2=$('#manIpt').attr('userId');
-		console.log(userID2);
+		if($('#manIpt').val()==''){
+		     userID2='';
+		}else{
+		       userID2=$('#manIpt').attr('userId');
+		}   
+console.log(userID2)
 	});
 	 
-	//---------------------------------------	变更项目经理, 获取数据----------------------------------------------
 
-	var cId='';
-	var userID=''
-	$(document).delegate(".chgMang",'click',function(){
-		empTree("managerC","crmResp","managerList");
-			cId=$(this).parent().parent().attr('id');
-			console.log(cId)
-			$("#managerC  .close").click(function(){
-				$("#managerC").hide("fast");
-			})
-			
-	})
-	 
-	$('#chgMangSave').click(function(){
-		userID=$('#crmResp').attr('userId');
-		
-		$.ajax({
-			url:'/'+app+'/crm/cus/ccm',
-			data:{
-				"id":cId,
-				"bizUser":userID
-			},
-			type:"POST",
-			success:function(str){
-				if(str.responseCode==0){
-					console.log($('#crmResp').val())
-					$('#'+cId).children().eq(1).html($('#crmResp').val());
-					$("#chgMangBox").hide();
-					$(".modal-backdrop").each(function(){
-						$(this).hide();
-					})
-				}
-			}
-		});
-	});
-
-	
 
 //-------------------------------------------------------------------------- 获取联系人选项 ---------------------------------------------------------------------
    $.ajax({
@@ -282,14 +249,16 @@ $(function () {
   //-------------------------------------------------------------------------- 搜索 ---------------------------------------------------------------------
    $("#searchBtn").click(function(){
        var str= ajax('/crm/slc/qry', {
+    	   
            "PAGE_SIZE"		: "10",
            "PAGE_NO"		: 1,
+           "DT_SCOPE" 	    : $("#mychnc").is(":checked")?2:1,
            "sc_chncPhase"	: $("#search_ph option:selected").val(),
            "sc_chncProduct"	: $("#search_pru option:selected").val(),
            "sc_chncResult"	: $("#search_res option:selected").val(),
            "sc_chncStatus"	: $("#search_sta option:selected").val(),
-           "sc_chncGeo"    	: igeo.geo(),
-           "sc_bizUser"	  	: $("#bizUser").val()
+           "sc_chncGeo"    	: $("#city").val()?$("#city").val():$("#province").val(),
+           "sc_bizUser"	  	: userID2
        });
        setChanceHtml(str);
    });
@@ -297,8 +266,10 @@ $(function () {
 
    $("#mychnc").click(function(){
        var str= ajax('/crm/slc/qry', {
-           "sc_bizUser" : $("#bizUser").val(),
-           "DT_SCOPE"   :$("#mychnc").is(":checked")?2:1
+           "sc_bizUser"     : $("#bizUser").val(),
+           "DT_SCOPE"       :$("#mychnc").is(":checked")?2:1,
+        	"PAGE_SIZE"		: "10",
+            "PAGE_NO"		: 1,
        });
        console.log(($("#mychnc").is(":checked")?2:1))
        setChanceHtml(str);

@@ -107,8 +107,8 @@ window.onload=function(){
 								var json=eval('('+str+')')
 								console.log(json)
 								if(json.responseCode=='0'){
-									document.cookie="entName="+ escape(oAdminName.value) +";path=/";
-									document.cookie="user="+ escape(oAdminOrgName.value) +";path=/";
+									document.cookie="entName="+ escape(oAdminOrgName.value) +";path=/";
+									document.cookie="user="+ escape(oAdminName.value) +";path=/";
 									var strLimit = '{';
 									for(var i=0; i<json.responseData.length; i++){
 										strLimit += '"'
